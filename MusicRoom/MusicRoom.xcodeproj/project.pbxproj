@@ -1,0 +1,666 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3C6842B825A79E7F00C0EA4D /* UITableViewCell+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6842B725A79E7F00C0EA4D /* UITableViewCell+Reusable.swift */; };
+		3C6842BB25A8AD1200C0EA4D /* DeezerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6842BA25A8AD1200C0EA4D /* DeezerSession.swift */; };
+		3C6842BD25A8AD4600C0EA4D /* PlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6842BC25A8AD4600C0EA4D /* PlayerDelegate.swift */; };
+		3C77DBE125B0F34C00AC6D08 /* S.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C77DBE025B0F34C00AC6D08 /* S.swift */; };
+		3C77DBE525B0FC5200AC6D08 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C77DBE425B0FC5200AC6D08 /* SafariServices.framework */; };
+		3C77DBE725B0FC6A00AC6D08 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C77DBE625B0FC6A00AC6D08 /* AudioToolbox.framework */; };
+		3C77DBE925B0FC8100AC6D08 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C77DBE825B0FC8100AC6D08 /* CoreAudio.framework */; };
+		3C77DBEB25B0FC9000AC6D08 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C77DBEA25B0FC9000AC6D08 /* SystemConfiguration.framework */; };
+		3C77DBED25B0FC9C00AC6D08 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C77DBEC25B0FC9C00AC6D08 /* MediaPlayer.framework */; };
+		3C77DBEF25B0FCD700AC6D08 /* libDeezer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C77DBEE25B0FCD700AC6D08 /* libDeezer.a */; };
+		3C77DBF125B0FD5000AC6D08 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C77DBF025B0FD5000AC6D08 /* libicucore.tbd */; };
+		3C77DBF325B1700700AC6D08 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C77DBF225B1700700AC6D08 /* HeaderView.swift */; };
+		3C77DBF525B18C8F00AC6D08 /* DZRResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3C77DBF425B18C8F00AC6D08 /* DZRResources.bundle */; };
+		3C77DBF725B20E8E00AC6D08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C77DBF625B20E8E00AC6D08 /* Assets.xcassets */; };
+		3C77DBF925B2E9BD00AC6D08 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C77DBF825B2E9BD00AC6D08 /* CoreLocation.framework */; };
+		3C79DA3725825C14009E1571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C79DA3625825C14009E1571 /* AppDelegate.swift */; };
+		3C79DA3B25825C14009E1571 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C79DA3A25825C14009E1571 /* StartViewController.swift */; };
+		3C79DA4E25839305009E1571 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C79DA4D25839305009E1571 /* LogViewController.swift */; };
+		3C79DA5025839321009E1571 /* SignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C79DA4F25839321009E1571 /* SignViewController.swift */; };
+		3C79DA522583968C009E1571 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C79DA512583968C009E1571 /* LaunchScreen.storyboard */; };
+		3C79DA542583A1F2009E1571 /* ImageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C79DA532583A1F2009E1571 /* ImageList.swift */; };
+		3C79DA562583A256009E1571 /* UIImage+ImageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C79DA552583A256009E1571 /* UIImage+ImageList.swift */; };
+		3C79DA5C2587956F009E1571 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C79DA5B2587956F009E1571 /* ShadowView.swift */; };
+		3C7D5F8A2598EA360003BB11 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7D5F892598EA360003BB11 /* TabBarViewController.swift */; };
+		3C88067F258CB3B80048E4D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C88067E258CB3B80048E4D5 /* GoogleService-Info.plist */; };
+		3C880683258E567D0048E4D5 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C880682258E567D0048E4D5 /* ForgotViewController.swift */; };
+		3C880685258E5D1E0048E4D5 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C880684258E5D1E0048E4D5 /* UIViewController+Alert.swift */; };
+		3C8806882598D2F60048E4D5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8806872598D2F60048E4D5 /* SettingsViewController.swift */; };
+		3C88068E2598D49A0048E4D5 /* TextAndButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C88068D2598D49A0048E4D5 /* TextAndButtonTableViewCell.swift */; };
+		3CC17E8025A8D139009CA0F9 /* DeezerSDK in Resources */ = {isa = PBXBuildFile; fileRef = 3CC17E7F25A8D139009CA0F9 /* DeezerSDK */; };
+		3CC17E8225AB6BD5009CA0F9 /* TextFieldAndTwoButtonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E8125AB6BD5009CA0F9 /* TextFieldAndTwoButtonsTableViewCell.swift */; };
+		3CC17E8425ADCC86009CA0F9 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E8325ADCC86009CA0F9 /* EventsTableViewController.swift */; };
+		3CC17E8625ADCCDC009CA0F9 /* AddPlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E8525ADCCDC009CA0F9 /* AddPlaylistsTableViewController.swift */; };
+		3CC17E8825ADCD10009CA0F9 /* AddEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E8725ADCD10009CA0F9 /* AddEventsTableViewController.swift */; };
+		3CC17E8A25ADDC4E009CA0F9 /* Collection+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E8925ADDC4E009CA0F9 /* Collection+Subscript.swift */; };
+		3CC17E8C25AE2990009CA0F9 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E8B25AE2990009CA0F9 /* FriendsViewController.swift */; };
+		3CC17E8F25AE32BF009CA0F9 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E8E25AE32BF009CA0F9 /* Playlist.swift */; };
+		3CC17E9125AE331B009CA0F9 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E9025AE331B009CA0F9 /* Track.swift */; };
+		3CC17E9325AE339D009CA0F9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E9225AE339D009CA0F9 /* Event.swift */; };
+		3CC17E9525AE33B5009CA0F9 /* EventTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E9425AE33B5009CA0F9 /* EventTrack.swift */; };
+		3CC17E9725AE33C2009CA0F9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E9625AE33C2009CA0F9 /* User.swift */; };
+		3CC17E9925AE33D0009CA0F9 /* PlaylistTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E9825AE33D0009CA0F9 /* PlaylistTrack.swift */; };
+		3CC17E9C25AE4000009CA0F9 /* ShowPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E9B25AE4000009CA0F9 /* ShowPlaylistViewController.swift */; };
+		3CC17E9E25AE4017009CA0F9 /* ShowEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E9D25AE4017009CA0F9 /* ShowEventViewController.swift */; };
+		3CC17EA025AE4E3F009CA0F9 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E9F25AE4E3F009CA0F9 /* TrackTableViewCell.swift */; };
+		3CC17EA625AED2E1009CA0F9 /* AddFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EA525AED2E1009CA0F9 /* AddFriendsTableViewController.swift */; };
+		3CC17EA825AEDA0F009CA0F9 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EA725AEDA0F009CA0F9 /* TextFieldTableViewCell.swift */; };
+		3CC17EAA25AEDA1C009CA0F9 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EA925AEDA1C009CA0F9 /* SwitchTableViewCell.swift */; };
+		3CC17EAC25AEE478009CA0F9 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EAB25AEE478009CA0F9 /* Log.swift */; };
+		3CC17EB325AF1B1C009CA0F9 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EB225AF1B1C009CA0F9 /* FriendsTableViewCell.swift */; };
+		3CC17EB525AF3FDA009CA0F9 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EB425AF3FDA009CA0F9 /* PlaylistTableViewController.swift */; };
+		3CC17EB725AF6227009CA0F9 /* ScrollTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EB625AF6227009CA0F9 /* ScrollTableViewCell.swift */; };
+		3CC17EB925AF72DB009CA0F9 /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EB825AF72DB009CA0F9 /* SliderTableViewCell.swift */; };
+		3CC17EBB25AF8E1F009CA0F9 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EBA25AF8E1F009CA0F9 /* MapTableViewCell.swift */; };
+		3CC17EBD25AF8E43009CA0F9 /* TrackVoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EBC25AF8E43009CA0F9 /* TrackVoteTableViewCell.swift */; };
+		3CC17EBF25B0A1C5009CA0F9 /* SnapshotHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EBE25B0A1C5009CA0F9 /* SnapshotHandler.swift */; };
+		3CC17EC225B0B528009CA0F9 /* MusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EC125B0B528009CA0F9 /* MusicController.swift */; };
+		3CC17EC425B0B557009CA0F9 /* PlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EC325B0B557009CA0F9 /* PlaylistController.swift */; };
+		3CC17EC625B0B568009CA0F9 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EC525B0B568009CA0F9 /* EventController.swift */; };
+		3CC17EC825B0BB37009CA0F9 /* MusicBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EC725B0BB37009CA0F9 /* MusicBarViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3C6842B725A79E7F00C0EA4D /* UITableViewCell+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Reusable.swift"; sourceTree = "<group>"; };
+		3C6842BA25A8AD1200C0EA4D /* DeezerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeezerSession.swift; sourceTree = "<group>"; };
+		3C6842BC25A8AD4600C0EA4D /* PlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDelegate.swift; sourceTree = "<group>"; };
+		3C77DBE025B0F34C00AC6D08 /* S.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S.swift; sourceTree = "<group>"; };
+		3C77DBE425B0FC5200AC6D08 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		3C77DBE625B0FC6A00AC6D08 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		3C77DBE825B0FC8100AC6D08 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		3C77DBEA25B0FC9000AC6D08 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3C77DBEC25B0FC9C00AC6D08 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3C77DBEE25B0FCD700AC6D08 /* libDeezer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDeezer.a; path = DeezerSDK/libDeezer.a; sourceTree = "<group>"; };
+		3C77DBF025B0FD5000AC6D08 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		3C77DBF225B1700700AC6D08 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		3C77DBF425B18C8F00AC6D08 /* DZRResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DZRResources.bundle; sourceTree = "<group>"; };
+		3C77DBF625B20E8E00AC6D08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
+		3C77DBF825B2E9BD00AC6D08 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3C79DA3325825C14009E1571 /* MusicRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C79DA3625825C14009E1571 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3C79DA3A25825C14009E1571 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		3C79DA4425825C15009E1571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C79DA4D25839305009E1571 /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
+		3C79DA4F25839321009E1571 /* SignViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignViewController.swift; sourceTree = "<group>"; };
+		3C79DA512583968C009E1571 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3C79DA532583A1F2009E1571 /* ImageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageList.swift; sourceTree = "<group>"; };
+		3C79DA552583A256009E1571 /* UIImage+ImageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+ImageList.swift"; sourceTree = "<group>"; };
+		3C79DA5B2587956F009E1571 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		3C7D5F892598EA360003BB11 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		3C88067E258CB3B80048E4D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3C880682258E567D0048E4D5 /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
+		3C880684258E5D1E0048E4D5 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		3C8806872598D2F60048E4D5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3C88068D2598D49A0048E4D5 /* TextAndButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAndButtonTableViewCell.swift; sourceTree = "<group>"; };
+		3CC17E7C25A8C871009CA0F9 /* MusicRoom-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusicRoom-Bridging-Header.h"; sourceTree = "<group>"; };
+		3CC17E7F25A8D139009CA0F9 /* DeezerSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DeezerSDK; sourceTree = "<group>"; };
+		3CC17E8125AB6BD5009CA0F9 /* TextFieldAndTwoButtonsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAndTwoButtonsTableViewCell.swift; sourceTree = "<group>"; };
+		3CC17E8325ADCC86009CA0F9 /* EventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
+		3CC17E8525ADCCDC009CA0F9 /* AddPlaylistsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaylistsTableViewController.swift; sourceTree = "<group>"; };
+		3CC17E8725ADCD10009CA0F9 /* AddEventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventsTableViewController.swift; sourceTree = "<group>"; };
+		3CC17E8925ADDC4E009CA0F9 /* Collection+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Subscript.swift"; sourceTree = "<group>"; };
+		3CC17E8B25AE2990009CA0F9 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		3CC17E8E25AE32BF009CA0F9 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		3CC17E9025AE331B009CA0F9 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		3CC17E9225AE339D009CA0F9 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		3CC17E9425AE33B5009CA0F9 /* EventTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTrack.swift; sourceTree = "<group>"; };
+		3CC17E9625AE33C2009CA0F9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3CC17E9825AE33D0009CA0F9 /* PlaylistTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTrack.swift; sourceTree = "<group>"; };
+		3CC17E9B25AE4000009CA0F9 /* ShowPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPlaylistViewController.swift; sourceTree = "<group>"; };
+		3CC17E9D25AE4017009CA0F9 /* ShowEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEventViewController.swift; sourceTree = "<group>"; };
+		3CC17E9F25AE4E3F009CA0F9 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
+		3CC17EA525AED2E1009CA0F9 /* AddFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsTableViewController.swift; sourceTree = "<group>"; };
+		3CC17EA725AEDA0F009CA0F9 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		3CC17EA925AEDA1C009CA0F9 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		3CC17EAB25AEE478009CA0F9 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		3CC17EB225AF1B1C009CA0F9 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
+		3CC17EB425AF3FDA009CA0F9 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
+		3CC17EB625AF6227009CA0F9 /* ScrollTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTableViewCell.swift; sourceTree = "<group>"; };
+		3CC17EB825AF72DB009CA0F9 /* SliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
+		3CC17EBA25AF8E1F009CA0F9 /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
+		3CC17EBC25AF8E43009CA0F9 /* TrackVoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackVoteTableViewCell.swift; sourceTree = "<group>"; };
+		3CC17EBE25B0A1C5009CA0F9 /* SnapshotHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHandler.swift; sourceTree = "<group>"; };
+		3CC17EC125B0B528009CA0F9 /* MusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicController.swift; sourceTree = "<group>"; };
+		3CC17EC325B0B557009CA0F9 /* PlaylistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistController.swift; sourceTree = "<group>"; };
+		3CC17EC525B0B568009CA0F9 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
+		3CC17EC725B0BB37009CA0F9 /* MusicBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBarViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3C79DA3025825C14009E1571 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C77DBF925B2E9BD00AC6D08 /* CoreLocation.framework in Frameworks */,
+				3C77DBF125B0FD5000AC6D08 /* libicucore.tbd in Frameworks */,
+				3C77DBED25B0FC9C00AC6D08 /* MediaPlayer.framework in Frameworks */,
+				3C77DBEF25B0FCD700AC6D08 /* libDeezer.a in Frameworks */,
+				3C77DBEB25B0FC9000AC6D08 /* SystemConfiguration.framework in Frameworks */,
+				3C77DBE925B0FC8100AC6D08 /* CoreAudio.framework in Frameworks */,
+				3C77DBE725B0FC6A00AC6D08 /* AudioToolbox.framework in Frameworks */,
+				3C77DBE525B0FC5200AC6D08 /* SafariServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3C6842B925A8ACE600C0EA4D /* Deezer */ = {
+			isa = PBXGroup;
+			children = (
+				3C6842BA25A8AD1200C0EA4D /* DeezerSession.swift */,
+				3C6842BC25A8AD4600C0EA4D /* PlayerDelegate.swift */,
+			);
+			path = Deezer;
+			sourceTree = "<group>";
+		};
+		3C79DA2A25825C14009E1571 = {
+			isa = PBXGroup;
+			children = (
+				3C77DBF425B18C8F00AC6D08 /* DZRResources.bundle */,
+				3CC17E7F25A8D139009CA0F9 /* DeezerSDK */,
+				3C79DA3525825C14009E1571 /* MusicRoom */,
+				3C79DA3425825C14009E1571 /* Products */,
+				FC501485E042E2E937F25BE7 /* Pods */,
+				AAB091A5767B455851AAB601 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3C79DA3425825C14009E1571 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3C79DA3325825C14009E1571 /* MusicRoom.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3C79DA3525825C14009E1571 /* MusicRoom */ = {
+			isa = PBXGroup;
+			children = (
+				3CC17EC025B0B500009CA0F9 /* Controllers */,
+				3CC17E8D25AE32A0009CA0F9 /* Models */,
+				3C6842B925A8ACE600C0EA4D /* Deezer */,
+				3C79DA4A258270C8009E1571 /* UIView */,
+				3C79DA3625825C14009E1571 /* AppDelegate.swift */,
+				3CC17EAB25AEE478009CA0F9 /* Log.swift */,
+				3CC17E8925ADDC4E009CA0F9 /* Collection+Subscript.swift */,
+				3C77DBF625B20E8E00AC6D08 /* Assets.xcassets */,
+				3C79DA512583968C009E1571 /* LaunchScreen.storyboard */,
+				3C88067E258CB3B80048E4D5 /* GoogleService-Info.plist */,
+				3C79DA4425825C15009E1571 /* Info.plist */,
+				3CC17E7C25A8C871009CA0F9 /* MusicRoom-Bridging-Header.h */,
+			);
+			path = MusicRoom;
+			sourceTree = "<group>";
+		};
+		3C79DA4A258270C8009E1571 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				3C88068F2598D4A10048E4D5 /* Cells */,
+				3CC17E9A25AE35B7009CA0F9 /* ViewControllers */,
+				3C79DA532583A1F2009E1571 /* ImageList.swift */,
+				3C79DA552583A256009E1571 /* UIImage+ImageList.swift */,
+				3C79DA5B2587956F009E1571 /* ShadowView.swift */,
+				3C880684258E5D1E0048E4D5 /* UIViewController+Alert.swift */,
+				3C77DBF225B1700700AC6D08 /* HeaderView.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		3C88068F2598D4A10048E4D5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3C88068D2598D49A0048E4D5 /* TextAndButtonTableViewCell.swift */,
+				3CC17E8125AB6BD5009CA0F9 /* TextFieldAndTwoButtonsTableViewCell.swift */,
+				3CC17E9F25AE4E3F009CA0F9 /* TrackTableViewCell.swift */,
+				3C6842B725A79E7F00C0EA4D /* UITableViewCell+Reusable.swift */,
+				3CC17EA725AEDA0F009CA0F9 /* TextFieldTableViewCell.swift */,
+				3CC17EA925AEDA1C009CA0F9 /* SwitchTableViewCell.swift */,
+				3CC17EB225AF1B1C009CA0F9 /* FriendsTableViewCell.swift */,
+				3CC17EB625AF6227009CA0F9 /* ScrollTableViewCell.swift */,
+				3CC17EB825AF72DB009CA0F9 /* SliderTableViewCell.swift */,
+				3CC17EBA25AF8E1F009CA0F9 /* MapTableViewCell.swift */,
+				3CC17EBC25AF8E43009CA0F9 /* TrackVoteTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3CC17E8D25AE32A0009CA0F9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3CC17E8E25AE32BF009CA0F9 /* Playlist.swift */,
+				3CC17E9025AE331B009CA0F9 /* Track.swift */,
+				3CC17E9225AE339D009CA0F9 /* Event.swift */,
+				3CC17E9425AE33B5009CA0F9 /* EventTrack.swift */,
+				3CC17E9625AE33C2009CA0F9 /* User.swift */,
+				3CC17E9825AE33D0009CA0F9 /* PlaylistTrack.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3CC17E9A25AE35B7009CA0F9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3CC17EB025AF0A33009CA0F9 /* AuthorizedZone */,
+				3CC17EAF25AF09F8009CA0F9 /* NonauthorizedZone */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3CC17EAD25AF09BC009CA0F9 /* Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				3CC17E8525ADCCDC009CA0F9 /* AddPlaylistsTableViewController.swift */,
+				3CC17E9B25AE4000009CA0F9 /* ShowPlaylistViewController.swift */,
+				3CC17EB425AF3FDA009CA0F9 /* PlaylistTableViewController.swift */,
+			);
+			path = Playlist;
+			sourceTree = "<group>";
+		};
+		3CC17EAE25AF09DA009CA0F9 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				3CC17E8325ADCC86009CA0F9 /* EventsTableViewController.swift */,
+				3CC17E8725ADCD10009CA0F9 /* AddEventsTableViewController.swift */,
+				3CC17E9D25AE4017009CA0F9 /* ShowEventViewController.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		3CC17EAF25AF09F8009CA0F9 /* NonauthorizedZone */ = {
+			isa = PBXGroup;
+			children = (
+				3C79DA3A25825C14009E1571 /* StartViewController.swift */,
+				3C79DA4D25839305009E1571 /* LogViewController.swift */,
+				3C79DA4F25839321009E1571 /* SignViewController.swift */,
+				3C880682258E567D0048E4D5 /* ForgotViewController.swift */,
+			);
+			path = NonauthorizedZone;
+			sourceTree = "<group>";
+		};
+		3CC17EB025AF0A33009CA0F9 /* AuthorizedZone */ = {
+			isa = PBXGroup;
+			children = (
+				3CC17EBE25B0A1C5009CA0F9 /* SnapshotHandler.swift */,
+				3C7D5F892598EA360003BB11 /* TabBarViewController.swift */,
+				3CC17EA525AED2E1009CA0F9 /* AddFriendsTableViewController.swift */,
+				3CC17EC725B0BB37009CA0F9 /* MusicBarViewController.swift */,
+				3CC17EAD25AF09BC009CA0F9 /* Playlist */,
+				3CC17EB125AF0A53009CA0F9 /* Settings */,
+				3CC17EAE25AF09DA009CA0F9 /* Events */,
+				3C77DBE025B0F34C00AC6D08 /* S.swift */,
+			);
+			path = AuthorizedZone;
+			sourceTree = "<group>";
+		};
+		3CC17EB125AF0A53009CA0F9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3CC17E8B25AE2990009CA0F9 /* FriendsViewController.swift */,
+				3C8806872598D2F60048E4D5 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		3CC17EC025B0B500009CA0F9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3CC17EC125B0B528009CA0F9 /* MusicController.swift */,
+				3CC17EC325B0B557009CA0F9 /* PlaylistController.swift */,
+				3CC17EC525B0B568009CA0F9 /* EventController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AAB091A5767B455851AAB601 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C77DBF825B2E9BD00AC6D08 /* CoreLocation.framework */,
+				3C77DBF025B0FD5000AC6D08 /* libicucore.tbd */,
+				3C77DBEE25B0FCD700AC6D08 /* libDeezer.a */,
+				3C77DBEC25B0FC9C00AC6D08 /* MediaPlayer.framework */,
+				3C77DBEA25B0FC9000AC6D08 /* SystemConfiguration.framework */,
+				3C77DBE825B0FC8100AC6D08 /* CoreAudio.framework */,
+				3C77DBE625B0FC6A00AC6D08 /* AudioToolbox.framework */,
+				3C77DBE425B0FC5200AC6D08 /* SafariServices.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC501485E042E2E937F25BE7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3C79DA3225825C14009E1571 /* MusicRoom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C79DA4725825C15009E1571 /* Build configuration list for PBXNativeTarget "MusicRoom" */;
+			buildPhases = (
+				3C79DA2F25825C14009E1571 /* Sources */,
+				3C79DA3025825C14009E1571 /* Frameworks */,
+				3C79DA3125825C14009E1571 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MusicRoom;
+			productName = MusicRoom;
+			productReference = 3C79DA3325825C14009E1571 /* MusicRoom.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3C79DA2B25825C14009E1571 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = School21;
+				TargetAttributes = {
+					3C79DA3225825C14009E1571 = {
+						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
+					};
+				};
+			};
+			buildConfigurationList = 3C79DA2E25825C14009E1571 /* Build configuration list for PBXProject "MusicRoom" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3C79DA2A25825C14009E1571;
+			productRefGroup = 3C79DA3425825C14009E1571 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3C79DA3225825C14009E1571 /* MusicRoom */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3C79DA3125825C14009E1571 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C77DBF525B18C8F00AC6D08 /* DZRResources.bundle in Resources */,
+				3C79DA522583968C009E1571 /* LaunchScreen.storyboard in Resources */,
+				3CC17E8025A8D139009CA0F9 /* DeezerSDK in Resources */,
+				3C88067F258CB3B80048E4D5 /* GoogleService-Info.plist in Resources */,
+				3C77DBF725B20E8E00AC6D08 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3C79DA2F25825C14009E1571 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CC17E9725AE33C2009CA0F9 /* User.swift in Sources */,
+				3CC17EB925AF72DB009CA0F9 /* SliderTableViewCell.swift in Sources */,
+				3CC17EC625B0B568009CA0F9 /* EventController.swift in Sources */,
+				3CC17EA625AED2E1009CA0F9 /* AddFriendsTableViewController.swift in Sources */,
+				3C88068E2598D49A0048E4D5 /* TextAndButtonTableViewCell.swift in Sources */,
+				3CC17E9C25AE4000009CA0F9 /* ShowPlaylistViewController.swift in Sources */,
+				3C6842BB25A8AD1200C0EA4D /* DeezerSession.swift in Sources */,
+				3C880685258E5D1E0048E4D5 /* UIViewController+Alert.swift in Sources */,
+				3CC17E8425ADCC86009CA0F9 /* EventsTableViewController.swift in Sources */,
+				3C79DA4E25839305009E1571 /* LogViewController.swift in Sources */,
+				3CC17E9E25AE4017009CA0F9 /* ShowEventViewController.swift in Sources */,
+				3CC17E9125AE331B009CA0F9 /* Track.swift in Sources */,
+				3CC17E8C25AE2990009CA0F9 /* FriendsViewController.swift in Sources */,
+				3CC17E8A25ADDC4E009CA0F9 /* Collection+Subscript.swift in Sources */,
+				3CC17EC425B0B557009CA0F9 /* PlaylistController.swift in Sources */,
+				3CC17EB725AF6227009CA0F9 /* ScrollTableViewCell.swift in Sources */,
+				3CC17E8625ADCCDC009CA0F9 /* AddPlaylistsTableViewController.swift in Sources */,
+				3C79DA3B25825C14009E1571 /* StartViewController.swift in Sources */,
+				3CC17EB525AF3FDA009CA0F9 /* PlaylistTableViewController.swift in Sources */,
+				3C7D5F8A2598EA360003BB11 /* TabBarViewController.swift in Sources */,
+				3CC17E8825ADCD10009CA0F9 /* AddEventsTableViewController.swift in Sources */,
+				3C8806882598D2F60048E4D5 /* SettingsViewController.swift in Sources */,
+				3C79DA3725825C14009E1571 /* AppDelegate.swift in Sources */,
+				3C79DA562583A256009E1571 /* UIImage+ImageList.swift in Sources */,
+				3C79DA5025839321009E1571 /* SignViewController.swift in Sources */,
+				3CC17E9325AE339D009CA0F9 /* Event.swift in Sources */,
+				3CC17EC225B0B528009CA0F9 /* MusicController.swift in Sources */,
+				3C77DBF325B1700700AC6D08 /* HeaderView.swift in Sources */,
+				3C77DBE125B0F34C00AC6D08 /* S.swift in Sources */,
+				3CC17E9925AE33D0009CA0F9 /* PlaylistTrack.swift in Sources */,
+				3CC17E8225AB6BD5009CA0F9 /* TextFieldAndTwoButtonsTableViewCell.swift in Sources */,
+				3CC17EBD25AF8E43009CA0F9 /* TrackVoteTableViewCell.swift in Sources */,
+				3CC17EBB25AF8E1F009CA0F9 /* MapTableViewCell.swift in Sources */,
+				3CC17EAA25AEDA1C009CA0F9 /* SwitchTableViewCell.swift in Sources */,
+				3C6842BD25A8AD4600C0EA4D /* PlayerDelegate.swift in Sources */,
+				3CC17EC825B0BB37009CA0F9 /* MusicBarViewController.swift in Sources */,
+				3C6842B825A79E7F00C0EA4D /* UITableViewCell+Reusable.swift in Sources */,
+				3CC17EB325AF1B1C009CA0F9 /* FriendsTableViewCell.swift in Sources */,
+				3C880683258E567D0048E4D5 /* ForgotViewController.swift in Sources */,
+				3CC17EA825AEDA0F009CA0F9 /* TextFieldTableViewCell.swift in Sources */,
+				3CC17EA025AE4E3F009CA0F9 /* TrackTableViewCell.swift in Sources */,
+				3CC17EAC25AEE478009CA0F9 /* Log.swift in Sources */,
+				3CC17EBF25B0A1C5009CA0F9 /* SnapshotHandler.swift in Sources */,
+				3CC17E9525AE33B5009CA0F9 /* EventTrack.swift in Sources */,
+				3CC17E8F25AE32BF009CA0F9 /* Playlist.swift in Sources */,
+				3C79DA542583A1F2009E1571 /* ImageList.swift in Sources */,
+				3C79DA5C2587956F009E1571 /* ShadowView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3C79DA4525825C15009E1571 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3C79DA4625825C15009E1571 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3C79DA4825825C15009E1571 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = "$(CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MusicRoom/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DeezerSDK",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.GirlsPower.MusicRoom.MusicRoom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MusicRoom/MusicRoom-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3C79DA4925825C15009E1571 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = "$(CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MusicRoom/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DeezerSDK",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.GirlsPower.MusicRoom.MusicRoom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MusicRoom/MusicRoom-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3C79DA2E25825C14009E1571 /* Build configuration list for PBXProject "MusicRoom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C79DA4525825C15009E1571 /* Debug */,
+				3C79DA4625825C15009E1571 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3C79DA4725825C15009E1571 /* Build configuration list for PBXNativeTarget "MusicRoom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C79DA4825825C15009E1571 /* Debug */,
+				3C79DA4925825C15009E1571 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3C79DA2B25825C14009E1571 /* Project object */;
+}
