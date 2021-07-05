@@ -40,10 +40,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 	// MARK: Private
 
 	private func setupRootViewController() {
-		let viewController = StartViewController()
+		let startViewController = StartViewController()
+		let navigationController = UINavigationController(rootViewController: startViewController)
+		navigationController.modalPresentationStyle = .fullScreen
+		navigationController.navigationBar.barTintColor = .clear
+		navigationController.navigationBar.tintColor = .white
+		navigationController.navigationBar.barStyle = .black
 
 		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = viewController
+		window?.rootViewController = navigationController
 		window?.makeKeyAndVisible()
 	}
 

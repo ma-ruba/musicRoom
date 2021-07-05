@@ -1,0 +1,46 @@
+/* 
+  Localizable.strings
+  MusicRoom
+
+  Created by Мария on 07.06.2021.
+  Copyright © 2021 School21. All rights reserved.
+*/
+
+/* Start */
+"Start_logIn" = "Log in";
+"Start_signUp" = "Sign up";
+"Start_welcomeWord" = "Find your sound";
+
+/* Sign */
+"Sign_title" = "Hello! Sign up:";
+"Sign_emailPlaceholder" = "Email";
+"Sign_passwordPlaceholder" = "Password";
+"Sign_passwordConfirmationPlaceholder" = "Password confirmation";
+"Sign_createAccountButtonTitle" = "Create Account";
+"Sign_emptyFieldAlert" = "All fields are mandatory.";
+"Sign_passwordAlert" = "Password and confirmed password must match.";
+"Sign_sendingErrorAlert" = "There was a problem sending your password reset email.";
+
+/* Log */
+"Log_title" = "Welcome back!";
+"Log_emailPlaceholder" = "Email";
+"Log_passwordPlaceholder" = "Password";
+"Log_logInButtonTitle" = "Log in";
+"Log_forgotButtonTitle" = "Forgot your password?";
+"Log_emptyFieldAlert" = "All fields are mandatory.";
+"Log_noRecordAlert" = "No record of this account was found :(";
+"Log_" = "";
+"Log_" = "";
+"Log_" = "";
+"Log_" = "";
+
+/* Validator */
+"Validator_wrongEmailFormat" = "Email is incorrect";
+"Validator_" = "";
+"Validator_" = "";
+"Validator_" = "";
+
+/* Forgot */
+"Forgot_title" = "Reset your password";
+"Forgot_emailPlaceholder" = "Email";
+"Forgot_" = "";
