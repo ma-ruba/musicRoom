@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FirebaseAnalytics
 
 final class AddEventsTableViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 

@@ -38,16 +38,22 @@ final class LogPresenter: LogPresenterProtocol {
 
 	func login(with model: LogViewController.AccountInfoModel?) {
 		guard let model = model else {
-			return view.showAlert(message: locolizedStrings.emptyFieldAlert.localized())
+			return view.showBasicAlert(message: locolizedStrings.emptyFieldAlert.localized())
 		}
 
-		Auth.auth().signIn(withEmail: model.email, password: model.password) { user, error in
-			if error == nil {
-				self.openTabBarViewController()
-			} else if user == nil {
-				self.view.showAlert(message: self.locolizedStrings.noRecordAlert.localized())
+		view.showSpinner {
+			Auth.auth().signIn(withEmail: model.email, password: model.password) { [weak self] user, error in
+				guard let self = self else { return }
+				self.view.hideSpinner {
+					if error == nil {
+						self.openTabBarViewController()
+					} else if user == nil {
+						self.view.showBasicAlert(message: self.locolizedStrings.noRecordAlert.localized())
+					}
+				}
 			}
 		}
+
 	}
 
 	private func openTabBarViewController() {

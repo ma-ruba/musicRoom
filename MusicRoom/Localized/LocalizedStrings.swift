@@ -43,5 +43,15 @@ enum LocalizedStrings {
 	enum Forgot: LocalizedStringConvertible {
 		case title
 		case emailPlaceholder
+		case emailAbsentAlert
+		case emailSendingAlert
+		case emailSentAlert
+		case doneAlertTitle
+		case sendButtonTitle
+	}
+
+	enum Spinner: LocalizedStringConvertible {
+		case title
+		case message
 	}
 }

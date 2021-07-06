@@ -43,4 +43,14 @@
 /* Forgot */
 "Forgot_title" = "Reset your password";
 "Forgot_emailPlaceholder" = "Email";
+"Forgot_emailAbsentAlert" = "Email field is mandatory";
+"Forgot_emailSendingAlert" = "There was a problem sending your password reset email.";
+"Forgot_emailSentAlert" = "Go check your email to reset your password.";
+"Forgot_doneAlertTitle" = "Done!";
+"Forgot_sendButtonTitle" = "Send";
 "Forgot_" = "";
+"Forgot_" = "";
+
+/* Spinner */
+"Spinner_title" = "";
+"Spinner_message" = "Please wait...";

@@ -22,18 +22,23 @@ final class SignPresenter: SignPresenterProtocol {
 
 	func createAccount(with model: SignViewController.AccountInfoModel?) {
 		let locolizedStrings = LocalizedStrings.Sign.self
-		guard let model = model else { return view.showAlert(message: locolizedStrings.emptyFieldAlert.localized()) }
+		guard let model = model else { return view.showBasicAlert(message: locolizedStrings.emptyFieldAlert.localized()) }
 
 		guard model.password == model.passwordConfirm else {
 			view.clearAllTextFieldsInput()
-			return view.showAlert(message: locolizedStrings.passwordAlert.localized())
+			return view.showBasicAlert(message: locolizedStrings.passwordAlert.localized())
 		}
 
-		Auth.auth().createUser(withEmail: model.email, password: model.password) { user, error in
-			if error != nil {
-				print(error.debugDescription)
-				self.view.showAlert(message: error?.localizedDescription ?? locolizedStrings.sendingErrorAlert.localized())
-				self.view.clearAllTextFieldsInput()
+		view.showSpinner {
+			Auth.auth().createUser(withEmail: model.email, password: model.password) { [weak self] user, error in
+				self?.view.hideSpinner {
+					if error != nil {
+						self?.view.showBasicAlert(message: error?.localizedDescription ?? locolizedStrings.sendingErrorAlert.localized())
+						self?.view.clearAllTextFieldsInput()
+					} else {
+						// TODO: надо показывать алерт, что email был отправлен и наверное перенаправить на страничку с логированием?
+					}
+				}
 			}
 		}
 	}

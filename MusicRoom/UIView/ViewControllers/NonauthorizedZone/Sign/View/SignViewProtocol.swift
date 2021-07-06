@@ -6,6 +6,6 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
-protocol SignViewProtocol: AnyObject, BasicViewProtocol {
+protocol SignViewProtocol: BasicViewProtocol {
 	func clearAllTextFieldsInput()
 }

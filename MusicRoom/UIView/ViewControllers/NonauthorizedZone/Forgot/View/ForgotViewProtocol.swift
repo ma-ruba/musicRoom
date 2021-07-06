@@ -6,4 +6,4 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
-protocol ForgotViewProtocol: AnyObject, BasicViewProtocol { }
+protocol ForgotViewProtocol: BasicViewProtocol { }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C46E5EA2694481E0010BB56 /* UIViewController+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C46E5E92694481E0010BB56 /* UIViewController+Spinner.swift */; };
 		3C6842B825A79E7F00C0EA4D /* UITableViewCell+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6842B725A79E7F00C0EA4D /* UITableViewCell+Reusable.swift */; };
 		3C6842BB25A8AD1200C0EA4D /* DeezerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6842BA25A8AD1200C0EA4D /* DeezerSession.swift */; };
 		3C6842BD25A8AD4600C0EA4D /* PlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6842BC25A8AD4600C0EA4D /* PlayerDelegate.swift */; };
@@ -93,6 +94,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C46E5E92694481E0010BB56 /* UIViewController+Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Spinner.swift"; sourceTree = "<group>"; };
 		3C6842B725A79E7F00C0EA4D /* UITableViewCell+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Reusable.swift"; sourceTree = "<group>"; };
 		3C6842BA25A8AD1200C0EA4D /* DeezerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeezerSession.swift; sourceTree = "<group>"; };
 		3C6842BC25A8AD4600C0EA4D /* PlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDelegate.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				3C880684258E5D1E0048E4D5 /* UIViewController+Alert.swift */,
 				3C77DBF225B1700700AC6D08 /* HeaderView.swift */,
 				4C5EB5F2269347B300FCECE8 /* BasicViewProtocol.swift */,
+				3C46E5E92694481E0010BB56 /* UIViewController+Spinner.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				3CC17E8625ADCCDC009CA0F9 /* AddPlaylistsTableViewController.swift in Sources */,
 				3C79DA3B25825C14009E1571 /* StartViewController.swift in Sources */,
 				3CC17EB525AF3FDA009CA0F9 /* PlaylistTableViewController.swift in Sources */,
+				3C46E5EA2694481E0010BB56 /* UIViewController+Spinner.swift in Sources */,
 				3C7D5F8A2598EA360003BB11 /* TabBarViewController.swift in Sources */,
 				3CC17E8825ADCD10009CA0F9 /* AddEventsTableViewController.swift in Sources */,
 				4C94C2E72693225D0037E7D0 /* SignViewProtocol.swift in Sources */,

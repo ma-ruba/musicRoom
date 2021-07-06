@@ -6,6 +6,4 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
-protocol BasicViewProtocol {
-	func showAlert(message: String)
-}
+protocol BasicViewProtocol: UIViewController { }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseAnalytics
 
 final class SongSearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
 

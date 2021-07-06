@@ -7,6 +7,7 @@
 //
 
 import Firebase
+import FirebaseAnalytics
 
 enum PlaylistType {
 	case `private`

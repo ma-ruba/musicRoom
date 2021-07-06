@@ -102,7 +102,7 @@ final class ForgotViewController: UIViewController, ForgotViewProtocol, UITextFi
 	private func configuresSendPasswordButton() {
 		sendPasswordButton.backgroundColor = .systemPink
 		sendPasswordButton.layer.cornerRadius = 32
-		sendPasswordButton.setTitle("Send", for: .normal)
+		sendPasswordButton.setTitle(locolizedStrings.sendButtonTitle.localized, for: .normal)
 		sendPasswordButton.setTitleColor(.white, for: .normal)
 		sendPasswordButton.addTarget(self, action: #selector(didTapSendPasswordButton), for: .touchUpInside)
 		sendPasswordButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
@@ -111,20 +111,7 @@ final class ForgotViewController: UIViewController, ForgotViewProtocol, UITextFi
 	// MARK: - Actions
 
 	@objc func didTapSendPasswordButton() {
-		guard let email = emailTextFied.text else {
-			showBasicAlert(message: "Email field is mandatory")
-			return
-		}
-
-		Auth.auth().sendPasswordReset(withEmail: email) { error in
-			if error != nil {
-				self.showBasicAlert(message: "There was a problem sending your password reset email.")
-			} else {
-				self.showBasicAlert(title: "Done!", message: "Go check your email to reset your password.")
-			}
-		}
-
-		dismiss(animated: true, completion: nil)
+		presenter?.send(email: emailTextFied.text)
 	}
 
 	// MARK: - BasicViewProtocol

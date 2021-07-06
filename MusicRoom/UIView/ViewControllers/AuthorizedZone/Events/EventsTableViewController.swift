@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import Firebase
+import FirebaseAnalytics
 
 enum EventType {
 	case `private`

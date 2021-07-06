@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 final class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	private(set) lazy var tableView = UITableView()

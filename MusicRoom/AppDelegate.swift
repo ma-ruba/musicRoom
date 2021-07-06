@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
 		setupRootViewController()
 
+		// Firebase initial setup
 		FirebaseConfiguration.shared.setLoggerLevel(.min)
 		FirebaseApp.configure()
 

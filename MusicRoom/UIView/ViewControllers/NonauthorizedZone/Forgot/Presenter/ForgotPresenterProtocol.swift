@@ -7,5 +7,5 @@
 //
 
 protocol ForgotPresenterProtocol {
-	
+	func send(email: String?)
 }

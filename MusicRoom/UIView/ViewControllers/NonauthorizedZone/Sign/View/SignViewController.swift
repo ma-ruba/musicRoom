@@ -187,12 +187,6 @@ final class SignViewController: UIViewController, SignViewProtocol, UITextFieldD
 		presenter?.createAccount(with: accountInfoModel)
 	}
 
-	// MARK: - BasicViewProtocol
-
-	func showAlert(message: String) {
-		showBasicAlert(message: message)
-	}
-
 	// MARK: - SignViewProtocol
 
 	func clearAllTextFieldsInput() {
@@ -220,7 +214,7 @@ final class SignViewController: UIViewController, SignViewProtocol, UITextFieldD
 			guard let result = Validator.validate(email: textField.text) else {
 				return true
 			}
-			showAlert(message: result)
+			showBasicAlert(message: result)
 			textField.text = ""
 			return false
 

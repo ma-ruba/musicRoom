@@ -6,4 +6,4 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
-protocol StartViewProtocol: AnyObject { }
+protocol StartViewProtocol: BasicViewProtocol { }

@@ -9,6 +9,7 @@
 import UIKit
 import GoogleSignIn
 import FBSDKLoginKit
+import FirebaseAnalytics
 
 final class SettingsViewController:
 	UIViewController,
