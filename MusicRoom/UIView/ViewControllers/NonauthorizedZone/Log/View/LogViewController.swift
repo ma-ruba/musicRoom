@@ -21,6 +21,7 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 		case password
 	}
 
+	private(set) lazy var scrollView = UIScrollView()
 	private(set) lazy var stackView = UIStackView()
 //	private(set) lazy var facebookButton = FBLoginButton()
 	private(set) lazy var googleButton = GIDSignInButton()
@@ -56,6 +57,18 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 		confugureUI()
 	}
 
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+
+		registerForKeyboardNotifications()
+	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+
+		unregisterFromKeyboardNotifications()
+	}
+
 	// MARK: Private
 
 	private func configureNavigationItem() {
@@ -68,6 +81,7 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 	// MARK: Setup
 
 	private func setupUI() {
+		setupScrollView()
 		setupStackView()
 //		setupFacebookButton()
 		setupGoogleButton()
@@ -76,6 +90,14 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 		setupOrLabel()
 		setupLogInButton()
 		setupForgotButton()
+	}
+
+	private func setupScrollView() {
+		view.addSubview(scrollView)
+
+		scrollView.snp.makeConstraints { make in
+			make.edges.equalToSuperview()
+		}
 	}
 
 	private func setupStackView() {

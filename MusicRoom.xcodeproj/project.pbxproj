@@ -82,6 +82,7 @@
 		4C5EB61A2693760D00FCECE8 /* ForgotPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5EB6192693760D00FCECE8 /* ForgotPresenterProtocol.swift */; };
 		4C5EB61D2693761D00FCECE8 /* ForgotPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5EB61C2693761D00FCECE8 /* ForgotPresenter.swift */; };
 		4C5EB6202693764D00FCECE8 /* ForgotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5EB61F2693764D00FCECE8 /* ForgotModel.swift */; };
+		4C5EB6252695FEFC00FCECE8 /* UIViewController+KeyboardScrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5EB6242695FEFC00FCECE8 /* UIViewController+KeyboardScrollable.swift */; };
 		4C826F91266A916A00F27671 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C826F90266A916A00F27671 /* Assets.xcassets */; };
 		4C826F96266A988500F27671 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C826F95266A988500F27671 /* StartPresenter.swift */; };
 		4C826F99266A98D000F27671 /* StartViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C826F98266A98D000F27671 /* StartViewProtocol.swift */; };
@@ -172,6 +173,7 @@
 		4C5EB6192693760D00FCECE8 /* ForgotPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPresenterProtocol.swift; sourceTree = "<group>"; };
 		4C5EB61C2693761D00FCECE8 /* ForgotPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPresenter.swift; sourceTree = "<group>"; };
 		4C5EB61F2693764D00FCECE8 /* ForgotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotModel.swift; sourceTree = "<group>"; };
+		4C5EB6242695FEFC00FCECE8 /* UIViewController+KeyboardScrollable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardScrollable.swift"; sourceTree = "<group>"; };
 		4C826F90266A916A00F27671 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C826F95266A988500F27671 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		4C826F98266A98D000F27671 /* StartViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewProtocol.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				3C77DBF225B1700700AC6D08 /* HeaderView.swift */,
 				4C5EB5F2269347B300FCECE8 /* BasicViewProtocol.swift */,
 				3C46E5E92694481E0010BB56 /* UIViewController+Spinner.swift */,
+				4C5EB6242695FEFC00FCECE8 /* UIViewController+KeyboardScrollable.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				3CC17EC425B0B557009CA0F9 /* PlaylistController.swift in Sources */,
 				3CC17EB725AF6227009CA0F9 /* ScrollTableViewCell.swift in Sources */,
 				4C5EB60B2693691000FCECE8 /* ReplaceCharactersHelper.swift in Sources */,
+				4C5EB6252695FEFC00FCECE8 /* UIViewController+KeyboardScrollable.swift in Sources */,
 				3CC17E8625ADCCDC009CA0F9 /* AddPlaylistsTableViewController.swift in Sources */,
 				3C79DA3B25825C14009E1571 /* StartViewController.swift in Sources */,
 				3CC17EB525AF3FDA009CA0F9 /* PlaylistTableViewController.swift in Sources */,

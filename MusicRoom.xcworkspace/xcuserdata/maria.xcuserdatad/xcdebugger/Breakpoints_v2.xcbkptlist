@@ -52,5 +52,85 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A396A2A-6520-4CB1-995E-726479D21E4C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MusicRoom/UIView/UIViewController+KeyboardScrollable.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4834A605-578B-429C-BC38-D04367C4EA26"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MusicRoom/UIView/UIViewController+KeyboardScrollable.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "4834A605-578B-429C-BC38-D04367C4EA26 - 1272126e2f66cac4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in MusicRoom):__C.UIViewController.scrollViewContainer.getter : Swift.Optional&lt;__C.UIScrollView&gt;"
+                  moduleName = "MusicRoom"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maria/Desktop/musicRoom/MusicRoom/UIView/UIViewController+KeyboardScrollable.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  uuid = "4834A605-578B-429C-BC38-D04367C4EA26 - 26976db3847979aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.UIView) -&gt; Swift.Bool in (extension in MusicRoom):__C.UIViewController.scrollViewContainer.getter : Swift.Optional&lt;__C.UIScrollView&gt;"
+                  moduleName = "MusicRoom"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maria/Desktop/musicRoom/MusicRoom/UIView/UIViewController+KeyboardScrollable.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1111CFB8-1B75-46C2-8299-733DA714A8B8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MusicRoom/UIView/UIViewController+KeyboardScrollable.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
