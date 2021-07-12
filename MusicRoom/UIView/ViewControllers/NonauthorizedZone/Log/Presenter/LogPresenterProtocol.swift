@@ -7,7 +7,8 @@
 //
 
 protocol LogPresenterProtocol {
-	func makeSetups(for view: UIViewController)
+	func makeSetups()
 	func forgotPassword()
 	func login(with model: LogViewController.AccountInfoModel?)
+	func loginWithGoogle()
 }

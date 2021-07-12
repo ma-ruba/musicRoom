@@ -8,8 +8,8 @@
 
 import UIKit
 import Firebase
-//import FBSDKCoreKit
 import GoogleSignIn
+//import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -24,12 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 		FirebaseConfiguration.shared.setLoggerLevel(.min)
 		FirebaseApp.configure()
 
-//		// Facebook login stuff
-//		ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-
-		// Google login
 		GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
 		GIDSignIn.sharedInstance().delegate = self
+
+//		// Facebook login stuff
+//		ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
 		return true
 	}
@@ -56,12 +55,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 	// MARK: - GIDSignInDelegate
 
 	func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-		guard let _ = error, let authentication = user.authentication else  { return }
+		guard error != nil else {
+			window?.rootViewController?.showBasicAlert(message: error.debugDescription)
+			return
+		}
+
+		guard let user = user, let authentication = user.authentication else { return }
 
 		let credential = GoogleAuthProvider.credential(
 			withIDToken: authentication.idToken,
 			accessToken: authentication.accessToken
 		)
+
+		Auth.auth().signIn(with: credential) { [weak self] authResult, error in
+			guard let self = self else { return }
+
+			guard let presentingView = self.window?.rootViewController as? LogViewController else { return }
+
+			presentingView.loginWithGoogle()
+		}
 	}
 }
 

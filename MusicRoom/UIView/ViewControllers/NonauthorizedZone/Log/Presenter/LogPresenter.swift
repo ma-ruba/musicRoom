@@ -24,9 +24,9 @@ final class LogPresenter: LogPresenterProtocol {
 
 	// MARK: - LogPresenterProtocol
 
-	func makeSetups(for view: UIViewController) {
+	func makeSetups() {
 		// Google login stuff
-		GIDSignIn.sharedInstance()?.presentingViewController = view
+		GIDSignIn.sharedInstance()?.presentingViewController = view.navigationController
 	}
 
 	func forgotPassword() {
@@ -47,13 +47,16 @@ final class LogPresenter: LogPresenterProtocol {
 				self.view.hideSpinner {
 					if error == nil {
 						self.openTabBarViewController()
-					} else if user == nil {
-						self.view.showBasicAlert(message: self.locolizedStrings.noRecordAlert.localized())
+					} else {
+						self.view.showBasicAlert(message: error?.localizedDescription ?? self.locolizedStrings.noRecordAlert.localized)
 					}
 				}
 			}
 		}
+	}
 
+	func loginWithGoogle() {
+		openTabBarViewController()
 	}
 
 	private func openTabBarViewController() {

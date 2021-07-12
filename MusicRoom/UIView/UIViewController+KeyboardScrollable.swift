@@ -38,7 +38,7 @@ extension UIViewController: KeyboardScrollable {
 		)
 	}
 
-	@objc private func keyboardWillChangeFrame(from beginFrame: CGRect, to endFrame: CGRect) {
+	@objc func keyboardWillChangeFrame(from beginFrame: CGRect, to endFrame: CGRect) {
 		guard let scrollView = scrollViewContainer else { return }
 
 		let beginHeight = beginFrame.origin.y
@@ -48,7 +48,7 @@ extension UIViewController: KeyboardScrollable {
 		scrollView.contentInset = inset
 	}
 
-	@objc func keyboardWillChangeFrame(notification: NSNotification) {
+	@objc private func keyboardWillChangeFrame(notification: NSNotification) {
 		guard let userInfo = notification.userInfo,
 			let beginFrame = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect,
 			let endFrame =  userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect

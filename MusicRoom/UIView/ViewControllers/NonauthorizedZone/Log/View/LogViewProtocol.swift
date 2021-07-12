@@ -6,4 +6,6 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
-protocol LogViewProtocol: BasicViewProtocol { }
+protocol LogViewProtocol: BasicViewProtocol {
+	func loginWithGoogle()
+}

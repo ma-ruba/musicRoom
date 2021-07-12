@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import SnapKit
 import GoogleSignIn
 
-final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDelegate {
+final class LogViewController:
+	UIViewController,
+	LogViewProtocol,
+	UITextFieldDelegate
+{
 
 	struct AccountInfoModel {
 		let email: String
@@ -21,7 +26,7 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 		case password
 	}
 
-	private(set) lazy var scrollView = UIScrollView()
+//	private(set) lazy var scrollView = UIScrollView()
 	private(set) lazy var stackView = UIStackView()
 //	private(set) lazy var facebookButton = FBLoginButton()
 	private(set) lazy var googleButton = GIDSignInButton()
@@ -30,6 +35,8 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 	private(set) lazy var passwordTextField = UITextField()
 	private(set) lazy var logInButton = UIButton()
 	private(set) lazy var forgotButton = UIButton()
+
+//	private(set) var forgotButtonBottomConstraint: SnapKit.Constraint?
 
 	private let locolizedStrings: LocalizedStrings.Log.Type = LocalizedStrings.Log.self
 
@@ -52,6 +59,7 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		presenter?.makeSetups()
 		configureNavigationItem()
 		setupUI()
 		confugureUI()
@@ -60,14 +68,23 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
-		registerForKeyboardNotifications()
+//		registerForKeyboardNotifications()
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 
-		unregisterFromKeyboardNotifications()
+//		unregisterFromKeyboardNotifications()
 	}
+
+//	override func keyboardWillChangeFrame(from beginFrame: CGRect, to endFrame: CGRect) {
+//		let screenHeight: CGFloat = UIScreen.main.bounds.size.height
+//		let keyboardY: CGFloat = endFrame.origin.y
+//		let bottomInset: CGFloat = view.safeAreaInsets.bottom
+//		let endHeight: CGFloat = max(screenHeight - keyboardY - bottomInset, 0)
+//		forgotButtonBottomConstraint?.update(offset: -endHeight)
+//		view.layoutIfNeeded()
+//	}
 
 	// MARK: Private
 
@@ -81,7 +98,7 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 	// MARK: Setup
 
 	private func setupUI() {
-		setupScrollView()
+//		setupScrollView()
 		setupStackView()
 //		setupFacebookButton()
 		setupGoogleButton()
@@ -92,13 +109,14 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 		setupForgotButton()
 	}
 
-	private func setupScrollView() {
-		view.addSubview(scrollView)
-
-		scrollView.snp.makeConstraints { make in
-			make.edges.equalToSuperview()
-		}
-	}
+//	private func setupScrollView() {
+//		view.addSubview(scrollView)
+//		scrollView.delegate = self
+//
+//		scrollView.snp.makeConstraints { make in
+//			make.edges.equalToSuperview()
+//		}
+//	}
 
 	private func setupStackView() {
 		view.addSubview(stackView)
@@ -203,6 +221,7 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 
 	private func configureGoogleButton() {
 		googleButton.layer.cornerRadius = 8
+		googleButton.addTarget(self, action: #selector(pressGoogleButton), for: .touchUpInside)
 	}
 
 	private func configureOrLabel() {
@@ -262,6 +281,10 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 		presenter?.forgotPassword()
 	}
 
+	@objc private func pressGoogleButton() {
+		GIDSignIn.sharedInstance().signIn()
+	}
+
 	@objc func pressLogInButton() {
 		var accountInfoModel: AccountInfoModel?
 
@@ -269,12 +292,6 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 			accountInfoModel = AccountInfoModel(email: email, password: password)
 		}
 		presenter?.login(with: accountInfoModel)
-	}
-
-	// MARK: - BasicViewProtocol
-
-	func showAlert(message: String) {
-		showBasicAlert(message: message)
 	}
 
 	// MARK: - UITextFieldDelegate
@@ -296,7 +313,7 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 				return true
 			}
 			if textField.text?.isEmpty == false {
-				showAlert(message: result)
+				showBasicAlert(message: result)
 				textField.text = ""
 				return false
 			}
@@ -306,5 +323,11 @@ final class LogViewController: UIViewController, LogViewProtocol, UITextFieldDel
 		}
 
 		return true
+	}
+
+	// MARK: - LogViewProtocol
+
+	func loginWithGoogle() {
+		presenter?.loginWithGoogle()
 	}
 }

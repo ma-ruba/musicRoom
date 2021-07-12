@@ -168,7 +168,6 @@ final class SignViewController: UIViewController, SignViewProtocol, UITextFieldD
 		createAccountButton.addTarget(self, action: #selector(didTapCreateAccountButton), for: .touchUpInside)
 	}
 
-
 	// MARK: - Actions
 
 	@objc func didTapCreateAccountButton() {
@@ -214,12 +213,16 @@ final class SignViewController: UIViewController, SignViewProtocol, UITextFieldD
 			guard let result = Validator.validate(email: textField.text) else {
 				return true
 			}
-			showBasicAlert(message: result)
-			textField.text = ""
-			return false
+			if textField.text?.isEmpty == false {
+				showBasicAlert(message: result)
+				textField.text = ""
+				return false
+			}
 
 		default:
-			return true
+			break
 		}
+
+		return true
 	}
 }
