@@ -20,6 +20,9 @@
 "Sign_emptyFieldAlert" = "All fields are mandatory.";
 "Sign_passwordAlert" = "Password and confirmed password must match.";
 "Sign_sendingErrorAlert" = "There was a problem sending your password reset email.";
+"Sign_verifyEmailMessage" = "Go and check your email. It's nearly time to log in and start enjoing yourself with us!";
+"Sign_verifyEmailTitle" = "Good job)))";
+
 
 /* Log */
 "Log_title" = "Welcome back!";
@@ -54,3 +57,11 @@
 /* Spinner */
 "Spinner_title" = "";
 "Spinner_message" = "Please wait...";
+
+/* Alert */
+"Alert_title" = "Error";
+"Alert_ok" = "ok";
+"Alert_" = "";
+"Alert_" = "";
+"Alert_" = "";
+"Alert_" = "";

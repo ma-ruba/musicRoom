@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import GoogleSignIn
-//import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -24,11 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 		FirebaseConfiguration.shared.setLoggerLevel(.min)
 		FirebaseApp.configure()
 
+		// Auth with Google setup
 		GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
 		GIDSignIn.sharedInstance().delegate = self
-
-//		// Facebook login stuff
-//		ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
 		return true
 	}
@@ -41,11 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
 	private func setupRootViewController() {
 		let startViewController = StartViewController()
-		let navigationController = UINavigationController(rootViewController: startViewController)
-		navigationController.modalPresentationStyle = .fullScreen
-		navigationController.navigationBar.barTintColor = .clear
-		navigationController.navigationBar.tintColor = .white
-		navigationController.navigationBar.barStyle = .black
+		let navigationController = CustomNavigationController(rootViewController: startViewController)
+		navigationController.setNavigationBarHidden(true, animated: true)
 
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.rootViewController = navigationController
@@ -55,8 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 	// MARK: - GIDSignInDelegate
 
 	func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-		guard error != nil else {
-			window?.rootViewController?.showBasicAlert(message: error.debugDescription)
+		guard error == nil else {
+			window?.rootViewController?.showBasicAlert(message: error.localizedDescription)
 			return
 		}
 
@@ -67,12 +61,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 			accessToken: authentication.accessToken
 		)
 
-		Auth.auth().signIn(with: credential) { [weak self] authResult, error in
-			guard let self = self else { return }
+		guard let navigationController = self.window?.rootViewController as? UINavigationController,
+			let presentingView = navigationController.visibleViewController as? LogViewController
+		else {
+			return
+		}
 
-			guard let presentingView = self.window?.rootViewController as? LogViewController else { return }
-
-			presentingView.loginWithGoogle()
+		presentingView.showSpinner {
+			Auth.auth().signIn(with: credential) { authResult, error in
+				presentingView.hideSpinner {
+					presentingView.loginWithGoogle()
+				}
+			}
 		}
 	}
 }

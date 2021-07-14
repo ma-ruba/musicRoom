@@ -113,7 +113,7 @@ final class TextFieldAndTwoButtonsTableViewCell: UITableViewCell {
 
 		ref.updateChildValues(updatedUserData, withCompletionBlock: { (error, ref) -> Void in
 			if error != nil {
-				print("Error updating data: \(error.debugDescription)")
+				print("Error updating data: \(error?.localizedDescription)")
 			}
 //			else {
 //				Analytics.logEvent("created_username", parameters: Log.defaultInfo())

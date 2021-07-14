@@ -24,6 +24,8 @@ enum LocalizedStrings {
 		case emptyFieldAlert
 		case passwordAlert
 		case sendingErrorAlert
+		case verifyEmailMessage
+		case verifyEmailTitle
 	}
 
 	enum Log: LocalizedStringConvertible {
@@ -53,5 +55,10 @@ enum LocalizedStrings {
 	enum Spinner: LocalizedStringConvertible {
 		case title
 		case message
+	}
+
+	enum Alert: LocalizedStringConvertible {
+		case title
+		case ok
 	}
 }
