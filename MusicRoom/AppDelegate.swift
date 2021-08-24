@@ -61,15 +61,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 			accessToken: authentication.accessToken
 		)
 
-		guard let navigationController = self.window?.rootViewController as? UINavigationController,
-			let presentingView = navigationController.visibleViewController as? LogViewController
-		else {
-			return
-		}
+		guard let navigationController = self.window?.rootViewController as? UINavigationController else { return }
 
-		presentingView.showSpinner {
+		navigationController.showSpinner {
 			Auth.auth().signIn(with: credential) { authResult, error in
-				presentingView.hideSpinner {
+				navigationController.hideSpinner {
+					guard let presentingView = navigationController.visibleViewController as? LogViewController else { return }
 					presentingView.loginWithGoogle()
 				}
 			}

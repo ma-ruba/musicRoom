@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Icon-29-2.png",
+      "filename" : "Icon-29-4.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Icon-60-2.png",
+      "filename" : "Icon-60-4.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Icon-120-2.png",
+      "filename" : "Icon-120-4.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -19,8 +19,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "template-rendering-intent" : "original"
   }
 }

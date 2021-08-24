@@ -6,7 +6,13 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
+enum PlayingState {
+	case play
+	case pause
+	case disabled
+}
+
 protocol PlayerDelegate {
 	func didStartPlaying(track: Track?)
-	func changePlayPauseButtonState(to newState: Bool?)
+	func changePlayPauseButtonState(to newState: PlayingState)
 }

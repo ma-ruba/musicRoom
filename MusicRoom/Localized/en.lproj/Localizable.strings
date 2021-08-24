@@ -65,3 +65,35 @@
 "Alert_" = "";
 "Alert_" = "";
 "Alert_" = "";
+
+/* MusicBar*/
+"MusicBar_notActive" = "Nothing is playing... yet!";
+"MusicBar_" = "";
+"MusicBar_" = "";
+"MusicBar_" = "";
+"MusicBar_" = "";
+
+/* Playlist */
+"Playlist_navigationTitle" = "Playlists";
+"Playlist_playlistTitle" = "%@ playlist";
+"Playlist_emptyPlaylistTitle" = "No %@ playlists yet...";
+"Playlist_unableToDelete" = "This playlist is not yours. You can not delete it!";
+"Playlist_" = "";
+"Playlist_" = "";
+
+/* AddPlaylist */
+"AddPlaylist_navigationTitle" = "Let's make a new playlist!";
+"AddPlaylist_buttonTitle" = "Create";
+"AddPlaylist_noNameError" = "Name field must not be empty!";
+"AddPlaylist_" = "";
+"AddPlaylist_" = "";
+"AddPlaylist_" = "";
+"AddPlaylist_" = "";
+
+/* AssertationErrors */
+"AssertationErrors_noUser" = "No user found!";
+"AssertationErrors_" = "";
+"AssertationErrors_" = "";
+"AssertationErrors_" = "";
+"AssertationErrors_" = "";
+"AssertationErrors_" = "";

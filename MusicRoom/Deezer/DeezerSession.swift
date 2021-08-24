@@ -72,7 +72,7 @@ class DeezerSession : NSObject, DeezerSessionDelegate, DZRPlayerDelegate {
 		controller = nil
 
 		deezerPlayer?.pause()
-		playerDelegate?.changePlayPauseButtonState(to: nil)
+		playerDelegate?.changePlayPauseButtonState(to: .disabled)
 		playerDelegate?.didStartPlaying(track: nil)
 	}
 

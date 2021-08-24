@@ -61,4 +61,25 @@ enum LocalizedStrings {
 		case title
 		case ok
 	}
+
+	enum MusicBar: LocalizedStringConvertible {
+		case notActive
+	}
+
+	enum Playlist: LocalizedStringConvertible {
+		case navigationTitle
+		case playlistTitle
+		case emptyPlaylistTitle
+		case unableToDelete
+	}
+
+	enum AssertationErrors: LocalizedStringConvertible {
+		case noUser
+	}
+
+	enum AddPlaylist: LocalizedStringConvertible {
+		case navigationTitle
+		case buttonTitle
+		case noNameError
+	}
 }
