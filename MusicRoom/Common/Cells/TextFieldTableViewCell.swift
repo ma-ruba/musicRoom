@@ -38,8 +38,7 @@ final class TextFieldTableViewCell: UITableViewCell {
 		contentView.addSubview(textField)
 
 		textField.snp.makeConstraints { make in
-			make.left.right.equalToSuperview().inset(16)
-			make.top.bottom.equalToSuperview().inset(4)
+			make.edges.equalToSuperview().inset(16)
 		}
 	}
 

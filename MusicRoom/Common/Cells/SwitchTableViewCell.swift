@@ -12,6 +12,7 @@ final class SwitchTableViewCell: UITableViewCell {
 
 	let label = UILabel()
 	let switchItem = UISwitch()
+	let button = UIButton()
 
 	// MARK: Initializzation
 
@@ -32,6 +33,7 @@ final class SwitchTableViewCell: UITableViewCell {
 	// MARK: Setup
 
 	private func setupUI() {
+		setupButton()
 		setupSwitchItem()
 		setupLabel()
 	}
@@ -50,8 +52,19 @@ final class SwitchTableViewCell: UITableViewCell {
 		contentView.addSubview(switchItem)
 
 		switchItem.snp.makeConstraints { make in
-			make.right.equalToSuperview().inset(16)
+			make.right.equalTo(button.snp.left).inset(-16).priority(.required)
+			make.right.equalToSuperview().inset(16).priority(.low)
 			make.centerY.equalToSuperview()
+		}
+	}
+
+	private func setupButton() {
+		contentView.addSubview(button)
+
+		button.snp.makeConstraints { make in
+			make.centerY.equalToSuperview()
+			make.size.equalTo(16)
+			make.right.equalToSuperview().inset(16)
 		}
 	}
 
@@ -63,9 +76,8 @@ final class SwitchTableViewCell: UITableViewCell {
 	}
 
 	private func configureLabel() {
-		label.text = "Public"
+		label.font = .systemFont(ofSize: 20)
 	}
-
 
 	private func configureSwitchItem() {
 		switchItem.isOn = true

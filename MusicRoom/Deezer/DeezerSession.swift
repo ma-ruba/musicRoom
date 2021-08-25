@@ -63,10 +63,6 @@ class DeezerSession : NSObject, DeezerSessionDelegate, DZRPlayerDelegate {
 		controller = PlaylistController(playlist: path, startIndex: startIndex, takeOverFrom: self.controller)
 	}
 
-	public func setMusic(toEvent path: String) {
-		controller = EventController(event: path, takeOverFrom: self.controller)
-	}
-
 	public func clearMusic() {
 		controller?.destroy()
 		controller = nil

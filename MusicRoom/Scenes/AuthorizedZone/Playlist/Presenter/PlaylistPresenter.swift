@@ -33,13 +33,7 @@ final class PlaylistPresenter: PlaylistPresenterProtocol {
 	func typeName(for section: Int) -> String? {
 		guard let playlistType = PlaylistType.init(rawValue: section) else { return nil }
 
-		switch playlistType {
-		case .private:
-			return "private"
-
-		case .public:
-			return "public"
-		}
+		return playlistType.name
 	}
 
 	func numberOfRows(in section: Int) -> Int {

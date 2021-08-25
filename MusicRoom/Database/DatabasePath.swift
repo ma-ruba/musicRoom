@@ -6,9 +6,10 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
-import Foundation
-
+/// Enum for constructing path for the data in Firebase
 enum DatabasePath: String {
-	case publicPlaylist = "public/playlists"
 	case user = "users/"
+	case `private` = "private/"
+	case `public` = "public/"
+	case playlists = "playlists/"
 }

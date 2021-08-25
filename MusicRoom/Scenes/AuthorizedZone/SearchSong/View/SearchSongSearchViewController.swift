@@ -168,7 +168,7 @@ final class SearchSongViewController: UIViewController, UITableViewDelegate, UIT
 
 			var trackDict = track.toDict()
 			if from == "playlist" {
-				if let highestOrderNumber = latestPlaylist?.sortedTracks().last?.orderNumber {
+				if let highestOrderNumber = latestPlaylist?.sortedTracks.last?.orderNumber {
 					trackDict["orderNumber"] = highestOrderNumber + 1
 				} else {
 					trackDict["orderNumber"] = 0

@@ -9,7 +9,6 @@
 struct TabBarModel {
 	enum TabBarItem: String, CaseIterable {
 		case playlists
-		case events
 		case settings
 
 		var name: String {
@@ -20,9 +19,6 @@ struct TabBarModel {
 			switch self {
 			case .settings:
 				return .settings
-
-			case .events:
-				return .events
 
 			case .playlists:
 				return .playlists

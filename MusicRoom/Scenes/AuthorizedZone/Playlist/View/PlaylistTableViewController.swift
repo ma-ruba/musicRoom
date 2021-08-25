@@ -10,6 +10,11 @@ import UIKit
 
 final class PlaylistTableViewController: UITableViewController, PlaylistViewProtocol {
 
+	private enum Constants {
+		static let footerHeight: CGFloat = 46
+		static let headerHeight: CGFloat = 46
+	}
+
 	private var presenter: PlaylistPresenterProtocol?
 
 	// MARK: Initializzation
@@ -49,18 +54,12 @@ final class PlaylistTableViewController: UITableViewController, PlaylistViewProt
 		return presenter?.numberOfRows(in: section) ?? 1
 	}
 
-//	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//		switch section {
-//		case 0:
-//			return ""
-//
-//		case 1:
-//			return ""
-//
-//		default:
-//			return nil
-//		}
-//	}
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		let playlistType = PlaylistType(rawValue: section)
+		guard let numberOfRows = presenter?.numberOfRows(in: section), numberOfRows > 0 else { return nil }
+
+		return playlistType?.name.capitalized
+	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.reuseIdentifier, for: indexPath)
@@ -76,6 +75,20 @@ final class PlaylistTableViewController: UITableViewController, PlaylistViewProt
 	}
 
 	// MARK: - TableViewDelegate
+
+	override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+		guard section != 0 else { return 0 }
+
+		return Constants.footerHeight
+	}
+
+	override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		return Constants.headerHeight
+	}
+
+	override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+		return EmptyView()
+	}
 
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		presenter?.openPlaylist(at: indexPath)
@@ -98,6 +111,7 @@ final class PlaylistTableViewController: UITableViewController, PlaylistViewProt
 	private func configureNavigationItem() {
 		navigationItem.title = LocalizedStrings.Playlist.navigationTitle.localized
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPlaylist))
+		navigationItem.rightBarButtonItem?.tintColor = .systemPink
 	}
 
 	private func configureTableView() {

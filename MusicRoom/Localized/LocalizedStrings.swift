@@ -60,6 +60,7 @@ enum LocalizedStrings {
 	enum Alert: LocalizedStringConvertible {
 		case title
 		case ok
+		case info
 	}
 
 	enum MusicBar: LocalizedStringConvertible {
@@ -81,5 +82,7 @@ enum LocalizedStrings {
 		case navigationTitle
 		case buttonTitle
 		case noNameError
+		case isPublic
+		case info
 	}
 }

@@ -157,7 +157,7 @@ final class ShowPlaylistViewController: UIViewController, UITableViewDelegate, U
 			let playlist = Playlist(snapshot: snapshot)
 			self.playlist = playlist
 
-			self.tracks = playlist.sortedTracks()
+			self.tracks = playlist.sortedTracks
 			if self.tracks.count == 0 {
 				self.navigationItem.rightBarButtonItems?[safe: 1]?.isEnabled = false
 				self.tableView.isHidden = true
@@ -187,7 +187,7 @@ final class ShowPlaylistViewController: UIViewController, UITableViewDelegate, U
 	}
 
 	@objc private func addSong() {
-		let viewController = SongSearchViewController()
+		let viewController = SearchSongViewController()
 		viewController.from = "playlist"
 		viewController.firebasePath = firebasePlaylistPath
 		let navigationController = UINavigationController(rootViewController: viewController)

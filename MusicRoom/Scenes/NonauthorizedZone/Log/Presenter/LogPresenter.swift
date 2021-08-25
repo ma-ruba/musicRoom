@@ -60,7 +60,6 @@ final class LogPresenter: LogPresenterProtocol {
 		guard let logViewController = self.view as? LogViewController else { return }
 		let tabBarViewController = TabBarViewController()
 		tabBarViewController.modalPresentationStyle = .overFullScreen
-//		let navigationController = CustomNavigationController(rootViewController: tabBarViewController)
 
 		logViewController.present(tabBarViewController, animated: true)
 	}

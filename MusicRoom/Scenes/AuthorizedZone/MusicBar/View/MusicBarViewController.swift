@@ -40,7 +40,6 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 		presenter?.setupPlayerDelegate()
 
 		setupUI()
-
 	}
 
 	override func viewDidLayoutSubviews() {
@@ -97,10 +96,6 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 	// MARK: Configure
 
 	private func configureUI() {
-//		view.addGestureRecognizer(
-//			UIPanGestureRecognizer(target: self, action: #selector(changePosition))
-//		)
-
 		configurePlayView()
 		configureButton()
 		configureLabel()
@@ -151,38 +146,5 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 
 	@objc private func buttonPressed() {
 		presenter?.buttonPressed()
-	}
-
-	@objc func fchangePosition(gesture: UIPanGestureRecognizer) {
-		let location = gesture.location(in: parent?.view)
-		let draggedView = gesture.view
-		draggedView?.center = location
-
-//		if view.frame.min >= view.layer.frame.width / 2 {
-//			UIView.animate(
-//				withDuration: 0.5,
-//				delay: 0,
-//				usingSpringWithDamping: 1,
-//				initialSpringVelocity: 1,
-//				options: .curveEaseIn,
-//				animations: {
-//					self.view.center.x = self.view.layer.frame.width - 40
-//				},
-//				completion: nil
-//			)
-//		} else {
-//			UIView.animate(
-//				withDuration: 0.5,
-//				delay: 0,
-//				usingSpringWithDamping: 1,
-//				initialSpringVelocity: 1,
-//				options: .curveEaseIn,
-//				animations: {
-//					self.view.center.x = 40
-//				},
-//				completion: nil
-//			)
-//		}
-
 	}
 }

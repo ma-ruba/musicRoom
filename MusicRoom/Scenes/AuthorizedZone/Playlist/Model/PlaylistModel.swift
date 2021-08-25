@@ -14,6 +14,26 @@ import FirebaseAnalytics
 enum PlaylistType: Int, CaseIterable {
 	case `private` = 0
 	case `public` = 1
+
+	var name: String {
+		switch self {
+		case .private:
+			return "private"
+
+		case .public:
+			return "public"
+		}
+	}
+
+	func toggle() -> Self {
+		switch self {
+		case .private:
+			return .public
+
+		case .public:
+			return .private
+		}
+	}
 }
 
 struct PlaylistItem {
@@ -45,8 +65,8 @@ final class PlaylistModel: PlaylistModelProtocol {
 			fatalError(LocalizedStrings.AssertationErrors.noUser.localized)
 		}
 
-		userItem = DatabaseItem(path: .user, parameter: userId)
-		publicPlaylistItem = DatabaseItem(path: .publicPlaylist)
+		userItem = DatabaseItem(path: DatabasePath.user.rawValue + userId)
+		publicPlaylistItem = DatabaseItem(path: DatabasePath.public.rawValue + DatabasePath.playlists.rawValue)
 
 		fetchData()
 	}
@@ -76,7 +96,6 @@ final class PlaylistModel: PlaylistModelProtocol {
 				}
 			}
 			publicPlaylistItem.reference.child(playlistId).removeValue()
-
 		}
 	}
 

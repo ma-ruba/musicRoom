@@ -25,9 +25,6 @@ final class TabBarPresenter: TabBarPresenterProtocol {
 			case .settings:
 				result.append(SettingsViewController())
 
-			case .events:
-				result.append(EventsTableViewController())
-
 			case .playlists:
 				result.append(PlaylistTableViewController())
 			}

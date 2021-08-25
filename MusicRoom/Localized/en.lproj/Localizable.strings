@@ -61,7 +61,7 @@
 /* Alert */
 "Alert_title" = "Error";
 "Alert_ok" = "ok";
-"Alert_" = "";
+"Alert_info" = "Info";
 "Alert_" = "";
 "Alert_" = "";
 "Alert_" = "";
@@ -85,8 +85,8 @@
 "AddPlaylist_navigationTitle" = "Let's make a new playlist!";
 "AddPlaylist_buttonTitle" = "Create";
 "AddPlaylist_noNameError" = "Name field must not be empty!";
-"AddPlaylist_" = "";
-"AddPlaylist_" = "";
+"AddPlaylist_isPublic" = "Public";
+"AddPlaylist_info" = "All users are able to see and modify your playlist in case it's public.\nWhereas if it's private only your friends are able to do that.";
 "AddPlaylist_" = "";
 "AddPlaylist_" = "";
 

@@ -24,7 +24,7 @@ class PlaylistController: MusicController, SnapshotHandler {
 	func snapshotChanged(snapshot: DataSnapshot) {
 		self.playlist = Playlist(snapshot: snapshot)
 
-		self.tracks = playlist?.sortedTracks()
+		self.tracks = playlist?.sortedTracks
 
 		// TODO: update currentIndex if the song moves or is deleted
 	}
