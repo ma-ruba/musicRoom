@@ -10,6 +10,10 @@ final class MusicBarPresenter: MusicBarPresenterProtocol {
 	unowned private var view: MusicBarViewProtocol
 	private var model: MusicBarModel?
 
+	var currentState: PlayingState {
+		model?.playingState ?? .disabled
+	}
+
 	init(view: MusicBarViewProtocol) {
 		self.view = view
 
@@ -32,6 +36,7 @@ final class MusicBarPresenter: MusicBarPresenterProtocol {
 		DeezerSession.sharedInstance.setUp(playerDelegate: view)
 	}
 
+	// TODO: Do smth with playing
 	func setupPlayButtonState() {
 		if DeezerSession.sharedInstance.deezerPlayer?.isPlaying() == true {
 			view.changePlayPauseButtonState(to: .play)

@@ -85,4 +85,39 @@ enum LocalizedStrings {
 		case isPublic
 		case info
 	}
+
+	enum ShowPlaylist: LocalizedStringConvertible {
+		case addFriendsButtonTitle
+		case emptyList
+	}
+
+	enum SearchSong: LocalizedStringConvertible {
+		case navigationTitle
+		case searchPlaceholder
+	}
+
+	enum Settings: LocalizedStringConvertible {
+		case navigationTitle
+		case logoutSectionTitle
+		case friendsSectionTitle
+		case accountsSectionTitle
+		case logoutButtonText
+		case logoutError
+		case submitButtonTitle
+		case info
+		case friendsButtonText
+		case deezerButtonEnabledStatusText
+		case deezerButtonDisabledSatusText
+		case deezerButtonText
+		case googleButtonText
+		case googleButtonDisabledStatusText
+	}
+
+	enum Friends: LocalizedStringConvertible {
+		case navigationTitle
+	}
+
+	enum AddFriends: LocalizedStringConvertible {
+
+	}
 }

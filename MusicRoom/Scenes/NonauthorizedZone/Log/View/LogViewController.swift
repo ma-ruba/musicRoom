@@ -26,7 +26,6 @@ final class LogViewController:
 		case password
 	}
 
-//	private(set) lazy var scrollView = UIScrollView()
 	private(set) lazy var stackView = UIStackView()
 	private(set) lazy var googleButton = GIDSignInButton()
 	private(set) lazy var orLabel = UILabel()
@@ -34,8 +33,6 @@ final class LogViewController:
 	private(set) lazy var passwordTextField = UITextField()
 	private(set) lazy var logInButton = UIButton()
 	private(set) lazy var forgotButton = UIButton()
-
-//	private(set) var forgotButtonBottomConstraint: SnapKit.Constraint?
 
 	private let locolizedStrings: LocalizedStrings.Log.Type = LocalizedStrings.Log.self
 
@@ -68,7 +65,6 @@ final class LogViewController:
 		super.viewWillAppear(animated)
 
 		navigationController?.setNavigationBarHidden(false, animated: true)
-//		registerForKeyboardNotifications()
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
@@ -76,15 +72,6 @@ final class LogViewController:
 
 		navigationController?.setNavigationBarHidden(true, animated: true)
 	}
-
-//	override func keyboardWillChangeFrame(from beginFrame: CGRect, to endFrame: CGRect) {
-//		let screenHeight: CGFloat = UIScreen.main.bounds.size.height
-//		let keyboardY: CGFloat = endFrame.origin.y
-//		let bottomInset: CGFloat = view.safeAreaInsets.bottom
-//		let endHeight: CGFloat = max(screenHeight - keyboardY - bottomInset, 0)
-//		forgotButtonBottomConstraint?.update(offset: -endHeight)
-//		view.layoutIfNeeded()
-//	}
 
 	// MARK: Private
 
@@ -98,7 +85,6 @@ final class LogViewController:
 	// MARK: Setup
 
 	private func setupUI() {
-//		setupScrollView()
 		setupStackView()
 		setupGoogleButton()
 		setupPasswordTextField()
@@ -108,21 +94,11 @@ final class LogViewController:
 		setupForgotButton()
 	}
 
-//	private func setupScrollView() {
-//		view.addSubview(scrollView)
-//		scrollView.delegate = self
-//
-//		scrollView.snp.makeConstraints { make in
-//			make.edges.equalToSuperview()
-//		}
-//	}
-
 	private func setupStackView() {
 		view.addSubview(stackView)
 
 		stackView.snp.makeConstraints { make in
 			make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-//			make.right.left.equalToSuperview().inset(16)
 			make.height.equalTo(48)
 			make.width.equalTo(230)
 			make.centerX.equalToSuperview()
@@ -208,7 +184,7 @@ final class LogViewController:
 
 	private func configureGoogleButton() {
 		googleButton.layer.cornerRadius = 8
-		googleButton.addTarget(self, action: #selector(pressGoogleButton), for: UIControl.Event.valueChanged)
+		googleButton.addTarget(self, action: #selector(pressGoogleButton), for: .valueChanged)
 	}
 
 	private func configureOrLabel() {

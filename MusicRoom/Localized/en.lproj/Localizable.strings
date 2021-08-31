@@ -97,3 +97,57 @@
 "AssertationErrors_" = "";
 "AssertationErrors_" = "";
 "AssertationErrors_" = "";
+
+/* ShowPlaylist */
+"ShowPlaylist_addFriendsButtonTitle" = "Add friends";
+"ShowPlaylist_emptyList" = "You don't have any songs yet!";
+"ShowPlaylist_" = "";
+"ShowPlaylist_" = "";
+"ShowPlaylist_" = "";
+"ShowPlaylist_" = "";
+
+/* SearchSong */
+"SearchSong_navigationTitle" = "Add a new track!";
+"SearchSong_searchPlaceholder" = "Search a new track";
+"SearchSong_" = "";
+"SearchSong_" = "";
+"SearchSong_" = "";
+"SearchSong_" = "";
+"SearchSong_" = "";
+
+/* Settings */
+"Settings_navigationTitle" = "Settings";
+"Settings_logoutSectionTitle" = "Logout";
+"Settings_friendsSectionTitle" = "Friends";
+"Settings_accountsSectionTitle" = "Accounts";
+"Settings_logoutButtonText" = "Logout";
+"Settings_logoutError" = "Logout failed";
+"Settings_submitButtonTitle" = "Submit";
+"Settings_info" = "Create your username to share playlists and events with friends";
+"Settings_friendsButtonText" = "Manage friends";
+"Settings_deezerButtonEnabledStatusText" = "Log in to Deezer";
+"Settings_deezerButtonDisabledStatusText" = "Logged to Deezer";
+"Settings_deezerButtonText" = "Deezer";
+"Settings_googleButtonText" = "Google";
+"Settings_googleButtonDisabledStatusText" = "Logged to Google";
+"Settings_" = "";
+"Settings_" = "";
+"Settings_" = "";
+
+/* Friends */
+"Friends_navigationTitle" = "Friends";
+"Friends_" = "";
+"Friends_" = "";
+"Friends_" = "";
+"Friends_" = "";
+"Friends_" = "";
+
+/* AddFriends */
+"AddFriends_" = "";
+"AddFriends_" = "";
+"AddFriends_" = "";
+"AddFriends_" = "";
+"AddFriends_" = "";
+"AddFriends_" = "";
+"AddFriends_" = "";
+"AddFriends_" = "";

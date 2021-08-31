@@ -10,12 +10,7 @@ import Foundation
 
 enum ImageList: String {
 	case logo
-	case start
-	case facebook
-	case google
-	case backArrow
 	case settings
-	case events
 	case playlists
 	case info
 	case add
@@ -23,6 +18,5 @@ enum ImageList: String {
 	case deny
 	case play
 	case pause
-	case marker
-	case location
+	case wait
 }

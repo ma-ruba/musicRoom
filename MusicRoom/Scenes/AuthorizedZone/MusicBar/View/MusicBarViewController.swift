@@ -48,12 +48,6 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 		configureUI()
 	}
 
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-
-		presenter?.setupPlayButtonState()
-	}
-
 	// MARK: - Private
 
 	// MARK: Setup
@@ -108,7 +102,7 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 
 	private func configureButton() {
 		playingButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-		playingButton.setImage(UIImage(name: .play)?.withTintColor(.black, renderingMode: .alwaysOriginal), for: .normal)
+		changePlayPauseButtonState(to: presenter?.currentState ?? .disabled)
 	}
 
 	private func configureLabel() {
@@ -131,13 +125,15 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 		case .play:
 			playingButton.setImage(UIImage(name: .pause), for: .normal)
 			playingButton.isEnabled = true
+			playingButton.isHidden = false
 
 		case .pause:
 			playingButton.setImage(UIImage(name: .play), for: .normal)
 			playingButton.isEnabled = true
+			playingButton.isHidden = false
 
 		case .disabled:
-			playingButton.setImage(UIImage(name: .play), for: .normal)
+			playingButton.isHidden = true
 			playingButton.isEnabled = false
 		}
 	}

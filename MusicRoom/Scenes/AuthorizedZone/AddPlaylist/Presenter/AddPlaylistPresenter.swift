@@ -49,9 +49,8 @@ final class AddPlaylistPresenter: AddPlaylistPresenterProtocol {
 
 	func createPlaylist() {
 		guard let uid = Auth.auth().currentUser?.uid else { return }
-		let playlist = Playlist(name: model.playlist.name, userId: uid)
-
 		let playlistType = model.playlist.type
+		let playlist = Playlist(name: model.playlist.name, userId: uid, type: playlistType)
 
 		switch playlistType {
 		case .public:
@@ -59,7 +58,7 @@ final class AddPlaylistPresenter: AddPlaylistPresenterProtocol {
 				withPath: DatabasePath.public.rawValue + DatabasePath.playlists.rawValue
 			).childByAutoId()
 			guard let publicPlaylistRefKey = publicPlaylistRef.key else { return }
-			publicPlaylistRef.setValue(playlist.publicObject) { error, _ in
+			publicPlaylistRef.setValue(playlist.object) { error, _ in
 				guard error == nil else { return }
 
 				Log.event(
@@ -74,11 +73,11 @@ final class AddPlaylistPresenter: AddPlaylistPresenterProtocol {
 
 		case .private:
 			let privatePlaylistRef = Database.database().reference(
-				withPath: DatabasePath.user.rawValue + uid + DatabasePath.playlists.rawValue
+				withPath: DatabasePath.user.rawValue + uid + DatabasePath.slash.rawValue + DatabasePath.playlists.rawValue
 			).childByAutoId()
 			guard let privatePlaylistRefKey = privatePlaylistRef.key else { return }
 
-			privatePlaylistRef.setValue(playlist.publicObject) { error, _ in
+			privatePlaylistRef.setValue(playlist.object) { error, _ in
 				guard error == nil else { return }
 
 				Log.event(

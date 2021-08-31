@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import FirebaseInstallations
 
-class DeezerSession : NSObject, DeezerSessionDelegate, DZRPlayerDelegate {
+final class DeezerSession : NSObject, DeezerSessionDelegate, DZRPlayerDelegate {
 
 	static let sharedInstance = DeezerSession()
 

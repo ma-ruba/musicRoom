@@ -8,24 +8,30 @@
 
 import Foundation
 
+/// Entity that describes user in database.
 struct User {
 
-	let playlists: [String: String]?
-	let events: [String: String]?
-	let friends: [String: String]?
+	/// Keys for data in object property.
+	private enum Key: String {
+		case playlists
+		case friends
+	}
 
-	init(dict: [String: AnyObject]) {
-		self.playlists = dict["playlists"] as? [String: String]
-		self.events = dict["events"] as? [String: String]
-		self.friends = dict["friends"] as? [String: String]
+	let playlists: [String: String]
+	let friends: [String: String]
+
+	init(dict: [String: Any]) {
+		playlists = dict[Key.playlists.rawValue] as? [String: String] ?? [:]
+		friends = dict[Key.friends.rawValue] as? [String: String] ?? [:]
 	}
 
 	init(snapshot: DataSnapshot) {
-		if let snapshotValue = snapshot.value as? [String: AnyObject] {
-			self.init(dict: snapshotValue)
-		} else {
+		guard let snapshotValue = snapshot.value as? [String: Any] else {
 			self.init(dict: [:])
+			return
 		}
+
+		self.init(dict: snapshotValue)
 	}
 
 }

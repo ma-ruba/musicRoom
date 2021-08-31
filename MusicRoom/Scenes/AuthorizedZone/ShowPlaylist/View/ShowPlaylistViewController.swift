@@ -8,40 +8,36 @@
 
 import UIKit
 
-enum EditingState {
-	case done
-	case edit
-}
+final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtocol, UITableViewDelegate, UITableViewDataSource {
 
-final class ShowPlaylistViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-	let playlistId: String
-	let playlistName: String
-	let playlistType: PlaylistType
-	var playlist: Playlist?
-	var tracks: [PlaylistTrack] = [] {
-		didSet {
-			tableView.reloadData()
+	/// States of rightBarItem of navigationItem.
+	private enum EditingState {
+
+		/// State in which navigationItem has done button.
+		case done
+
+		/// State in which navigationItem has edit button.
+		case edit
+
+		/// Method returns the opposite value.
+		mutating func toggle() {
+			self = (self == .done ? .edit : .done)
 		}
 	}
 
-	var editingState: EditingState = .done
-
-	var playlistRef: DatabaseReference?
-	var playlistHandle: UInt?
-	var firebasePlaylistPath: String?
+	private var presenter: ShowPlaylistPresenterProtocol?
+	private var editingState: EditingState = .edit
 
 	private(set) lazy var tableView = UITableView()
-	private(set) lazy var addFriendsButton = UIButton()
 	private(set) lazy var infoLabel = UILabel()
 
 	// MARK: Initializzation
 
-	init(playlistId: String, playlistName: String, playlistType: PlaylistType) {
-		self.playlistId = playlistId
-		self.playlistName = playlistName
-		self.playlistType = playlistType
-
+	init(with inputModel: PlaylistItem) {
 		super.init(nibName: nil, bundle: nil)
+
+		presenter = ShowPlaylistPresenter(view: self)
+		presenter?.configureModel(with: inputModel)
 	}
 
 	required init?(coder: NSCoder) {
@@ -53,23 +49,10 @@ final class ShowPlaylistViewController: UIViewController, UITableViewDelegate, U
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		navigationItem.title = playlistName
-		let firstButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editPlaylist))
-		firstButton.isEnabled = true
-		let secondButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addSong))
-		navigationItem.rightBarButtonItems = [secondButton, firstButton]
-
+		configureNavigationItem()
 		setupUI()
 		configureUI()
-		configureDatabase()
-	}
-
-	override func viewDidDisappear(_ animated: Bool) {
-		super.viewDidDisappear(animated)
-
-		if let playlistHandle = self.playlistHandle {
-			playlistRef?.removeObserver(withHandle: playlistHandle)
-		}
+		configureAppearance()
 	}
 
 	// MARK: Private
@@ -77,7 +60,6 @@ final class ShowPlaylistViewController: UIViewController, UITableViewDelegate, U
 	// MARK: Setup
 
 	private func setupUI() {
-		setupAddFriendsButton()
 		setupTableView()
 		setupInfoLabel()
 	}
@@ -96,43 +78,27 @@ final class ShowPlaylistViewController: UIViewController, UITableViewDelegate, U
 		tableView.snp.makeConstraints { make in
 			make.bottom.equalTo(view.safeAreaLayoutGuide)
 			make.left.right.equalToSuperview()
-			make.top.equalTo(addFriendsButton.snp.bottom).offset(8)
-		}
-	}
-
-	private func setupAddFriendsButton() {
-		view.addSubview(addFriendsButton)
-
-		addFriendsButton.snp.makeConstraints { make in
-			make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
-			make.centerX.equalToSuperview()
-			make.width.equalTo(100)
-			make.height.equalTo(46)
+			make.top.equalTo(view.safeAreaLayoutGuide)
 		}
 	}
 
 	// MARK: Configure
 
+	private func configureNavigationItem() {
+		navigationItem.title = presenter?.playlistName
+		navigationController?.navigationBar.tintColor = .gray
+		configureNavigationButton()
+	}
+
 	private func configureUI() {
 		view.backgroundColor = .white
 
-
 		configureTableView()
-		configureAddFriendsButton()
 		congigureInfoLabel()
 	}
 
-	private func configureAddFriendsButton() {
-		if playlistType == .public {
-			addFriendsButton.isEnabled = false
-		}
-		addFriendsButton.setTitle("Add friends", for: .normal)
-		addFriendsButton.setTitleColor(.blue, for: .normal)
-		addFriendsButton.setTitleColor(.gray, for: .disabled)
-		addFriendsButton.addTarget(self, action: #selector(addFriends), for: .touchUpInside)
-	}
-
 	private func configureTableView() {
+		infoLabel.isHidden = presenter?.tracks.isEmpty == true
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.estimatedRowHeight = 64
@@ -140,89 +106,68 @@ final class ShowPlaylistViewController: UIViewController, UITableViewDelegate, U
 	}
 
 	private func congigureInfoLabel() {
-		infoLabel.text = "You don't have any songs yet!"
+		infoLabel.isHidden = presenter?.tracks.isEmpty == false
+		infoLabel.text = LocalizedStrings.ShowPlaylist.emptyList.localized
+		infoLabel.font = .systemFont(ofSize: 24)
 	}
 
-	// MARK: Other
-
-	private func configureDatabase() {
-		firebasePlaylistPath = "playlists/\(playlistType.self)/\(playlistId)"
-
-		if let path = self.firebasePlaylistPath {
-			playlistRef = Database.database().reference(withPath: path)
+	private func configureAppearance() {
+		if presenter?.tracks.isEmpty == false {
+			navigationItem.rightBarButtonItems?[safe: 1]?.isEnabled = true
+			tableView.isHidden = false
+			infoLabel.isHidden = true
+		} else {
+			navigationItem.rightBarButtonItems?[safe: 1]?.isEnabled = false
+			tableView.isHidden = true
+			infoLabel.isHidden = false
 		}
-
-		playlistHandle = playlistRef?.observe(.value, with: { [weak self] snapshot in
-			guard let self = self else { return }
-			let playlist = Playlist(snapshot: snapshot)
-			self.playlist = playlist
-
-			self.tracks = playlist.sortedTracks
-			if self.tracks.count == 0 {
-				self.navigationItem.rightBarButtonItems?[safe: 1]?.isEnabled = false
-				self.tableView.isHidden = true
-				self.infoLabel.isHidden = false
-			} else {
-				self.navigationItem.rightBarButtonItems?[safe: 1]?.isEnabled = true
-				self.tableView.isHidden = false
-				self.infoLabel.isHidden = true
-			}
-		})
 	}
 
-	// MARK: - Actions
-
-	@objc private func goBack() {
-		dismiss(animated: true, completion: nil)
-	}
-
-	@objc private func addFriends() {
-		let viewController = AddFriendsTableViewController()
-		viewController.firebasePath = firebasePlaylistPath
-		viewController.from = "playlist"
-		viewController.name = playlist?.name
-		viewController.createdBy = playlist?.createdBy
-		let navigationController = UINavigationController(rootViewController: viewController)
-		self.present(navigationController, animated: true)
-	}
-
-	@objc private func addSong() {
-		let viewController = SearchSongViewController()
-		viewController.from = "playlist"
-		viewController.firebasePath = firebasePlaylistPath
-		let navigationController = UINavigationController(rootViewController: viewController)
-		self.present(navigationController, animated: true)
-	}
-
-	@objc private func editPlaylist() {
+	private func configureNavigationButton() {
 		let secondButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addSong))
-		if editingState == .edit {
+		secondButton.tintColor = .systemPink
+
+		switch editingState {
+		case .edit:
 			tableView.setEditing(false, animated: true)
 			let firstButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editPlaylist))
 			navigationItem.rightBarButtonItems = [secondButton, firstButton]
 			editingState = .done
-		} else {
+			firstButton.tintColor = .gray
+
+		case .done:
 			tableView.setEditing(true, animated: true)
 			let firstButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(editPlaylist))
 			navigationItem.rightBarButtonItems = [secondButton, firstButton]
 			editingState = .edit
+			firstButton.tintColor = .gray
 		}
 	}
 
+	// MARK: - Actions
+
+	@objc private func addSong() {
+		presenter?.addSong()
+	}
+
+	@objc private func editPlaylist() {
+		editingState.toggle()
+		configureNavigationButton()
+	}
 
 	// MARK: - UITableViewDataSource
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return tracks.count
+		return presenter?.tracks.count ?? 0
 	}
 
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return 1
+		return presenter?.numberOfSections ?? 0
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withClass: TrackTableViewCell.self, for: indexPath)
-		cell.track = tracks[indexPath.row]
+		cell.track = presenter?.tracks[indexPath.row]
 
 		return cell
 	}
@@ -230,9 +175,9 @@ final class ShowPlaylistViewController: UIViewController, UITableViewDelegate, U
 	// MARK: - UITableViewDelegate
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if let path = firebasePlaylistPath {
-			DeezerSession.sharedInstance.setMusic(toPlaylist: path, startingAt: indexPath.row)
-		}
+//		if let path = firebasePlaylistPath {
+//			DeezerSession.sharedInstance.setMusic(toPlaylist: path, startingAt: indexPath.row)
+//		}
 	}
 
 	func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -240,35 +185,15 @@ final class ShowPlaylistViewController: UIViewController, UITableViewDelegate, U
 	}
 
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-		if editingStyle == UITableViewCell.EditingStyle.delete, let ref = playlistRef {
-			let trackId = self.tracks[indexPath.row].trackKey
+		guard editingStyle == .delete else { return }
 
-			ref.child("/tracks/\(trackId)").removeValue() { error, _ in
-				Log.event("deleted_track", parameters: [
-					"playlist_id": self.playlistId ?? "undefined",
-					"track_id": trackId,
-				])
-			}
-		}
+		presenter?.deleteTrack(at: indexPath.row)
 	}
 
 	func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
-		var orderNumber: Double
+		guard let endIndex = presenter?.tracks.endIndex, toIndexPath.row < endIndex else { return }
 
-		if toIndexPath.row == tracks.count - 1 {
-			orderNumber = round(tracks[toIndexPath.row].orderNumber + 1)
-		} else if toIndexPath.row == 0 {
-			orderNumber = round(tracks[toIndexPath.row].orderNumber - 1)
-		} else {
-			orderNumber = (tracks[toIndexPath.row - 1].orderNumber + tracks[toIndexPath.row].orderNumber) / 2
-		}
-		if let ref = playlistRef {
-			let trackId = tracks[fromIndexPath.row].trackKey
-
-			ref.child("tracks/\(trackId)/orderNumber").setValue(orderNumber) { error, _ in
-				Log.event("set_track_order_number")
-			}
-		}
+		presenter?.reorderTrack(from: fromIndexPath.row, to: toIndexPath.row)
 	}
 
 }

@@ -57,7 +57,7 @@ final class PlaylistModel: PlaylistModelProtocol {
 	var updateView: (() -> Void)?
 	var showError: (() -> Void)?
 
-	private var userItem: DatabaseItem
+	private var privatePlaylistItem: DatabaseItem
 	private var publicPlaylistItem: DatabaseItem
 
 	init() {
@@ -65,7 +65,9 @@ final class PlaylistModel: PlaylistModelProtocol {
 			fatalError(LocalizedStrings.AssertationErrors.noUser.localized)
 		}
 
-		userItem = DatabaseItem(path: DatabasePath.user.rawValue + userId)
+		privatePlaylistItem = DatabaseItem(
+			path: DatabasePath.user.rawValue + userId + DatabasePath.slash.rawValue + DatabasePath.playlists.rawValue
+		)
 		publicPlaylistItem = DatabaseItem(path: DatabasePath.public.rawValue + DatabasePath.playlists.rawValue)
 
 		fetchData()
@@ -83,8 +85,15 @@ final class PlaylistModel: PlaylistModelProtocol {
 		switch playlistType {
 		case .private:
 			guard let playlistId = privatePlaylist[safe: indexPath.row]?.uid else { return }
-			// TODO: Доделать удаление приватного плейлиста
-//			userItem.reference.child(<#T##pathString: String##String#>)
+			privatePlaylistItem.reference.child(playlistId).observeSingleEvent(of: .value) { [ weak self] snapshot in
+				let playlist = Playlist(snapshot: snapshot)
+				guard playlist.createdBy == Auth.auth().currentUser?.uid else {
+					self?.showError?()
+					return
+				}
+
+				self?.privatePlaylistItem.reference.child(playlistId).removeValue()
+			}
 
 		case .public:
 			guard let playlistId = publicPlaylist[safe: indexPath.row]?.uid else { return }
@@ -94,16 +103,17 @@ final class PlaylistModel: PlaylistModelProtocol {
 					self?.showError?()
 					return
 				}
+
+				self?.publicPlaylistItem.reference.child(playlistId).removeValue()
 			}
-			publicPlaylistItem.reference.child(playlistId).removeValue()
 		}
 	}
 
 	// MARK: - Private
 
 	private func tearDownDatabase() {
-		if let handle = userItem.handle {
-			userItem.reference.removeObserver(withHandle: handle)
+		if let handle = privatePlaylistItem.handle {
+			privatePlaylistItem.reference.removeObserver(withHandle: handle)
 		}
 
 		if let handle = publicPlaylistItem.handle {
@@ -125,14 +135,17 @@ final class PlaylistModel: PlaylistModelProtocol {
 			self.publicPlaylist = playlists
 		}
 
-		userItem.handle = userItem.reference.observe(.value) { snapshot in
+		// TODO: Доделать добавление плейлистов от других юзеров
+		privatePlaylistItem.handle = privatePlaylistItem.reference.observe(.value) { snapshot in
 			var playlists: [PlaylistItem] = []
-			let user = User(snapshot: snapshot)
-			if let userPlaylists = user.playlists {
-				for playlist in userPlaylists {
-					playlists.append(PlaylistItem(name: playlist.key, uid: playlist.value, type: .private))
-				}
+			for snap in snapshot.children {
+				guard let snap = snap as? DataSnapshot else { break }
+				let playlist = Playlist(snapshot: snap)
+
+				guard let ref = playlist.ref, let uid = ref.key else { break }
+				playlists.append(PlaylistItem(name: playlist.name, uid: uid, type: .private))
 			}
+
 			self.privatePlaylist = playlists
 		}
 	}

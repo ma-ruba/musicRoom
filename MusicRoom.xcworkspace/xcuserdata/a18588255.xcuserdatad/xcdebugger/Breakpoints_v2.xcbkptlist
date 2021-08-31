@@ -295,22 +295,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "584ED899-34B3-4CD4-974F-1BA7586D4D28"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MusicRoom/Deezer/DeezerSession.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "clearMusic()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "4B9D79A7-096F-4530-91E3-E718CA89E473"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -407,64 +391,112 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "244B8202-498A-431D-85D7-5E329D97B8B4"
-            shouldBeEnabled = "Yes"
+            uuid = "B826A7E8-4BEF-4953-9F1F-9A5304C64354"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MusicRoom/Scenes/AuthorizedZone/Playlist/Model/PlaylistModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "fetchData()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "244B8202-498A-431D-85D7-5E329D97B8B4 - 994c382a5525bdd1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MusicRoom.PlaylistModel.(fetchData in _3504A7A80129FA43EFBE117C93CB651E)() -&gt; ()"
-                  moduleName = "MusicRoom"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a18588255/Desktop/musicRoom/MusicRoom/Scenes/AuthorizedZone/Playlist/Model/PlaylistModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "128"
-                  endingLineNumber = "128"
-                  offsetFromSymbolStart = "467">
-               </Location>
-               <Location
-                  uuid = "244B8202-498A-431D-85D7-5E329D97B8B4 - 5c9a2bb720e9b27"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (__C.FIRDataSnapshot) -&gt; () in MusicRoom.PlaylistModel.(fetchData in _3504A7A80129FA43EFBE117C93CB651E)() -&gt; ()"
-                  moduleName = "MusicRoom"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a18588255/Desktop/musicRoom/MusicRoom/Scenes/AuthorizedZone/Playlist/Model/PlaylistModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "129"
-                  endingLineNumber = "129"
-                  offsetFromSymbolStart = "289">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "489E4FB5-2CBC-448C-BB80-6DB045B00817"
+            uuid = "E76924D1-0F5C-4994-AE02-02C7AB995512"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MusicRoom/Common/Cells/TrackTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "configureUI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8D644CB3-595E-4D0D-B791-49EA46C6891E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MusicRoom/Scenes/AuthorizedZone/SearchSong/View/SearchSongViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E915C22-5512-4A88-BCF0-49D27B4980D8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MusicRoom/Scenes/AuthorizedZone/Settings/Presenter/SettingsPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "loginToDeezer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0D7E34A7-1E07-41DF-BCE9-D9424E5CEE88"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MusicRoom/Scenes/AuthorizedZone/Playlist/Model/PlaylistModel.swift"
+            filePath = "MusicRoom/Scenes/AuthorizedZone/Settings/View/SettingsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "deletePlaylist(at:)"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "pressGoogleButton()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B2AF539-EF8B-4BF7-9796-A2B96878BB83"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MusicRoom/Scenes/AuthorizedZone/Settings/Model/SettingsModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "saveUsername()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9EB9EBE7-88AE-477B-BCDC-2237E735D6A4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MusicRoom/Scenes/AuthorizedZone/Settings/Presenter/SettingsPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "submitUsername()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,43 +8,55 @@
 
 import Foundation
 
+/// Entity that describes track in database.
 class Track {
 
-	var deezerId: String
+	/// Keys for data in object property.
+	private enum Key: String {
+		case name
+		case creator
+		case id
+		case duration
+		case type
+	}
+
+	var id: String
 	var name: String
 	var creator: String
 	var duration: Int
 	var ref: DatabaseReference?
 
-	init(deezerId: String, name: String, creator: String, duration: NSInteger) {
-		self.deezerId = deezerId
+	/// Representation of entity in database.
+	var object: [String: Any] {
+		[
+			Key.id.rawValue: id,
+			Key.name.rawValue: name,
+			Key.creator.rawValue: creator,
+			Key.duration.rawValue: duration
+		]
+	}
+
+	init(id: String, name: String, creator: String, duration: NSInteger) {
+		self.id = id
 		self.name = name
 		self.creator = creator
 		self.duration = duration
 	}
 
-	init(dict: [String: AnyObject]) {
-		self.deezerId = dict["deezerId"] as? String ?? ""
-		self.name = dict["name"] as? String ?? ""
-		self.creator = dict["creator"] as? String ?? ""
-		self.duration = dict["duration"] as? NSInteger ?? 0
+	init(dict: [String: Any]) {
+		id = dict[Key.id.rawValue] as? String ?? ""
+		name = dict[Key.name.rawValue] as? String ?? ""
+		creator = dict[Key.creator.rawValue] as? String ?? ""
+		duration = dict[Key.duration.rawValue] as? NSInteger ?? 0
 	}
 
 	convenience init(snapshot: DataSnapshot) {
-		if let snapshotValue = snapshot.value as? [String: AnyObject] {
-			self.init(dict: snapshotValue)
-			self.ref = snapshot.ref
-		} else {
+		guard let snapshotValue = snapshot.value as? [String: Any] else {
 			self.init(dict: [:])
+			return
 		}
-	}
 
-	func toDict() -> [String: Any] {
-		return [
-			"deezerId": deezerId,
-			"name": name,
-			"creator": creator,
-			"duration": duration
-		]
+		self.init(dict: snapshotValue)
+		ref = snapshot.ref
 	}
 }

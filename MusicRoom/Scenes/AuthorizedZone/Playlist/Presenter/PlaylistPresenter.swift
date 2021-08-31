@@ -79,7 +79,7 @@ final class PlaylistPresenter: PlaylistPresenterProtocol {
 
 		guard let playlist = selectedPlaylist else { return }
 
-		let viewController = ShowPlaylistViewController(playlistId: playlist.uid, playlistName: playlist.name, playlistType: playlist.type)
+		let viewController = ShowPlaylistViewController(with: playlist)
 		view.navigationController?.pushViewController(viewController, animated: true)
 	}
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TrackTableViewCell: UITableViewCell {
+final class TrackTableViewCell: UITableViewCell {
 
 	let stackView = UIStackView()
 	let titleLabel = UILabel()

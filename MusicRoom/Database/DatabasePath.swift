@@ -12,4 +12,11 @@ enum DatabasePath: String {
 	case `private` = "private/"
 	case `public` = "public/"
 	case playlists = "playlists/"
+	case slash = "/"
+	case tracks = "tracks/"
+	case orderNumber = "orderNumber/"
+	case username = "username/"
+	case friends = "friends/"
+	case friendInvitations = "friendInvitations/"
+	case pendingInvitations = "pendingInvitations/"
 }

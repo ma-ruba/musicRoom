@@ -77,8 +77,6 @@ final class PlaylistTableViewController: UITableViewController, PlaylistViewProt
 	// MARK: - TableViewDelegate
 
 	override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-		guard section != 0 else { return 0 }
-
 		return Constants.footerHeight
 	}
 

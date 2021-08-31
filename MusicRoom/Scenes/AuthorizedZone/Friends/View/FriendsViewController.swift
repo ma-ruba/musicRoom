@@ -9,52 +9,22 @@
 import UIKit
 import FirebaseAnalytics
 
-final class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class FriendsViewController:
+	UIViewController,
+	FriendsViewProtocol,
+	UITableViewDelegate,
+	UITableViewDataSource
+{
+	private var presenter: FriendsPresenterProtocol?
+
 	private(set) lazy var tableView = UITableView()
-
-	var friendsRef: DatabaseReference?
-	var invitationsRef: DatabaseReference?
-	var usernamesRef: DatabaseReference?
-	var pendingInvitationsRef: DatabaseReference?
-
-	var friendsHandle: UInt?
-	var invitationsHandle: UInt?
-	var usernamesHandle: UInt?
-	var pendingInvitationsHandle: UInt?
-
-	var myUsername : String?
-	var uid: String?
-
-	var usernamesSnapshot = [String:String]()
-	var friendsSnapshot = [String:String]()
-	var pendingInvitationsSnapshot = [String:String]()
-	var invitationsSnapshot = [String:String]()
-
-	var filteredUsernames: [(id: String, username: String)] = [] {
-		didSet {
-			tableView.reloadData()
-		}
-	}
-	var invitations: [(id: String, username: String)] = [] {
-		didSet {
-			tableView.reloadData()
-		}
-	}
-	var pendingInvitations: [(id: String, username: String)] = [] {
-		didSet {
-			tableView.reloadData()
-		}
-	}
-	var friends: [(id: String, username: String)] = [] {
-		didSet {
-			tableView.reloadData()
-		}
-	}
 
 	// MARK: Initialization
 
 	init() {
 		super.init(nibName: nil, bundle: nil)
+
+		presenter = FriendsPresenter(view: self)
 	}
 
 	required init?(coder: NSCoder) {
@@ -66,34 +36,30 @@ final class FriendsViewController: UIViewController, UITableViewDelegate, UITabl
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		navigationItem.title = "Friends"
+		setupUI()
+		configureUI()
+	}
 
-		configureDatabase()
+	// MARK: - Private
+
+	private func configureNavigationItem() {
+		navigationItem.title = LocalizedStrings.Friends.navigationTitle.localized
+		navigationController?.navigationBar.tintColor = .gray
+	}
+
+	private func setupUI() {
 		setupTableView()
+	}
+
+	private func configureUI() {
+		configureNavigationItem()
 		configureTableView()
 	}
 
-	override func viewDidDisappear(_ animated: Bool) {
-		super.viewDidDisappear(animated)
-
-		if let invitationsHandle = invitationsHandle {
-			invitationsRef?.removeObserver(withHandle: invitationsHandle)
-		}
-		if let friendsHandle = friendsHandle {
-			friendsRef?.removeObserver(withHandle: friendsHandle)
-		}
-		if let usernamesHandle = usernamesHandle {
-			usernamesRef?.removeObserver(withHandle: usernamesHandle)
-		}
-		if let pendingInvitationsHandle = pendingInvitationsHandle {
-			pendingInvitationsRef?.removeObserver(withHandle: pendingInvitationsHandle)
-		}
-	}
-
-	// MARK: - Table view data source
+	// MARK: - UITableViewDataSource
 
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return 4
+		return presenter?.numberOfSections ?? 0
 	}
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -237,85 +203,6 @@ final class FriendsViewController: UIViewController, UITableViewDelegate, UITabl
 		})
 	}
 
-	private func configureDatabase() {
-		guard let uid = Auth.auth().currentUser?.uid else {
-			return
-		}
-
-		let ref = Database.database().reference(withPath: "users/\(uid)/username")
-		ref.observeSingleEvent(of: .value, with: { (snapshot) in
-			if let username = snapshot.value as? String {
-				self.myUsername = username
-			}
-		}) { (error) in
-			self.showBasicAlert(title: "Username error", message: "Username not found")
-		}
-
-		self.friendsRef = Database.database().reference(withPath: "users/" + uid + "/friends")
-		self.invitationsRef = Database.database().reference(withPath: "users/" + uid + "/friendInvitations")
-		self.pendingInvitationsRef = Database.database().reference(withPath: "users/" + uid + "/pendingInvitations")
-		self.usernamesRef = Database.database().reference(withPath: "usernames")
-
-		friendsHandle = self.friendsRef?.observe(.value, with: { snapshot in
-			var friends = [(id: String, username: String)]()
-
-			if let allFriends = snapshot.value as? [String:String] {
-				self.friendsSnapshot = allFriends
-
-				for friend in allFriends {
-					friends.append((id: friend.key, username: friend.value))
-				}
-			} else {
-				self.friendsSnapshot = [String:String]()
-			}
-			self.friends = friends
-//			self.tableView.reloadSections(IndexSet(integer: 0), with: .none)
-			self.updateUsernames()
-		})
-
-		invitationsHandle = self.invitationsRef?.observe(.value, with: { snapshot in
-			var invitations = [(id: String, username: String)]()
-
-			if let allInvitations = snapshot.value as? [String:String] {
-				self.invitationsSnapshot = allInvitations
-
-				for invite in allInvitations {
-					invitations.append((id: invite.key, username: invite.value))
-				}
-			} else {
-				self.invitationsSnapshot = [String:String]()
-			}
-			self.invitations = invitations
-//			self.tableView.reloadSections(IndexSet(integer: 1), with: .none)
-			self.updateUsernames()
-		})
-
-		usernamesHandle = self.usernamesRef?.observe(.value, with: { snapshot in
-			if let usernamesSnapshot = snapshot.value as? [String:String] {
-				self.usernamesSnapshot = usernamesSnapshot
-			} else {
-				self.usernamesSnapshot = [String:String]()
-			}
-
-			self.updateUsernames()
-		})
-
-		pendingInvitationsHandle = self.pendingInvitationsRef?.observe(.value, with: { snapshot in
-			var pendingInvitations = [(id: String, username: String)]()
-			if let allPendingInvitations = snapshot.value as? [String:String] {
-				self.pendingInvitationsSnapshot = allPendingInvitations
-				for pendingInvite in allPendingInvitations {
-					pendingInvitations.append((id: pendingInvite.key, username: pendingInvite.value))
-				}
-			} else {
-				self.pendingInvitationsSnapshot = [String:String]()
-			}
-			self.pendingInvitations = pendingInvitations
-//			self.tableView.reloadSections(IndexSet(integer: 2), with: .none)
-			self.updateUsernames()
-		})
-	}
-
 	private func updateUsernames() {
 		let filteredUsernames = usernamesSnapshot.filter { username in
 			if username.key != self.myUsername,
@@ -338,10 +225,6 @@ final class FriendsViewController: UIViewController, UITableViewDelegate, UITabl
 	}
 
 	// MARK: - Actions
-
-	@objc private func goBack() {
-		dismiss(animated: true, completion: nil)
-	}
 
 	@objc private func acceptInvitation(sender: Any) {
 		guard let uid = Auth.auth().currentUser?.uid,
@@ -379,6 +262,12 @@ final class FriendsViewController: UIViewController, UITableViewDelegate, UITabl
 
 		self.updateMultipleUserValues(updatedValues: addFriend)
 		Analytics.logEvent("added_a_friend", parameters: Log.defaultInfo())
+	}
+
+	// MARK: - FriendsViewProtocol
+
+	func reloadTableView() {
+		tableView.reloadData()
 	}
 
 }

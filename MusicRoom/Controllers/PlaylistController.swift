@@ -55,7 +55,7 @@ class PlaylistController: MusicController, SnapshotHandler {
 		if let sortedTracks = self.tracks, currentIndex < sortedTracks.count {
 			let track = sortedTracks[currentIndex]
 
-			DZRTrack.object(withIdentifier: track.deezerId, requestManager: DZRRequestManager.default()) {
+			DZRTrack.object(withIdentifier: track.id, requestManager: DZRRequestManager.default()) {
 				( _ trackObject: Any?, _ error: Error?) -> Void in
 
 				if let trackObject = trackObject as? DZRTrack {

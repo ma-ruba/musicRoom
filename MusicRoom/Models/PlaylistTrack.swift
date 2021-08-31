@@ -8,13 +8,20 @@
 
 import Foundation
 
-class PlaylistTrack: Track {
-	let trackKey: String
-	let orderNumber: Double
+/// Entity that describes track in playlist context.
+final class PlaylistTrack: Track {
 
-	init(dict: [String: AnyObject], trackKey: String) {
+	/// Keys for data in object property.
+	private enum Key: String {
+		case orderNumber
+	}
+
+	let trackKey: String
+	let orderNumber: Int
+
+	init(dict: [String: Any], trackKey: String) {
 		self.trackKey = trackKey
-		self.orderNumber = dict["orderNumber"] as? Double ?? 0
+		self.orderNumber = dict[Key.orderNumber.rawValue] as? Int ?? 0
 
 		super.init(dict: dict)
 	}

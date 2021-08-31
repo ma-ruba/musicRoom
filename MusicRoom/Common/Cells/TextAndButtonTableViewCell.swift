@@ -7,14 +7,12 @@
 //
 
 import UIKit
-import SnapKit
 import GoogleSignIn
 
 final class TextAndButtonTableViewCell: UITableViewCell {
 
 	let textedLabel = UILabel()
-	let deezerButton = GIDSignInButton()
-	let buttonLabel = UILabel()
+	let googleButton = GIDSignInButton()
 	let button = UIButton()
 
 
@@ -38,8 +36,7 @@ final class TextAndButtonTableViewCell: UITableViewCell {
 
 	private func setupUI() {
 		setupTextedLabel()
-		setupDeezerButton()
-		setupButtonLabel()
+		setupGoogleButton()
 		setupButton()
 	}
 
@@ -48,7 +45,6 @@ final class TextAndButtonTableViewCell: UITableViewCell {
 
 		button.snp.makeConstraints { make in
 			make.right.equalToSuperview().inset(16)
-			make.size.equalTo(36)
 			make.centerY.equalToSuperview()
 		}
 	}
@@ -58,26 +54,16 @@ final class TextAndButtonTableViewCell: UITableViewCell {
 
 		textedLabel.snp.makeConstraints { make in
 			make.left.equalToSuperview().offset(16)
-			make.center.equalToSuperview()
-		}
-	}
-
-	private func setupDeezerButton() {
-		contentView.addSubview(deezerButton)
-
-		deezerButton.snp.makeConstraints { make in
-			make.right.equalToSuperview().inset(16)
-			make.height.equalTo(48)
-			make.width.equalTo(230)
-		}
-	}
-
-	private func setupButtonLabel() {
-		contentView.addSubview(buttonLabel)
-
-		buttonLabel.snp.makeConstraints { make in
-			make.right.equalToSuperview().inset(16)
 			make.centerY.equalToSuperview()
+		}
+	}
+
+	private func setupGoogleButton() {
+		contentView.addSubview(googleButton)
+
+		googleButton.snp.makeConstraints { make in
+			make.right.top.bottom.equalToSuperview().inset(16)
+			make.width.equalTo(200)
 		}
 	}
 
@@ -90,10 +76,11 @@ final class TextAndButtonTableViewCell: UITableViewCell {
 
 	private func configureTextedLabel() {
 		textedLabel.textColor = .black
-		textedLabel.font = .systemFont(ofSize: 18, weight: .medium)
+		textedLabel.font = .systemFont(ofSize: 20, weight: .regular)
 	}
 
 	private func configureButton() {
-		deezerButton.layer.cornerRadius = 8
+		button.setTitleColor(.systemPink, for: .normal)
+		button.setTitleColor(.darkGray, for: .disabled)
 	}
 }

@@ -8,15 +8,7 @@
 
 import UIKit
 
-protocol TextFieldAndTwoButtonsTableViewCellDelegate: AnyObject {
-	func textFieldAndTwoButtonsTableViewCellDidTapLeftButton(_ cell: TextFieldAndTwoButtonsTableViewCell)
-	func textFieldAndTwoButtonsTableViewCellDidTapRightButton(_ cell: TextFieldAndTwoButtonsTableViewCell)
-}
-
 final class TextFieldAndTwoButtonsTableViewCell: UITableViewCell {
-
-	weak var delegate: TextFieldAndTwoButtonsTableViewCellDelegate?
-
 	let textField = UITextField()
 	let leftButton = UIButton()
 	let rightButton = UIButton()
@@ -40,8 +32,8 @@ final class TextFieldAndTwoButtonsTableViewCell: UITableViewCell {
 	// MARK: Setup
 
 	private func setupUI() {
-		setupTextField()
 		setupLeftButton()
+		setupTextField()
 		setupRightButton()
 	}
 
@@ -49,7 +41,8 @@ final class TextFieldAndTwoButtonsTableViewCell: UITableViewCell {
 		contentView.addSubview(textField)
 
 		textField.snp.makeConstraints { make in
-			make.center.equalToSuperview()
+			make.centerY.equalToSuperview()
+			make.left.equalTo(leftButton.snp.right).offset(16)
 		}
 	}
 
@@ -59,8 +52,8 @@ final class TextFieldAndTwoButtonsTableViewCell: UITableViewCell {
 		leftButton.snp.makeConstraints { make in
 			make.centerY.equalToSuperview()
 			make.left.equalToSuperview().offset(16)
-			make.height.equalTo(24)
-			make.width.equalTo(36)
+			make.size.equalTo(36)
+			make.top.bottom.equalToSuperview().inset(16)
 		}
 	}
 
@@ -70,6 +63,7 @@ final class TextFieldAndTwoButtonsTableViewCell: UITableViewCell {
 		rightButton.snp.makeConstraints { make in
 			make.centerY.equalToSuperview()
 			make.right.equalToSuperview().offset(-16)
+			make.left.equalTo(textField.snp.right).offset(16)
 		}
 	}
 
@@ -77,49 +71,14 @@ final class TextFieldAndTwoButtonsTableViewCell: UITableViewCell {
 
 	private func configureUI() {
 		configureTextField()
-		configureLeftButton()
 	}
 
 	private func configureTextField() {
 		textField.textColor = .black
-		textField.font = .systemFont(ofSize: 18, weight: .medium)
-		textField.placeholder = "Your username"
+		textField.font = .systemFont(ofSize: 18, weight: .regular)
+		textField.autocorrectionType = .no
+		textField.autocapitalizationType = .none
 		textField.borderStyle = .roundedRect
-	}
-
-	private func configureLeftButton() {
-		leftButton.addTarget(self, action: #selector(leftButtonPressed), for: .touchUpInside)
-		leftButton.setImage(UIImage(name: .info), for: .normal)
-	}
-
-	private func configureRightButton() {
-		rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
-		rightButton.setTitle("Submit", for: .normal)
-	}
-
-	// MARK: - Actions
-
-	@objc private func leftButtonPressed() {
-		delegate?.textFieldAndTwoButtonsTableViewCellDidTapLeftButton(self)
-	}
-
-	@objc private func rightButtonPressed() {
-		guard let uid = Auth.auth().currentUser?.uid, let username = textField.text else {
-			return
-		}
-
-		let ref = Database.database().reference()
-		let updatedUserData = ["users/\(uid)/username": username, "usernames/\(username)": uid] as [String : Any]
-
-		ref.updateChildValues(updatedUserData, withCompletionBlock: { (error, ref) -> Void in
-			if error != nil {
-				print("Error updating data: \(error?.localizedDescription)")
-			}
-//			else {
-//				Analytics.logEvent("created_username", parameters: Log.defaultInfo())
-//			}
-		})
-
-		delegate?.textFieldAndTwoButtonsTableViewCellDidTapRightButton(self)
+		textField.clearButtonMode = .whileEditing
 	}
 }

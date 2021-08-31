@@ -50,6 +50,5 @@ final class TextFieldTableViewCell: UITableViewCell {
 
 	private func configuretextField() {
 		textField.borderStyle = .roundedRect
-		textField.placeholder = "Name"
 	}
 }

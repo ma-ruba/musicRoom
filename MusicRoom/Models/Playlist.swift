@@ -8,43 +8,41 @@
 
 import Foundation
 
+/// Entity that describes playlist in database.
 struct Playlist {
-
-	enum Key: String {
+	/// Keys for data in object property.
+	private enum Key: String {
 		case name
 		case createdBy
 		case userIds
 		case tracks
+		case type
 	}
 
 	var name: String = ""
 	var createdBy: String = ""
-	var tracks: [PlaylistTrack]?
-	var userIds: [String: Bool]?
+	var tracks: [PlaylistTrack] = []
+	var userIds: [String: Bool] = [:]
+	var type: PlaylistType = .public
 	var ref: DatabaseReference?
 
-	var publicObject: [String: String] {
+	/// Representation of entity in database.
+	var object: [String: String] {
 		[
 			Key.name.rawValue: name,
 			Key.createdBy.rawValue: createdBy,
-		]
-	}
-
-	var privateObject: Any {
-		[
-			Key.name.rawValue: name,
-			Key.createdBy.rawValue: createdBy,
-			Key.userIds.rawValue: userIds as Any,
+			Key.type.rawValue: type.name
 		]
 	}
 
 	var sortedTracks: [PlaylistTrack] {
-		tracks?.sorted { $0.orderNumber < $1.orderNumber } ?? []
+		tracks.sorted { $0.orderNumber < $1.orderNumber }
 	}
 
-	init(name: String, userId: String) {
+	init(name: String, userId: String, type: PlaylistType) {
 		self.name = name
 		self.userIds = [userId : true]
+		self.type = type
 		createdBy = userId
 	}
 
@@ -57,6 +55,19 @@ struct Playlist {
 
 		if let createdBy = snapshotValue[Key.createdBy.rawValue] as? String {
 			self.createdBy = createdBy
+		}
+
+		if let type = snapshotValue[Key.type.rawValue] as? String {
+			switch type {
+			case PlaylistType.private.name:
+				self.type = .private
+
+			case PlaylistType.public.name:
+				self.type = .public
+
+			default:
+				break
+			}
 		}
 
 		let trackDicts = snapshotValue[Key.tracks.rawValue] as? [String: [String: AnyObject]]
