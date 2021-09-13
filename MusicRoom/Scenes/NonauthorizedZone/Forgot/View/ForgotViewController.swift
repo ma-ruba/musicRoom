@@ -2,7 +2,7 @@
 //  ForgotViewController.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 19.12.2020.
+//  Created by Mariia on 19.12.2020.
 //  Copyright © 2020 School21. All rights reserved.
 //
 
@@ -11,8 +11,8 @@ import Firebase
 
 final class ForgotViewController: UIViewController, ForgotViewProtocol, UITextFieldDelegate {
 
-	private(set) lazy var emailTextFied = UITextField()
-	private(set) lazy var sendPasswordButton = UIButton()
+	private lazy var emailTextFied = UITextField()
+	private lazy var sendPasswordButton = UIButton()
 
 	private var presenter: ForgotPresenterProtocol?
 
@@ -83,7 +83,7 @@ final class ForgotViewController: UIViewController, ForgotViewProtocol, UITextFi
 		sendPasswordButton.snp.makeConstraints { make in
 			make.height.equalTo(64)
 			make.centerX.equalToSuperview()
-			make.left.right.equalToSuperview().inset(32)
+			make.leading.trailing.equalToSuperview().inset(32)
 			make.top.equalTo(emailTextFied.snp.bottom).offset(32)
 		}
 	}

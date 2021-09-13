@@ -6,12 +6,16 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
-final class MusicBarPresenter: MusicBarPresenterProtocol {
+final class MusicBarPresenter: NSObject, MusicBarPresenterProtocol, DZRPlayerDelegate {
 	unowned private var view: MusicBarViewProtocol
-	private var model: MusicBarModel?
+	private var model: MusicBarModel
 
 	var currentState: PlayingState {
-		model?.playingState ?? .disabled
+		model.playingState
+	}
+
+	var playingInfo: String {
+		model.playingInfo
 	}
 
 	init(view: MusicBarViewProtocol) {
@@ -20,34 +24,32 @@ final class MusicBarPresenter: MusicBarPresenterProtocol {
 		model = MusicBarModel()
 	}
 
+	// MARK: - DZRPlayerDelegate
+
+	func playerDidPause(_ player: DZRPlayer!) {
+		view.updateAppearance()
+	}
+
+	func player(_ player: DZRPlayer!, didStartPlaying track: DZRTrack!) {
+		view.updateAppearance()
+	}
+
 	// MARK: - MusicBarPresenterProtocol
 
 	func buttonPressed() {
-		switch model?.playingState {
-		case .play:
-			DeezerSession.sharedInstance.controller?.pause()
+		switch model.playingState {
+		case .isPlaying:
+			DeezerManager.sharedInstance.pause()
+
+		case .isSuspended:
+			DeezerManager.sharedInstance.play()
 
 		default:
-			DeezerSession.sharedInstance.controller?.play()
+			break
 		}
 	}
 
 	func setupPlayerDelegate() {
-		DeezerSession.sharedInstance.setUp(playerDelegate: view)
-	}
-
-	// TODO: Do smth with playing
-	func setupPlayButtonState() {
-		if DeezerSession.sharedInstance.deezerPlayer?.isPlaying() == true {
-			view.changePlayPauseButtonState(to: .play)
-		} else if DeezerSession.sharedInstance.deezerPlayer?.isReady() == true {
-			view.changePlayPauseButtonState(to: .pause)
-		} else {
-			view.changePlayPauseButtonState(to: .disabled)
-		}
-	}
-
-	func setNewState(_ state: PlayingState) {
-		model?.playingState = state
+		DeezerManager.sharedInstance.setDelegate(self)
 	}
 }

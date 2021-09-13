@@ -15,9 +15,6 @@ protocol SearchSongPresenterProtocol {
 	/// Property that describes number of rows in the tableView in SearchSongView.
 	var numberOfRows: Int { get }
 
-	/// Method configures SearchSongModel.
-	func configureModel(with inputModel: Playlist)
-
 	/// Method adds a new track to the track list.
 	func addNewTrack(at index: Int)
 

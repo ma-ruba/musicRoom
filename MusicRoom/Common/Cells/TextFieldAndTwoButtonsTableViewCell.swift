@@ -2,7 +2,7 @@
 //  TextFieldAndTwoButtonsTableViewCell.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 10.01.2021.
+//  Created by Mariia on 10.01.2021.
 //  Copyright © 2021 School21. All rights reserved.
 //
 
@@ -10,14 +10,12 @@ import UIKit
 
 final class TextFieldAndTwoButtonsTableViewCell: UITableViewCell {
 	let textField = UITextField()
-	let leftButton = UIButton()
-	let rightButton = UIButton()
+	let leadingButton = UIButton()
+	let trailingButton = UIButton()
 
 	// MARK: Initializzation
 
-	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-		super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+	override func willMove(toSuperview newSuperview: UIView?) {
 		setupUI()
 		configureUI()
 	}
@@ -32,9 +30,9 @@ final class TextFieldAndTwoButtonsTableViewCell: UITableViewCell {
 	// MARK: Setup
 
 	private func setupUI() {
-		setupLeftButton()
+		setupLeadingButton()
 		setupTextField()
-		setupRightButton()
+		setupTrailingButton()
 	}
 
 	private func setupTextField() {
@@ -42,28 +40,36 @@ final class TextFieldAndTwoButtonsTableViewCell: UITableViewCell {
 
 		textField.snp.makeConstraints { make in
 			make.centerY.equalToSuperview()
-			make.left.equalTo(leftButton.snp.right).offset(16)
+			if leadingButton.isHidden {
+				make.leading.equalToSuperview().offset(GlobalConstants.defaultLeadingOffset)
+			} else {
+				make.leading.equalTo(leadingButton.snp.trailing).offset(GlobalConstants.defaultLeadingOffset)
+			}
+
+			if trailingButton.isHidden {
+				make.trailing.equalToSuperview().offset(GlobalConstants.defaultTrailingOffset)
+			}
 		}
 	}
 
-	private func setupLeftButton() {
-		contentView.addSubview(leftButton)
+	private func setupLeadingButton() {
+		contentView.addSubview(leadingButton)
 
-		leftButton.snp.makeConstraints { make in
+		leadingButton.snp.makeConstraints { make in
 			make.centerY.equalToSuperview()
-			make.left.equalToSuperview().offset(16)
+			make.leading.equalToSuperview().offset(GlobalConstants.defaultLeadingOffset)
 			make.size.equalTo(36)
 			make.top.bottom.equalToSuperview().inset(16)
 		}
 	}
 
-	private func setupRightButton() {
-		contentView.addSubview(rightButton)
+	private func setupTrailingButton() {
+		contentView.addSubview(trailingButton)
 
-		rightButton.snp.makeConstraints { make in
+		trailingButton.snp.makeConstraints { make in
 			make.centerY.equalToSuperview()
-			make.right.equalToSuperview().offset(-16)
-			make.left.equalTo(textField.snp.right).offset(16)
+			make.trailing.equalToSuperview().offset(GlobalConstants.defaultTrailingOffset)
+			make.leading.equalTo(textField.snp.trailing).offset(GlobalConstants.defaultLeadingOffset)
 		}
 	}
 

@@ -9,18 +9,39 @@
 /// Interface for FriendsModel.
 protocol FriendsModelProtocol {
 
+	///
+	var friendsItem: DatabaseItem { get }
+
+	///
+	var invitationItem: DatabaseItem { get }
+
+	///
+	var pendingInvitationsItem: DatabaseItem { get }
+
+	///
+	var possibleFriendsItem: DatabaseItem { get }
+
+	///
+	var currentUid: String { get }
+
+	///
+	var currentUser: FriendForInvite { get }
+
 	/// Handler that updates view in FriendsView.
 	var updateView: (() -> Void)? { get set }
 
 	/// Username of the user.
 	var currentUsername: String { get set }
-
-	/// Methodsends invitation to a user.
-	func sendInvitation(at index: Int)
-
-	/// Method accepts invitation.
-	func acceptInvitation(at index: Int)
-
-	/// Method denies invitation.
-	func denyInvitation(at index: Int)
+	
+	/// Users current user can invite.
+	var possibleFriends: [FriendForInvite] { get }
+	
+	/// Users waiting to be accepted.
+	var invitations: [FriendForInvite] { get }
+	
+	/// Users this user is waiting to accept him.
+	var pendingInvitations: [FriendForInvite] { get }
+	
+	/// Current user's friends.
+	var friends: [FriendForInvite] { get }
 }

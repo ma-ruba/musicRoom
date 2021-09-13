@@ -2,7 +2,7 @@
 //  ShowPlaylistViewController.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 15.12.2020.
+//  Created by Mariia on 15.12.2020.
 //  Copyright © 2021 School21. All rights reserved.
 //
 
@@ -28,16 +28,15 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 	private var presenter: ShowPlaylistPresenterProtocol?
 	private var editingState: EditingState = .edit
 
-	private(set) lazy var tableView = UITableView()
-	private(set) lazy var infoLabel = UILabel()
+	private lazy var tableView = UITableView()
+	private lazy var infoLabel = UILabel()
 
 	// MARK: Initializzation
 
-	init(with inputModel: PlaylistItem) {
+	init(with inputModel: Playlist) {
 		super.init(nibName: nil, bundle: nil)
 
-		presenter = ShowPlaylistPresenter(view: self)
-		presenter?.configureModel(with: inputModel)
+		presenter = ShowPlaylistPresenter(view: self, inputModel: inputModel)
 	}
 
 	required init?(coder: NSCoder) {
@@ -49,7 +48,6 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		configureNavigationItem()
 		setupUI()
 		configureUI()
 		configureAppearance()
@@ -76,8 +74,8 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 		view.addSubview(tableView)
 
 		tableView.snp.makeConstraints { make in
-			make.bottom.equalTo(view.safeAreaLayoutGuide)
-			make.left.right.equalToSuperview()
+			make.bottom.equalTo(view.safeAreaLayoutGuide).inset(GlobalConstants.musicBarHeight)
+			make.leading.trailing.equalToSuperview()
 			make.top.equalTo(view.safeAreaLayoutGuide)
 		}
 	}
@@ -101,8 +99,8 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 		infoLabel.isHidden = presenter?.tracks.isEmpty == true
 		tableView.delegate = self
 		tableView.dataSource = self
-		tableView.estimatedRowHeight = 64
-		tableView.registerReusable(cellClass: TrackTableViewCell.self)
+		tableView.tableFooterView = EmptyView()
+		tableView.registerReusable(cellClass: LabelsTableViewCell.self)
 	}
 
 	private func congigureInfoLabel() {
@@ -112,6 +110,7 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 	}
 
 	private func configureAppearance() {
+		configureNavigationItem()
 		if presenter?.tracks.isEmpty == false {
 			navigationItem.rightBarButtonItems?[safe: 1]?.isEnabled = true
 			tableView.isHidden = false
@@ -132,16 +131,16 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 			tableView.setEditing(false, animated: true)
 			let firstButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editPlaylist))
 			navigationItem.rightBarButtonItems = [secondButton, firstButton]
-			editingState = .done
-			firstButton.tintColor = .gray
+			firstButton.tintColor = .systemPink
 
 		case .done:
 			tableView.setEditing(true, animated: true)
 			let firstButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(editPlaylist))
 			navigationItem.rightBarButtonItems = [secondButton, firstButton]
-			editingState = .edit
 			firstButton.tintColor = .gray
 		}
+
+		if presenter?.tracks.isEmpty == true { secondButton.isEnabled = false}
 	}
 
 	// MARK: - Actions
@@ -166,8 +165,12 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withClass: TrackTableViewCell.self, for: indexPath)
-		cell.track = presenter?.tracks[indexPath.row]
+		let cell = tableView.dequeueReusableCell(withClass: LabelsTableViewCell.self, for: indexPath)
+		guard let track = presenter?.tracks[indexPath.row] else { return cell }
+		cell.mainLabel.text = track.name
+		cell.firstAdditionalInfoLabel.text = track.creator
+		cell.secondAdditionalInfoLabel.text = String(format: "%01d:%02d", track.duration / 60, track.duration % 60)
+		cell.selectionStyle = .none
 
 		return cell
 	}
@@ -175,9 +178,7 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 	// MARK: - UITableViewDelegate
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//		if let path = firebasePlaylistPath {
-//			DeezerSession.sharedInstance.setMusic(toPlaylist: path, startingAt: indexPath.row)
-//		}
+		presenter?.playTrack(at: indexPath.row)
 	}
 
 	func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -196,4 +197,9 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 		presenter?.reorderTrack(from: fromIndexPath.row, to: toIndexPath.row)
 	}
 
+	// MARK: - ShowPlaylistViewProtocol
+
+	func reloadTableView() {
+		tableView.reloadData()
+	}
 }

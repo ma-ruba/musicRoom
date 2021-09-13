@@ -25,7 +25,6 @@ final class SignPresenter: SignPresenterProtocol {
 		guard let model = model else { return view.showBasicAlert(message: locolizedStrings.emptyFieldAlert.localized()) }
 
 		guard model.password == model.passwordConfirm else {
-			view.clearAllTextFieldsInput()
 			return view.showBasicAlert(message: locolizedStrings.passwordAlert.localized())
 		}
 
@@ -39,9 +38,9 @@ final class SignPresenter: SignPresenterProtocol {
 						self?.view.showBasicAlert(
 							title: locolizedStrings.verifyEmailTitle.localized,
 							message: locolizedStrings.verifyEmailMessage.localized
-						)
-
-						self?.openLogViewController()
+						) { action in
+							self?.openLogViewController()
+						}
 					}
 				}
 			}
@@ -52,8 +51,7 @@ final class SignPresenter: SignPresenterProtocol {
 
 	private func openLogViewController() {
 		let viewController = LogViewController()
-		view.navigationController?.viewControllers.removeLast()
+		view.navigationController?.popViewController(animated: true)
 		view.navigationController?.pushViewController(viewController, animated: true)
 	}
-
 }

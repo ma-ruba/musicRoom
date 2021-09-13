@@ -65,6 +65,7 @@ enum LocalizedStrings {
 
 	enum MusicBar: LocalizedStringConvertible {
 		case notActive
+		case playingInfo
 	}
 
 	enum Playlist: LocalizedStringConvertible {
@@ -115,6 +116,9 @@ enum LocalizedStrings {
 
 	enum Friends: LocalizedStringConvertible {
 		case navigationTitle
+		case addActionTitle
+		case acceptActionTitle
+		case rejectActionTitle
 	}
 
 	enum AddFriends: LocalizedStringConvertible {

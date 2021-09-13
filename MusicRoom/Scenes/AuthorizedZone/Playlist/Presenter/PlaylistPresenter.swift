@@ -19,21 +19,12 @@ final class PlaylistPresenter: PlaylistPresenterProtocol {
 		model.updateView = {
 			view.reloadTableView()
 		}
-		model.showError = {
-			view.showBasicAlert(message: LocalizedStrings.Playlist.unableToDelete.localized)
-		}
 	}
 
 	// MARK: - PlaylistPresenterProtocol
 
 	var numberOfSections: Int {
 		PlaylistType.allCases.count
-	}
-
-	func typeName(for section: Int) -> String? {
-		guard let playlistType = PlaylistType.init(rawValue: section) else { return nil }
-
-		return playlistType.name
 	}
 
 	func numberOfRows(in section: Int) -> Int {
@@ -48,7 +39,7 @@ final class PlaylistPresenter: PlaylistPresenterProtocol {
 		}
 	}
 
-	func playlist(for indexPath: IndexPath) -> PlaylistItem? {
+	func playlist(for indexPath: IndexPath) -> Playlist? {
 		guard let playlistType = PlaylistType.init(rawValue: indexPath.section) else { return nil }
 
 		switch playlistType {
@@ -67,7 +58,7 @@ final class PlaylistPresenter: PlaylistPresenterProtocol {
 
 	func openPlaylist(at indexPath: IndexPath) {
 		guard let playlistType = PlaylistType.init(rawValue: indexPath.section) else { return }
-		var selectedPlaylist: PlaylistItem?
+		var selectedPlaylist: Playlist?
 
 		switch playlistType {
 		case .private:
@@ -84,16 +75,32 @@ final class PlaylistPresenter: PlaylistPresenterProtocol {
 	}
 
 	func deletePlaylist(at indexPath: IndexPath) {
-		guard let playlistType = PlaylistType.init(rawValue: indexPath.section) else { return }
+		guard let playlistType = PlaylistType(rawValue: indexPath.section) else { return }
 
 		switch playlistType {
 		case .private:
-			guard model.privatePlaylist[safe: indexPath.row] != nil else { return }
+			guard let playlistId = model.privatePlaylist[safe: indexPath.row]?.id else { return }
+			model.privatePlaylistItem.reference.child(playlistId).observeSingleEvent(of: .value) { [ weak self] snapshot in
+				let playlist = Playlist(snapshot: snapshot)
+				guard playlist.createdBy == Auth.auth().currentUser?.uid else {
+					self?.view.showBasicAlert(message: LocalizedStrings.Playlist.unableToDelete.localized)
+					return
+				}
+
+				self?.model.privatePlaylistItem.reference.child(playlistId).removeValue()
+			}
 
 		case .public:
-			guard model.publicPlaylist[safe: indexPath.row] != nil else { return }
-		}
+			guard let playlistId = model.publicPlaylist[safe: indexPath.row]?.id else { return }
+			model.publicPlaylistItem.reference.child(playlistId).observeSingleEvent(of: .value) { [ weak self] snapshot in
+				let playlist = Playlist(snapshot: snapshot)
+				guard playlist.createdBy == Auth.auth().currentUser?.uid else {
+					self?.view.showBasicAlert(message: LocalizedStrings.Playlist.unableToDelete.localized)
+					return
+				}
 
-		model.deletePlaylist(at: indexPath)
+				self?.model.publicPlaylistItem.reference.child(playlistId).removeValue()
+			}
+		}
 	}
 }

@@ -2,7 +2,7 @@
 //  StartViewController.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 10.12.2020.
+//  Created by Mariia on 10.12.2020.
 //  Copyright © 2020 School21. All rights reserved.
 //
 
@@ -10,10 +10,10 @@ import SnapKit
 
 final class StartViewController: UIViewController, StartViewProtocol {
 
-	private(set) lazy var logoImageView = UIImageView()
-	private(set) lazy var logButton = UIButton()
-	private(set) lazy var signButton = UIButton()
-	private(set) lazy var welcomeLabel = UILabel()
+	private lazy var logoImageView = UIImageView()
+	private lazy var logButton = UIButton()
+	private lazy var signButton = UIButton()
+	private lazy var welcomeLabel = UILabel()
 
 	private var presenter: StartPresenterProtocol?
 
@@ -67,7 +67,7 @@ final class StartViewController: UIViewController, StartViewProtocol {
 		logButton.snp.makeConstraints { make in
 			make.height.equalTo(64)
 			make.bottom.equalToSuperview().inset(64)
-			make.left.right.equalToSuperview().inset(32)
+			make.leading.trailing.equalToSuperview().inset(32)
 		}
 	}
 
@@ -77,7 +77,7 @@ final class StartViewController: UIViewController, StartViewProtocol {
 		signButton.snp.makeConstraints { make in
 			make.height.equalTo(logButton)
 			make.bottom.equalTo(logButton.snp.top).inset(-8)
-			make.left.right.equalToSuperview().inset(32)
+			make.leading.trailing.equalToSuperview().inset(32)
 		}
 	}
 
@@ -86,7 +86,7 @@ final class StartViewController: UIViewController, StartViewProtocol {
 
 		welcomeLabel.snp.makeConstraints { make in
 			make.centerX.centerY.equalToSuperview()
-			make.left.right.equalToSuperview().inset(16)
+			make.leading.trailing.equalToSuperview().inset(16)
 		}
 	}
 

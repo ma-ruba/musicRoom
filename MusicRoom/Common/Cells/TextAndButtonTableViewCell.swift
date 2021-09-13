@@ -2,7 +2,7 @@
 //  TextAndButtonTableViewCell.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 27.12.2020.
+//  Created by Mariia on 27.12.2020.
 //  Copyright © 2020 School21. All rights reserved.
 //
 
@@ -44,7 +44,7 @@ final class TextAndButtonTableViewCell: UITableViewCell {
 		contentView.addSubview(button)
 
 		button.snp.makeConstraints { make in
-			make.right.equalToSuperview().inset(16)
+			make.trailing.equalToSuperview().inset(16)
 			make.centerY.equalToSuperview()
 		}
 	}
@@ -53,7 +53,7 @@ final class TextAndButtonTableViewCell: UITableViewCell {
 		contentView.addSubview(textedLabel)
 
 		textedLabel.snp.makeConstraints { make in
-			make.left.equalToSuperview().offset(16)
+			make.leading.equalToSuperview().offset(GlobalConstants.defaultLeadingOffset)
 			make.centerY.equalToSuperview()
 		}
 	}
@@ -62,7 +62,7 @@ final class TextAndButtonTableViewCell: UITableViewCell {
 		contentView.addSubview(googleButton)
 
 		googleButton.snp.makeConstraints { make in
-			make.right.top.bottom.equalToSuperview().inset(16)
+			make.trailing.top.bottom.equalToSuperview().inset(16)
 			make.width.equalTo(200)
 		}
 	}

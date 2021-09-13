@@ -2,7 +2,7 @@
 //  SignViewController.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 11.12.2020.
+//  Created by Mariia on 11.12.2020.
 //  Copyright © 2020 School21. All rights reserved.
 //
 
@@ -22,10 +22,10 @@ final class SignViewController: UIViewController, SignViewProtocol, UITextFieldD
 		case passwordConfirm
 	}
 
-	private(set) lazy var emailTextFied = UITextField()
-	private(set) lazy var passwordTextField = UITextField()
-	private(set) lazy var passwordConfirmTextField = UITextField()
-	private(set) lazy var createAccountButton = UIButton()
+	private lazy var emailTextFied = UITextField()
+	private lazy var passwordTextField = UITextField()
+	private lazy var passwordConfirmTextField = UITextField()
+	private lazy var createAccountButton = UIButton()
 
 	private let locolizedStrings: LocalizedStrings.Sign.Type = LocalizedStrings.Sign.self
 
@@ -119,7 +119,7 @@ final class SignViewController: UIViewController, SignViewProtocol, UITextFieldD
 		createAccountButton.snp.makeConstraints { make in
 			make.height.equalTo(64)
 			make.centerX.equalToSuperview()
-			make.left.right.equalToSuperview().inset(32)
+			make.leading.trailing.equalToSuperview().inset(32)
 			make.top.equalTo(passwordConfirmTextField.snp.bottom).offset(32)
 		}
 	}
@@ -168,6 +168,7 @@ final class SignViewController: UIViewController, SignViewProtocol, UITextFieldD
 		passwordConfirmTextField.borderStyle = .roundedRect
 		passwordConfirmTextField.isSecureTextEntry = true
 		passwordConfirmTextField.clearButtonMode = .whileEditing
+		passwordConfirmTextField.tag = TextFieldTag.passwordConfirm.rawValue
 	}
 
 	private func configureCreateAccountButton() {
@@ -183,18 +184,16 @@ final class SignViewController: UIViewController, SignViewProtocol, UITextFieldD
 	// MARK: - Actions
 
 	@objc func didTapCreateAccountButton() {
-		var accountInfoModel: AccountInfoModel?
-
-		if let email = emailTextFied.text,
+		guard let email = emailTextFied.text,
 			let password = passwordTextField.text,
 			let passwordConfirm = passwordConfirmTextField.text,
 			email.isEmpty == false,
 			password.isEmpty == false,
 			passwordConfirm.isEmpty == false
-		{
-			accountInfoModel = AccountInfoModel(email: email, password: password, passwordConfirm: passwordConfirm)
-		}
+		else { return }
 
+		clearAllTextFieldsInput()
+		let accountInfoModel = AccountInfoModel(email: email, password: password, passwordConfirm: passwordConfirm)
 		presenter?.createAccount(with: accountInfoModel)
 	}
 
@@ -219,9 +218,14 @@ final class SignViewController: UIViewController, SignViewProtocol, UITextFieldD
 		return true
 	}
 
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		print("Hello")
+	}
+
 	func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-		switch textField.tag {
-		case 0:
+		let tagType = TextFieldTag(rawValue: textField.tag)
+		switch tagType {
+		case .email:
 			guard let result = Validator.validate(email: textField.text) else {
 				return true
 			}

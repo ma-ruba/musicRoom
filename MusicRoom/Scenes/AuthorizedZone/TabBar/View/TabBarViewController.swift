@@ -2,7 +2,7 @@
 //  TabBarViewController.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 27.12.2020.
+//  Created by Mariia on 27.12.2020.
 //  Copyright © 2020 School21. All rights reserved.
 //
 
@@ -82,5 +82,11 @@ final class TabBarViewController: UITabBarController, TabBarViewProtocol {
 		barAppearance.backgroundImage = UIImage()
 		barAppearance.isTranslucent = false
 		barAppearance.unselectedItemTintColor = UIColor.darkGray.with(alpha: .low)
+	}
+	
+	// MARK: - TabBarViewProtocol
+	
+	func dismiss() {
+		dismiss(animated: true)
 	}
 }

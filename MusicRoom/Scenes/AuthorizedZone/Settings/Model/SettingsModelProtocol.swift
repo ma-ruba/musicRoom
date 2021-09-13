@@ -9,12 +9,12 @@
 /// Interface for  SettingsModel.
 protocol SettingsModelProtocol {
 
+	/// Username item in database.
+	var usernameItem: DatabaseItem { get }
+
 	/// Username.
 	var username: String { get set }
 
 	/// Google provider ID.
 	var googleProviderID: String { get }
-
-	/// Method saves a new username to database.
-	func saveUsername()
 }

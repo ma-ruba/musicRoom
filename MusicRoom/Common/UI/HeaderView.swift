@@ -2,7 +2,7 @@
 //  HeaderView.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 15.01.2021.
+//  Created by Mariia on 15.01.2021.
 //  Copyright © 2021 School21. All rights reserved.
 //
 
@@ -35,7 +35,7 @@ final class HeaderView: UIView {
 		addSubview(label)
 
 		label.snp.makeConstraints { make in
-			make.left.equalToSuperview().offset(16)
+			make.leading.equalToSuperview().offset(GlobalConstants.defaultLeadingOffset)
 			make.centerY.equalToSuperview()
 		}
 	}

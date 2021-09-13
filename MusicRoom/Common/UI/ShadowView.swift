@@ -2,7 +2,7 @@
 //  ShadowView.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 14.12.2020.
+//  Created by Mariia on 14.12.2020.
 //  Copyright © 2020 School21. All rights reserved.
 //
 

@@ -1,19 +1,21 @@
 //
-//  PlaylistTableViewController.swift
+//  PlaylistViewController.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 13.12.2020.
+//  Created by Mariia on 13.12.2020.
 //  Copyright © 2021 School21. All rights reserved.
 //
 
 import UIKit
 
-final class PlaylistTableViewController: UITableViewController, PlaylistViewProtocol {
+final class PlaylistViewController: UIViewController, PlaylistViewProtocol, UITableViewDelegate, UITableViewDataSource {
 
 	private enum Constants {
 		static let footerHeight: CGFloat = 46
 		static let headerHeight: CGFloat = 46
 	}
+
+	private lazy var tableView = UITableView()
 
 	private var presenter: PlaylistPresenterProtocol?
 
@@ -34,8 +36,8 @@ final class PlaylistTableViewController: UITableViewController, PlaylistViewProt
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		configureNavigationItem()
-		configureTableView()
+		setupUI()
+		configureUI()
 	}
 
 	// MARK: - PlaylistViewProtocol
@@ -46,58 +48,59 @@ final class PlaylistTableViewController: UITableViewController, PlaylistViewProt
 
 	// MARK: - TableViewDataSource
 
-	override func numberOfSections(in tableView: UITableView) -> Int {
+	func numberOfSections(in tableView: UITableView) -> Int {
 		return presenter?.numberOfSections ?? 0
 	}
 
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return presenter?.numberOfRows(in: section) ?? 1
 	}
 
-	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		let playlistType = PlaylistType(rawValue: section)
 		guard let numberOfRows = presenter?.numberOfRows(in: section), numberOfRows > 0 else { return nil }
 
 		return playlistType?.name.capitalized
 	}
 
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.reuseIdentifier, for: indexPath)
 
-		guard let playlistModel = presenter?.playlist(for: indexPath) else {
-			let typeName = presenter?.typeName(for: indexPath.row) ?? ""
-			cell.textLabel?.text = LocalizedStrings.Playlist.emptyPlaylistTitle.localized(withArgs: typeName)
-			return cell
-		}
+		guard let playlistModel = presenter?.playlist(for: indexPath) else { return cell }
 
 		cell.textLabel?.text = playlistModel.name
+		cell.selectionStyle = .none
 		return cell
 	}
 
 	// MARK: - TableViewDelegate
 
-	override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+		guard let numberOfRows = presenter?.numberOfRows(in: section), numberOfRows > 0 else { return 0 }
+		
 		return Constants.footerHeight
 	}
 
-	override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		guard let numberOfRows = presenter?.numberOfRows(in: section), numberOfRows > 0 else { return 0 }
+		
 		return Constants.headerHeight
 	}
 
-	override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+	func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
 		return EmptyView()
 	}
 
-	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		presenter?.openPlaylist(at: indexPath)
 	}
 
-	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+	func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
 		guard presenter?.playlist(for: indexPath) != nil else { return false }
 		return true
 	}
 
-	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		guard editingStyle == .delete else { return }
 
 		presenter?.deletePlaylist(at: indexPath)
@@ -106,6 +109,29 @@ final class PlaylistTableViewController: UITableViewController, PlaylistViewProt
 
 	// MARK: - Private
 
+	// MARK: Private
+
+	private func setupUI() {
+		setupTableView()
+	}
+
+	private func setupTableView() {
+		view.addSubview(tableView)
+
+		tableView.snp.makeConstraints { make in
+			make.bottom.equalTo(view.safeAreaLayoutGuide).inset(GlobalConstants.musicBarHeight)
+			make.leading.trailing.equalToSuperview()
+			make.top.equalTo(view.safeAreaLayoutGuide)
+		}
+	}
+
+	// MARK: Configure
+
+	private func configureUI() {
+		configureNavigationItem()
+		configureTableView()
+	}
+
 	private func configureNavigationItem() {
 		navigationItem.title = LocalizedStrings.Playlist.navigationTitle.localized
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPlaylist))
@@ -113,6 +139,8 @@ final class PlaylistTableViewController: UITableViewController, PlaylistViewProt
 	}
 
 	private func configureTableView() {
+		tableView.dataSource = self
+		tableView.delegate = self
 		tableView.registerReusable(cellClass: UITableViewCell.self)
 	}
 

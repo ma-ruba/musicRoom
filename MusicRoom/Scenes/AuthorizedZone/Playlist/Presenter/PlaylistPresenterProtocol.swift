@@ -25,8 +25,5 @@ protocol PlaylistPresenterProtocol {
 	func numberOfRows(in section: Int) -> Int
 
 	/// Method returns a model with Playlist for certain indexPath.
-	func playlist(for indexPath: IndexPath) -> PlaylistItem?
-
-	/// Method returns name of Playlist's type for certain section.
-	func typeName(for section: Int) -> String?
+	func playlist(for indexPath: IndexPath) -> Playlist?
 }

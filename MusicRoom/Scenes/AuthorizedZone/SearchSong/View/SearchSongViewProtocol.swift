@@ -11,4 +11,7 @@ protocol SearchSongViewProtocol: BasicViewProtocol {
 
 	/// Method reloads tableView in SearchSongView.
 	func reloadTableView()
+	
+	/// Method reloads certain row in tableView in SearchSongView.
+	func reloadCellForRow(at index: Int)
 }

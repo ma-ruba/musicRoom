@@ -7,32 +7,36 @@
 //
 
 import GoogleSignIn
+import FirebaseAnalytics
 
 final class SettingsPresenter: SettingsPresenterProtocol {
 	unowned private var view: SettingsViewProtocol
-	private var model: SettingsModel?
+	private var model: SettingsModel
 
 	var numberOfSections: Int {
 		SettingsSectionType.allCases.count
 	}
 
 	var googleProviderID: String {
-		model?.googleProviderID ?? ""
+		model.googleProviderID
 	}
 
 	var username: String {
 		get {
-			model?.username ?? ""
+			model.username
 		}
 		set {
-			model?.username = newValue
+			model.username = newValue
 		}
 	}
+	
+	private var handler: TabBarViewProtocol
 
 	// MARK: Initializzation
 
-	init(view: SettingsViewProtocol) {
+	init(view: SettingsViewProtocol, handler: TabBarViewProtocol) {
 		self.view = view
+		self.handler = handler
 
 		model = SettingsModel()
 	}
@@ -43,18 +47,22 @@ final class SettingsPresenter: SettingsPresenterProtocol {
 		GIDSignIn.sharedInstance().signIn()
 	}
 
+	// TODO: Add checker for username duplicate.
 	func submitUsername() {
-		model?.saveUsername()
+		guard !username.isEmpty else { return }
+
+		model.usernameItem.reference.setValue(username) { error, _ in
+			guard error == nil else { return print(error?.localizedDescription) }
+		}
 	}
 
 	func logout() {
 		do {
-//			GIDSignIn.sharedInstance().signOut()
-//			LoginManager().logOut()
 			try Auth.auth().signOut()
-			DeezerSession.sharedInstance.clearMusic()
-			DeezerSession.sharedInstance.deezerConnect?.logout()
-			Analytics.logEvent("logging_out", parameters: Log.defaultInfo())
+			GIDSignIn.sharedInstance().signOut()
+			DeezerManager.sharedInstance.stop()
+			DeezerManager.sharedInstance.deezerConnect?.logout()
+			handler.dismiss()
 		} catch {
 			view.showBasicAlert(title: LocalizedStrings.Settings.logoutError.localized, message: error.localizedDescription)
 		}
@@ -66,10 +74,12 @@ final class SettingsPresenter: SettingsPresenterProtocol {
 	}
 
 	func loginToDeezer() {
-		DeezerSession.sharedInstance.deezerConnect?.authorize([
+		DeezerManager.sharedInstance.deezerConnect?.authorize([
 			DeezerConnectPermissionBasicAccess,
 			DeezerConnectPermissionManageLibrary,
-			DeezerConnectPermissionOfflineAccess
+			DeezerConnectPermissionOfflineAccess,
+			DeezerConnectPermissionListeningHistory,
+			DeezerConnectPermissionDeleteLibrary
 		])
 	}
 }

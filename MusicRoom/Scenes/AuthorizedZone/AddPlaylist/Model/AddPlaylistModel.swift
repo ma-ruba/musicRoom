@@ -7,7 +7,7 @@
 //
 
 /// Type of items(cells) on AddPlaylistView. RawValue corresponds to the row of item in tableView.
-enum AddPlaylistItemType: Int {
+enum AddPlaylistType: Int {
 
 	/// cell with new playist name
 	case name = 0
@@ -21,5 +21,12 @@ enum AddPlaylistItemType: Int {
 
 struct AddPlaylistModel {
 	/// added playlist
-	var playlist: PlaylistItem
+	var playlist: Playlist
+	var currentUid: String
+
+	init() {
+		guard let uid = Auth.auth().currentUser?.uid else { fatalError(LocalizedStrings.AssertationErrors.noUser.localized) }
+		currentUid = uid
+		self.playlist = Playlist(id: "", name: "", createdBy: currentUid, type: .public)
+	}
 }

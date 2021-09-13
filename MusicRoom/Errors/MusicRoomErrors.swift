@@ -12,5 +12,6 @@ enum MusicRoomErrors {
 
 	enum BasicErrors: Error {
 		case somethingWrong
+		case noElementAtIndexFound
 	}
 }

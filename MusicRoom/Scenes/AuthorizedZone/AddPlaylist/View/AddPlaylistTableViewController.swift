@@ -2,7 +2,7 @@
 //  AddPlaylistTableViewController.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 12.12.2020.
+//  Created by Mariia on 12.12.2020.
 //  Copyright © 2021 School21. All rights reserved.
 //
 
@@ -15,6 +15,7 @@ final class AddPlaylistTableViewController: UITableViewController, AddPlaylistVi
 	}
 
 	private var presenter: AddPlaylistPresenterProtocol?
+	private lazy var textField = UITextField()
 
 	// MARK: Initialization
 
@@ -45,7 +46,7 @@ final class AddPlaylistTableViewController: UITableViewController, AddPlaylistVi
 	}
 
 	private func configureTableView() {
-		tableView.registerReusable(cellClass: TextFieldTableViewCell.self)
+		tableView.registerReusable(cellClass: TextFieldAndTwoButtonsTableViewCell.self)
 		tableView.registerReusable(cellClass: SwitchTableViewCell.self)
 		tableView.registerReusable(cellClass: UITableViewCell.self)
 	}
@@ -65,12 +66,16 @@ final class AddPlaylistTableViewController: UITableViewController, AddPlaylistVi
 
 		switch item {
 		case .name:
-			let cell = tableView.dequeueReusableCell(withClass: TextFieldTableViewCell.self, for: indexPath)
+			let cell = tableView.dequeueReusableCell(withClass: TextFieldAndTwoButtonsTableViewCell.self, for: indexPath)
+
+			cell.leadingButton.isHidden = true
+			cell.trailingButton.isHidden = true
 			cell.textField.delegate = self
 			cell.textField.autocorrectionType = .no
 			cell.textField.autocapitalizationType = .none
 			cell.textField.font = .systemFont(ofSize: 20)
 			cell.selectionStyle = .none
+			textField = cell.textField
 			return cell
 
 		case .type:
@@ -129,10 +134,7 @@ final class AddPlaylistTableViewController: UITableViewController, AddPlaylistVi
 	// MARK: - Private
 
 	private func keyboardResignFirstResponder() {
-		let itemType = AddPlaylistItemType.name
-		let indexPath = IndexPath(row: itemType.rawValue, section: 0)
-		guard let cell = tableView.cellForRow(at: indexPath) as? TextFieldTableViewCell else { return }
-		cell.textField.resignFirstResponder()
+		textField.resignFirstResponder()
 	}
 
 	// MARK: - UITextFieldDelegate

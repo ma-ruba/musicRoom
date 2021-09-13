@@ -36,29 +36,23 @@ enum PlaylistType: Int, CaseIterable {
 	}
 }
 
-struct PlaylistItem {
-	var name: String
-	var uid: String
-	var type: PlaylistType
-}
-
 final class PlaylistModel: PlaylistModelProtocol {
-	var privatePlaylist: [PlaylistItem] = [] {
+	var privatePlaylist: [Playlist] = [] {
 		didSet {
 			updateView?()
 		}
 	}
-	var publicPlaylist: [PlaylistItem] = [] {
+	var publicPlaylist: [Playlist] = [] {
 		didSet {
 			updateView?()
 		}
 	}
 
 	var updateView: (() -> Void)?
-	var showError: (() -> Void)?
 
-	private var privatePlaylistItem: DatabaseItem
-	private var publicPlaylistItem: DatabaseItem
+	var privatePlaylistItem: DatabaseItem
+	var publicPlaylistItem: DatabaseItem
+	private var friendsItem: DatabaseItem
 
 	init() {
 		guard let userId = Auth.auth().currentUser?.uid else {
@@ -66,47 +60,19 @@ final class PlaylistModel: PlaylistModelProtocol {
 		}
 
 		privatePlaylistItem = DatabaseItem(
-			path: DatabasePath.user.rawValue + userId + DatabasePath.slash.rawValue + DatabasePath.playlists.rawValue
+			path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + userId + DatabasePath.slash.rawValue + DatabasePath.playlists.rawValue
 		)
 		publicPlaylistItem = DatabaseItem(path: DatabasePath.public.rawValue + DatabasePath.playlists.rawValue)
+
+		friendsItem = DatabaseItem(
+			path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + userId + DatabasePath.slash.rawValue + DatabasePath.friends.rawValue
+		)
 
 		fetchData()
 	}
 
 	deinit {
 		tearDownDatabase()
-	}
-
-	// MARK: - PlaylistModelProtocol
-
-	func deletePlaylist(at indexPath: IndexPath) {
-		guard let playlistType = PlaylistType.init(rawValue: indexPath.section) else { return }
-
-		switch playlistType {
-		case .private:
-			guard let playlistId = privatePlaylist[safe: indexPath.row]?.uid else { return }
-			privatePlaylistItem.reference.child(playlistId).observeSingleEvent(of: .value) { [ weak self] snapshot in
-				let playlist = Playlist(snapshot: snapshot)
-				guard playlist.createdBy == Auth.auth().currentUser?.uid else {
-					self?.showError?()
-					return
-				}
-
-				self?.privatePlaylistItem.reference.child(playlistId).removeValue()
-			}
-
-		case .public:
-			guard let playlistId = publicPlaylist[safe: indexPath.row]?.uid else { return }
-			publicPlaylistItem.reference.child(playlistId).observeSingleEvent(of: .value) { [ weak self] snapshot in
-				let playlist = Playlist(snapshot: snapshot)
-				guard playlist.createdBy == Auth.auth().currentUser?.uid else {
-					self?.showError?()
-					return
-				}
-
-				self?.publicPlaylistItem.reference.child(playlistId).removeValue()
-			}
-		}
 	}
 
 	// MARK: - Private
@@ -122,31 +88,34 @@ final class PlaylistModel: PlaylistModelProtocol {
 	}
 
 	private func fetchData() {
-		publicPlaylistItem.handle = publicPlaylistItem.reference.observe(.value) { snapshot in
-			var playlists: [PlaylistItem] = []
+		publicPlaylistItem.handle = publicPlaylistItem.reference.observe(.value) { [weak self] snapshot in
+			self?.publicPlaylist.removeAll()
+
 			for snap in snapshot.children {
 				guard let snap = snap as? DataSnapshot else { break }
 				let playlist = Playlist(snapshot: snap)
 
-				guard let ref = playlist.ref, let uid = ref.key else { break }
-				playlists.append(PlaylistItem(name: playlist.name, uid: uid, type: .public))
+				self?.publicPlaylist.append(playlist)
 			}
-
-			self.publicPlaylist = playlists
 		}
 
 		// TODO: Доделать добавление плейлистов от других юзеров
-		privatePlaylistItem.handle = privatePlaylistItem.reference.observe(.value) { snapshot in
-			var playlists: [PlaylistItem] = []
+		privatePlaylistItem.handle = privatePlaylistItem.reference.observe(.value) { [weak self] snapshot in
+			self?.privatePlaylist.removeAll()
+
 			for snap in snapshot.children {
 				guard let snap = snap as? DataSnapshot else { break }
 				let playlist = Playlist(snapshot: snap)
 
-				guard let ref = playlist.ref, let uid = ref.key else { break }
-				playlists.append(PlaylistItem(name: playlist.name, uid: uid, type: .private))
+				self?.privatePlaylist.append(playlist)
 			}
-
-			self.privatePlaylist = playlists
 		}
+
+//		friendsItem.handle = friendsItem.reference.observe(.value) { snapshot in
+//			for snap in snapshot.children {
+//				guard let snap = snap as? DataSnapshot else { break }
+//				let friendId = FriendForInvite(snapshot: snap).id
+//			}
+//		}
 	}
 }

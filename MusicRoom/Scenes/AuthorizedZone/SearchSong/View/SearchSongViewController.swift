@@ -2,7 +2,7 @@
 //  SearchSongViewController.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 15.01.2021.
+//  Created by Mariia on 15.01.2021.
 //  Copyright © 2021 School21. All rights reserved.
 //
 
@@ -18,16 +18,16 @@ final class SearchSongViewController:
 {
 	private var presenter: SearchSongPresenterProtocol?
 
-	private(set) lazy var tableView = UITableView()
-	private(set) lazy var searchController = UISearchController(searchResultsController: nil)
+	private lazy var tableView = UITableView()
+	private lazy var searchController = UISearchController(searchResultsController: nil)
 
 	// MARK: Initialization
 
 	init(with inputModel: Playlist) {
+
 		super.init(nibName: nil, bundle: nil)
 
-		presenter = SearchSongPresenter(view: self)
-		presenter?.configureModel(with: inputModel)
+		presenter = SearchSongPresenter(view: self, inputModel: inputModel)
 	}
 
 	required init?(coder: NSCoder) {
@@ -43,6 +43,11 @@ final class SearchSongViewController:
 		configureUI()
 	}
 
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		definesPresentationContext = false
+	}
+
 	// MARK: - Private
 
 	// MARK: Setup
@@ -55,8 +60,9 @@ final class SearchSongViewController:
 		view.addSubview(tableView)
 
 		tableView.snp.makeConstraints { make in
-			make.left.right.equalToSuperview()
-			make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+			make.leading.trailing.equalToSuperview()
+			make.top.equalTo(view.safeAreaLayoutGuide)
+			make.bottom.equalTo(view.safeAreaLayoutGuide).inset(GlobalConstants.musicBarHeight)
 		}
 	}
 
@@ -75,7 +81,7 @@ final class SearchSongViewController:
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.estimatedRowHeight = 64
-		tableView.registerReusable(cellClass: TrackTableViewCell.self)
+		tableView.registerReusable(cellClass: LabelsTableViewCell.self)
 		tableView.tableHeaderView = searchController.searchBar
 	}
 
@@ -97,8 +103,11 @@ final class SearchSongViewController:
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withClass: TrackTableViewCell.self, for: indexPath)
-		cell.track = presenter?.getTrack(at: indexPath.row)
+		let cell = tableView.dequeueReusableCell(withClass: LabelsTableViewCell.self, for: indexPath)
+		guard let track = presenter?.getTrack(at: indexPath.row) else { return cell }
+		cell.mainLabel.text = track.name
+		cell.firstAdditionalInfoLabel.text = track.creator
+		cell.secondAdditionalInfoLabel.text = String(format: "%01d:%02d", track.duration / 60, track.duration % 60)
 
 		return cell
 	}
@@ -121,5 +130,11 @@ final class SearchSongViewController:
 
 	func reloadTableView() {
 		tableView.reloadData()
+	}
+	
+	func reloadCellForRow(at index: Int) {
+		guard let numberOfRows = presenter?.numberOfRows, index < numberOfRows else { return }
+		
+		tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
 	}
 }

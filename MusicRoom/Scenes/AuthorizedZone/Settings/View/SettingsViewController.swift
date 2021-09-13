@@ -2,7 +2,7 @@
 //  SettingsViewController.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 27.12.2020.
+//  Created by Mariia on 27.12.2020.
 //  Copyright © 2020 School21. All rights reserved.
 //
 
@@ -23,14 +23,15 @@ final class SettingsViewController:
 
 	private var presenter: SettingsPresenterProtocol?
 
-	private(set) lazy var tableView = UITableView()
+	private lazy var tableView = UITableView()
+	private lazy var textField = UITextField()
 
 	// MARK: Initializzation
 
-	init() {
+	init(handler: TabBarViewProtocol) {
 		super.init(nibName: nil, bundle: nil)
 
-		presenter = SettingsPresenter(view: self)
+		presenter = SettingsPresenter(view: self, handler: handler)
 	}
 
 	required init?(coder: NSCoder) {
@@ -59,7 +60,7 @@ final class SettingsViewController:
 
 		tableView.snp.makeConstraints { make in
 			make.bottom.top.equalTo(view.safeAreaLayoutGuide)
-			make.left.right.equalToSuperview()
+			make.leading.trailing.equalToSuperview()
 		}
 	}
 
@@ -91,7 +92,7 @@ final class SettingsViewController:
 		cell.textedLabel.text = LocalizedStrings.Settings.deezerButtonText.localized
 		cell.button.setTitle(LocalizedStrings.Settings.deezerButtonDisabledSatusText.localized, for: .disabled)
 		cell.button.setTitle(LocalizedStrings.Settings.deezerButtonEnabledStatusText.localized, for: .normal)
-		cell.isUserInteractionEnabled = DeezerSession.sharedInstance.deezerConnect?.userId == nil
+		cell.isUserInteractionEnabled = DeezerManager.sharedInstance.deezerConnect?.userId == nil
 		cell.button.addTarget(self, action: #selector(loginToDeezer), for: .touchUpInside)
 	}
 
@@ -113,25 +114,27 @@ final class SettingsViewController:
 	}
 
 	private func setupUsernameCell(cell: TextFieldAndTwoButtonsTableViewCell) {
-		cell.leftButton.setImage(UIImage(name: .info), for: .normal)
-		cell.leftButton.addTarget(self, action: #selector(infoButtonPressed), for: .touchUpInside)
+		cell.leadingButton.setImage(UIImage(name: .info), for: .normal)
+		cell.leadingButton.addTarget(self, action: #selector(infoButtonPressed), for: .touchUpInside)
 
-		cell.rightButton.addTarget(self, action: #selector(submitButtonPressed), for: .touchUpInside)
+		cell.trailingButton.addTarget(self, action: #selector(submitButtonPressed), for: .touchUpInside)
 		let title = LocalizedStrings.Settings.submitButtonTitle.localized
-		cell.rightButton.setTitle(title, for: .normal)
-		cell.rightButton.setTitleColor(.systemPink, for: .normal)
+		cell.trailingButton.setTitle(title, for: .normal)
+		cell.trailingButton.setTitleColor(.systemPink, for: .normal)
 
 		cell.selectionStyle = .none
 		cell.textField.delegate = self
 
+		self.textField = cell.textField
+
 		guard let username = presenter?.username, username.isEmpty == false else {
-			cell.rightButton.isHidden = false
+			cell.trailingButton.isHidden = false
 			cell.textField.isUserInteractionEnabled = true
 			return
 		}
 
-		cell.rightButton.isHidden = true
-		cell.leftButton.isHidden = true
+		cell.trailingButton.isHidden = true
+		cell.leadingButton.isHidden = true
 		cell.textField.isUserInteractionEnabled = false
 		cell.textField.text = username
 	}
@@ -275,6 +278,7 @@ final class SettingsViewController:
 	}
 
 	@objc private func submitButtonPressed() {
+		textField.resignFirstResponder()
 		presenter?.submitUsername()
 		tableView.reloadData()
 	}

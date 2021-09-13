@@ -7,20 +7,17 @@
 //
 
 /// Interface for MusicBarPresenter.
-protocol MusicBarPresenterProtocol {
+protocol MusicBarPresenterProtocol: NSObjectProtocol {
 
 	/// Current state of musicBar(disabled/play/pause)
 	var currentState: PlayingState { get }
+
+	/// Info about playing track or info about it's absence.
+	var playingInfo: String { get }
 
 	/// Method stops or starts playing a song.
 	func buttonPressed()
 
 	/// Method setups PlayerDelegate.
 	func setupPlayerDelegate()
-
-	/// Method configures PlayButton appearance.
-	func setupPlayButtonState()
-
-	/// Method changes PlayingState.
-	func setNewState(_ state: PlayingState)
 }

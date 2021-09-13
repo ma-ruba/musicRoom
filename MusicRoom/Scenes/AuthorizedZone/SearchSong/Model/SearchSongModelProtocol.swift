@@ -6,8 +6,13 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
+import Foundation
+
 /// Interface for SearchSongModel.
 protocol SearchSongModelProtocol {
+	
+	/// Entity of tracks in database.
+	var tracksItem: DatabaseItem { get }
 
 	/// Current search query.
 	var currentSearch: String { get set }
@@ -16,11 +21,5 @@ protocol SearchSongModelProtocol {
 	var numberOfTracks: Int { get }
 
 	/// Cached tracks.
-	var cachedTracks: [String: DeezerTarckList] { get }
-
-	/// Method adds a new track to the track list.
-	func addNewTrack(at index: Int)
-
-	/// Method returns track model at certain index.
-	func getTrack(at index: Int) -> Track?
+	var cachedTracks: NSCache<NSString, DeezerTarckList> { get }
 }

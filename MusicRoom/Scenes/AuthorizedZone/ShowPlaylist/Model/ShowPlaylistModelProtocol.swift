@@ -12,9 +12,6 @@ protocol ShowPlaylistModelProtocol: AnyObject {
 	/// Dispayed playlist.
 	var playlist: Playlist { get }
 
-	/// Method deletes track from the list of tracks.
-	func deleteTrack(at index: Int)
-
-	/// Method changes order of the track.
-	func reorderTrack(from startIndex: Int, to finalIndex: Int)
+	/// Entity of playlist  for database.
+	var playlistItem: DatabaseItem { get }
 }

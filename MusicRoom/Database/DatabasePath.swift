@@ -8,9 +8,9 @@
 
 /// Enum for constructing path for the data in Firebase
 enum DatabasePath: String {
-	case user = "users/"
-	case `private` = "private/"
+	case users = "users/"
 	case `public` = "public/"
+	case `private` = "private/"
 	case playlists = "playlists/"
 	case slash = "/"
 	case tracks = "tracks/"
@@ -19,4 +19,5 @@ enum DatabasePath: String {
 	case friends = "friends/"
 	case friendInvitations = "friendInvitations/"
 	case pendingInvitations = "pendingInvitations/"
+	case possibleFriends = "possibleFriends/"
 }

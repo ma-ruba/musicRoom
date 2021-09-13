@@ -20,7 +20,8 @@ final class AddPlaylistPresenter: AddPlaylistPresenterProtocol {
 
 	init(view: AddPlaylistViewProtocol) {
 		self.view = view
-		model = AddPlaylistModel(playlist: PlaylistItem(name: "", uid: "", type: .public))
+
+		model = AddPlaylistModel()
 	}
 
 	// MARK: - AddPlaylistPresenterProtocol
@@ -29,28 +30,22 @@ final class AddPlaylistPresenter: AddPlaylistPresenterProtocol {
 		return 3
 	}
 
-	func item(for indexPath: IndexPath) -> AddPlaylistItemType? {
-		return AddPlaylistItemType(rawValue: indexPath.row) ?? nil
+	func item(for indexPath: IndexPath) -> AddPlaylistType? {
+		return AddPlaylistType(rawValue: indexPath.row) ?? nil
 	}
 
 	func updatePlaylistName(with name: String) {
-		model = AddPlaylistModel(
-			playlist: PlaylistItem(name: name, uid: model.playlist.uid, type: model.playlist.type)
-		)
+		model.playlist.name = name
 	}
 
 	func updatePlaylistType() {
 		let playlist = model.playlist
 		let newType = playlist.type.toggle()
-		model = AddPlaylistModel(
-			playlist: PlaylistItem(name: playlist.name, uid: playlist.uid, type: newType)
-		)
+		model.playlist.type = newType
 	}
 
 	func createPlaylist() {
-		guard let uid = Auth.auth().currentUser?.uid else { return }
 		let playlistType = model.playlist.type
-		let playlist = Playlist(name: model.playlist.name, userId: uid, type: playlistType)
 
 		switch playlistType {
 		case .public:
@@ -58,34 +53,37 @@ final class AddPlaylistPresenter: AddPlaylistPresenterProtocol {
 				withPath: DatabasePath.public.rawValue + DatabasePath.playlists.rawValue
 			).childByAutoId()
 			guard let publicPlaylistRefKey = publicPlaylistRef.key else { return }
-			publicPlaylistRef.setValue(playlist.object) { error, _ in
-				guard error == nil else { return }
+			model.playlist.id = publicPlaylistRefKey
+			publicPlaylistRef.setValue(model.playlist.object) { [weak self] error, _ in
+				guard let self = self else { return }
+				guard error == nil else { return self.view.showBasicAlert(message: error.debugDescription) }
 
-				Log.event(
+				Analytics.logEvent(
 					"created_playlist",
 					parameters: [
-						"playlist_id": publicPlaylistRefKey,
-						"playlist_name": playlist.name,
-						"public_or_private": playlistType.name,
+						"playlist_id": self.model.playlist.id,
+						"playlist_name": self.model.playlist.name,
+						"public_or_private": self.model.playlist.type.name,
 					]
 				)
 			}
 
 		case .private:
 			let privatePlaylistRef = Database.database().reference(
-				withPath: DatabasePath.user.rawValue + uid + DatabasePath.slash.rawValue + DatabasePath.playlists.rawValue
+				withPath: DatabasePath.private.rawValue + DatabasePath.users.rawValue + model.currentUid + DatabasePath.slash.rawValue + DatabasePath.playlists.rawValue
 			).childByAutoId()
 			guard let privatePlaylistRefKey = privatePlaylistRef.key else { return }
+			model.playlist.id = privatePlaylistRefKey
+			privatePlaylistRef.setValue(model.playlist.object) { [weak self] error, _ in
+				guard let self = self else { return }
+				guard error == nil else { return self.view.showBasicAlert(message: error.debugDescription) }
 
-			privatePlaylistRef.setValue(playlist.object) { error, _ in
-				guard error == nil else { return }
-
-				Log.event(
+				Analytics.logEvent(
 					"created_playlist",
 					parameters: [
-						"playlist_id": privatePlaylistRefKey,
-						"playlist_name": playlist.name,
-						"public_or_private": playlistType.name,
+						"playlist_id": self.model.playlist.id,
+						"playlist_name": self.model.playlist.name,
+						"public_or_private": self.model.playlist.type.name,
 					]
 				)
 			}

@@ -2,7 +2,7 @@
 //  MusicBarViewController.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 05.01.2021.
+//  Created by Mariia on 05.01.2021.
 //  Copyright © 2021 School21. All rights reserved.
 //
 
@@ -12,13 +12,9 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 
 	private var presenter: MusicBarPresenterProtocol?
 
-	private(set) lazy var label = UILabel()
-	private(set) lazy var playView = UIView()
-	private(set) lazy var playingButton = UIButton()
-
-	public var embeddedViewController: UIViewController?
-
-	private let text = LocalizedStrings.MusicBar.notActive.localized
+	private lazy var label = UILabel()
+	private lazy var playView = UIView()
+	private lazy var playingButton = UIButton()
 
 	// MARK: Initializzation
 
@@ -42,6 +38,12 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 		setupUI()
 	}
 
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+
+		print("Hello")
+	}
+
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 
@@ -53,8 +55,6 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 	// MARK: Setup
 
 	private func setupUI() {
-		view.backgroundColor = .clear
-
 		setupPlayView()
 		setupLabel()
 		setupButton()
@@ -65,7 +65,7 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 
 		label.snp.makeConstraints { make in
 			make.centerY.equalToSuperview()
-			make.left.equalToSuperview().offset(16)
+			make.leading.equalToSuperview().offset(GlobalConstants.defaultLeadingOffset)
 		}
 	}
 
@@ -74,8 +74,8 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 
 		playingButton.snp.makeConstraints { make in
 			make.centerY.equalToSuperview()
-			make.right.equalToSuperview().inset(16)
-			make.size.equalTo(36)
+			make.trailing.equalToSuperview().inset(16)
+			make.size.equalTo(55)
 		}
 	}
 
@@ -102,33 +102,30 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 
 	private func configureButton() {
 		playingButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-		changePlayPauseButtonState(to: presenter?.currentState ?? .disabled)
+		playingButton.tintColor = .black
+		configurePlayPauseButtonState()
 	}
 
 	private func configureLabel() {
-		label.text = text
+		label.text = presenter?.playingInfo
 		label.textColor = .black
 	}
 
-	// MARK: - PlayerDelegate
-
-	func didStartPlaying(track: Track?) {
-		guard let track = track else { return label.text = text }
-
-		label.text = "\(track.name) by \(track.creator)"
+	private func updatePlayingInfo() {
+		label.text = presenter?.playingInfo
 	}
 
-	func changePlayPauseButtonState(to newState: PlayingState) {
-		presenter?.setNewState(newState)
+	private func configurePlayPauseButtonState() {
+		let state = presenter?.currentState ?? .disabled
 
-		switch newState {
-		case .play:
-			playingButton.setImage(UIImage(name: .pause), for: .normal)
+		switch state {
+		case .isPlaying:
+			playingButton.setImage(UIImage(systemName: "pause"), for: .normal)
 			playingButton.isEnabled = true
 			playingButton.isHidden = false
 
-		case .pause:
-			playingButton.setImage(UIImage(name: .play), for: .normal)
+		case .isSuspended:
+			playingButton.setImage(UIImage(systemName: "play"), for: .normal)
 			playingButton.isEnabled = true
 			playingButton.isHidden = false
 
@@ -138,9 +135,16 @@ final class MusicBarViewController: UIViewController, MusicBarViewProtocol {
 		}
 	}
 
-	// MARK: Action
+	// MARK: - Action
 
 	@objc private func buttonPressed() {
 		presenter?.buttonPressed()
+	}
+
+	// MARK: - MusicBarViewProtocol
+
+	func updateAppearance() {
+		updatePlayingInfo()
+		configurePlayPauseButtonState()
 	}
 }

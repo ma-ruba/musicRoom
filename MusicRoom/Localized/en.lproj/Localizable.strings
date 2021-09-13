@@ -20,7 +20,7 @@
 "Sign_emptyFieldAlert" = "All fields are mandatory.";
 "Sign_passwordAlert" = "Password and confirmed password must match.";
 "Sign_sendingErrorAlert" = "There was a problem sending your password reset email.";
-"Sign_verifyEmailMessage" = "Go and check your email. It's nearly time to log in and start enjoing yourself with us!";
+"Sign_verifyEmailMessage" = "It's time to log in and start enjoing yourself with us!";
 "Sign_verifyEmailTitle" = "Good job)))";
 
 
@@ -68,7 +68,7 @@
 
 /* MusicBar*/
 "MusicBar_notActive" = "Nothing is playing... yet!";
-"MusicBar_" = "";
+"MusicBar_playingInfo" = "%@ by %@";
 "MusicBar_" = "";
 "MusicBar_" = "";
 "MusicBar_" = "";
@@ -136,16 +136,13 @@
 
 /* Friends */
 "Friends_navigationTitle" = "Friends";
-"Friends_" = "";
-"Friends_" = "";
-"Friends_" = "";
+"Friends_addActionTitle" = "Add";
+"Friends_acceptActionTitle" = "Accept";
+"Friends_rejectActionTitle" = "Reject";
 "Friends_" = "";
 "Friends_" = "";
 
 /* AddFriends */
-"AddFriends_" = "";
-"AddFriends_" = "";
-"AddFriends_" = "";
 "AddFriends_" = "";
 "AddFriends_" = "";
 "AddFriends_" = "";

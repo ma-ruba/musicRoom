@@ -2,7 +2,7 @@
 //  Track.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 12.01.2021.
+//  Created by Mariia on 12.01.2021.
 //  Copyright © 2021 School21. All rights reserved.
 //
 
@@ -18,13 +18,14 @@ class Track {
 		case id
 		case duration
 		case type
+		case deezerId
 	}
 
 	var id: String
 	var name: String
 	var creator: String
 	var duration: Int
-	var ref: DatabaseReference?
+	var deezerId: String
 
 	/// Representation of entity in database.
 	var object: [String: Any] {
@@ -32,15 +33,25 @@ class Track {
 			Key.id.rawValue: id,
 			Key.name.rawValue: name,
 			Key.creator.rawValue: creator,
-			Key.duration.rawValue: duration
+			Key.duration.rawValue: duration,
+			Key.deezerId.rawValue: deezerId
 		]
 	}
+	
+	// MARK: Initialization
 
-	init(id: String, name: String, creator: String, duration: NSInteger) {
+	init(
+		id: String,
+		name: String,
+		creator: String,
+		duration: NSInteger,
+		deezerId: String
+	) {
 		self.id = id
 		self.name = name
 		self.creator = creator
 		self.duration = duration
+		self.deezerId = deezerId
 	}
 
 	init(dict: [String: Any]) {
@@ -48,6 +59,7 @@ class Track {
 		name = dict[Key.name.rawValue] as? String ?? ""
 		creator = dict[Key.creator.rawValue] as? String ?? ""
 		duration = dict[Key.duration.rawValue] as? NSInteger ?? 0
+		deezerId = dict[Key.deezerId.rawValue] as? String ?? ""
 	}
 
 	convenience init(snapshot: DataSnapshot) {
@@ -57,6 +69,5 @@ class Track {
 		}
 
 		self.init(dict: snapshotValue)
-		ref = snapshot.ref
 	}
 }

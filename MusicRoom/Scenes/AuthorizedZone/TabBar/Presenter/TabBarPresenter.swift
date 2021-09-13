@@ -23,10 +23,10 @@ final class TabBarPresenter: TabBarPresenterProtocol {
 		for item in model.items {
 			switch item {
 			case .settings:
-				result.append(SettingsViewController())
+				result.append(SettingsViewController(handler: view))
 
 			case .playlists:
-				result.append(PlaylistTableViewController())
+				result.append(PlaylistViewController())
 			}
 		}
 
@@ -44,8 +44,8 @@ final class TabBarPresenter: TabBarPresenterProtocol {
 
 		musicBarViewController.view.snp.makeConstraints { make in
 			make.bottom.equalTo(view.tabBar.snp.top)
-			make.right.left.equalToSuperview()
-			make.height.equalTo(55)
+			make.trailing.leading.equalToSuperview()
+			make.height.equalTo(GlobalConstants.musicBarHeight)
 		}
 	}
 }

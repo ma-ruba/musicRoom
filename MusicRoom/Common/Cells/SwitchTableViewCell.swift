@@ -2,7 +2,7 @@
 //  SwitchTableViewCell.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 13.12.2020.
+//  Created by Mariia on 13.12.2020.
 //  Copyright © 2021 School21. All rights reserved.
 //
 
@@ -42,9 +42,9 @@ final class SwitchTableViewCell: UITableViewCell {
 		contentView.addSubview(label)
 
 		label.snp.makeConstraints { make in
-			make.left.equalToSuperview().offset(16)
+			make.leading.equalToSuperview().offset(GlobalConstants.defaultLeadingOffset)
 			make.centerY.equalToSuperview()
-			make.right.equalTo(switchItem.snp.left).inset(16)
+			make.trailing.equalTo(switchItem.snp.leading).offset(GlobalConstants.defaultTrailingOffset)
 		}
 	}
 
@@ -52,8 +52,8 @@ final class SwitchTableViewCell: UITableViewCell {
 		contentView.addSubview(switchItem)
 
 		switchItem.snp.makeConstraints { make in
-			make.right.equalTo(button.snp.left).inset(-16).priority(.required)
-			make.right.equalToSuperview().inset(16).priority(.low)
+			make.trailing.equalTo(button.snp.leading).inset(-16).priority(.required)
+			make.trailing.equalToSuperview().inset(16).priority(.low)
 			make.centerY.equalToSuperview()
 		}
 	}
@@ -64,7 +64,7 @@ final class SwitchTableViewCell: UITableViewCell {
 		button.snp.makeConstraints { make in
 			make.centerY.equalToSuperview()
 			make.size.equalTo(16)
-			make.right.equalToSuperview().inset(16)
+			make.trailing.equalToSuperview().inset(16)
 		}
 	}
 

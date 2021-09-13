@@ -9,18 +9,18 @@
 /// Interface for PlaylistModel
 protocol PlaylistModelProtocol {
 
+	/// Private playlist item in database.
+	var privatePlaylistItem: DatabaseItem { get }
+
+	/// Public playlist item in database.
+	var publicPlaylistItem: DatabaseItem { get }
+
 	/// Handler that updates view in PlaylistView.
 	var updateView: (() -> Void)? { get set }
 
-	/// Handler that shows error from PlaylistView.
-	var showError: (() -> Void)? { get set }
-
 	/// Storage with private playlists(ones that corresponds to a certain user).
-	var privatePlaylist: [PlaylistItem] { get }
+	var privatePlaylist: [Playlist] { get }
 
 	/// Storage with public playlists(ones that are available to everone).
-	var publicPlaylist: [PlaylistItem] { get }
-
-	/// Method deletes a certain playlist.
-	func deletePlaylist(at indexPath: IndexPath)
+	var publicPlaylist: [Playlist] { get }
 }

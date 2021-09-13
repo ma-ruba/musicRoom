@@ -2,7 +2,7 @@
 //  LogViewController.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 11.12.2020.
+//  Created by Mariia on 11.12.2020.
 //  Copyright © 2020 School21. All rights reserved.
 //
 
@@ -26,13 +26,13 @@ final class LogViewController:
 		case password
 	}
 
-	private(set) lazy var stackView = UIStackView()
-	private(set) lazy var googleButton = GIDSignInButton()
-	private(set) lazy var orLabel = UILabel()
-	private(set) lazy var emailTextFied = UITextField()
-	private(set) lazy var passwordTextField = UITextField()
-	private(set) lazy var logInButton = UIButton()
-	private(set) lazy var forgotButton = UIButton()
+	private lazy var stackView = UIStackView()
+	private lazy var googleButton = GIDSignInButton()
+	private lazy var orLabel = UILabel()
+	private lazy var emailTextFied = UITextField()
+	private lazy var passwordTextField = UITextField()
+	private lazy var logInButton = UIButton()
+	private lazy var forgotButton = UIButton()
 
 	private let locolizedStrings: LocalizedStrings.Log.Type = LocalizedStrings.Log.self
 
@@ -143,7 +143,7 @@ final class LogViewController:
 		logInButton.snp.makeConstraints { make in
 			make.top.equalTo(passwordTextField.snp.bottom).offset(64)
 			make.height.equalTo(64)
-			make.left.right.equalToSuperview().inset(32)
+			make.leading.trailing.equalToSuperview().inset(32)
 			make.centerX.equalToSuperview()
 		}
 	}
@@ -239,6 +239,11 @@ final class LogViewController:
 		forgotButton.addTarget(self, action: #selector(pressForgotButton), for: .touchUpInside)
 	}
 
+	private func clearAllTextFieldsInput() {
+		emailTextFied.text = ""
+		passwordTextField.text = ""
+	}
+
 	// MARK: - Actions
 
 	@objc private func pressForgotButton() {
@@ -256,6 +261,7 @@ final class LogViewController:
 			accountInfoModel = AccountInfoModel(email: email, password: password)
 		}
 		presenter?.login(with: accountInfoModel)
+		clearAllTextFieldsInput()
 	}
 
 	// MARK: - UITextFieldDelegate

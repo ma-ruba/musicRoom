@@ -19,7 +19,7 @@ protocol AddPlaylistPresenterProtocol {
 	func numberOfRows(in section: Int) -> Int
 
 	/// Method return the type of item(cells) for indexPath  on AddPlaylistView.
-	func item(for indexPath: IndexPath) -> AddPlaylistItemType?
+	func item(for indexPath: IndexPath) -> AddPlaylistType?
 
 	/// Method updtaes name of playlist  in model.
 	func updatePlaylistName(with name: String)

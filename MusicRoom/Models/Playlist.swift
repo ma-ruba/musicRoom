@@ -2,7 +2,7 @@
 //  Playlist.swift
 //  MusicRoom
 //
-//  Created by 18588255 on 12.01.2021.
+//  Created by Mariia on 12.01.2021.
 //  Copyright © 2021 School21. All rights reserved.
 //
 
@@ -17,18 +17,19 @@ struct Playlist {
 		case userIds
 		case tracks
 		case type
+		case id
 	}
 
 	var name: String = ""
+	var id: String = ""
 	var createdBy: String = ""
 	var tracks: [PlaylistTrack] = []
-	var userIds: [String: Bool] = [:]
 	var type: PlaylistType = .public
-	var ref: DatabaseReference?
 
 	/// Representation of entity in database.
 	var object: [String: String] {
 		[
+			Key.id.rawValue: id,
 			Key.name.rawValue: name,
 			Key.createdBy.rawValue: createdBy,
 			Key.type.rawValue: type.name
@@ -38,16 +39,18 @@ struct Playlist {
 	var sortedTracks: [PlaylistTrack] {
 		tracks.sorted { $0.orderNumber < $1.orderNumber }
 	}
+	
+	// MARK: Initialization
 
-	init(name: String, userId: String, type: PlaylistType) {
+	init(id: String, name: String, createdBy: String, type: PlaylistType) {
+		self.id = id
 		self.name = name
-		self.userIds = [userId : true]
 		self.type = type
-		createdBy = userId
+		self.createdBy = createdBy
 	}
 
 	init(snapshot: DataSnapshot) {
-		guard let snapshotValue = snapshot.value as? [String: AnyObject] else { return }
+		guard let snapshotValue = snapshot.value as? [String: Any] else { return }
 
 		if let name = snapshotValue[Key.name.rawValue] as? String {
 			self.name = name
@@ -55,6 +58,10 @@ struct Playlist {
 
 		if let createdBy = snapshotValue[Key.createdBy.rawValue] as? String {
 			self.createdBy = createdBy
+		}
+
+		if let id = snapshotValue[Key.id.rawValue] as? String {
+			self.id = id
 		}
 
 		if let type = snapshotValue[Key.type.rawValue] as? String {
@@ -74,11 +81,5 @@ struct Playlist {
 		if let trackDicts = trackDicts {
 			tracks = trackDicts.map { element in PlaylistTrack(dict: element.value, trackKey: element.key) }
 		}
-
-		if let userIds = snapshotValue[Key.userIds.rawValue] as? [String:Bool] {
-			self.userIds = userIds
-		}
-
-		ref = snapshot.ref
 	}
 }

@@ -7,4 +7,8 @@
 //
 
 /// Interface for ShowPlaylistView
-protocol ShowPlaylistViewProtocol: BasicViewProtocol { }
+protocol ShowPlaylistViewProtocol: BasicViewProtocol {
+
+	/// Method reloads tableView.
+	func reloadTableView()
+}

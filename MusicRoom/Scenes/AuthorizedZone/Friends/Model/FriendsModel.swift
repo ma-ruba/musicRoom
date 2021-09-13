@@ -6,58 +6,61 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
-struct Friend: Equatable {
-	let id: String
-	let username: String
-}
+import FirebaseAnalytics
 
 final class FriendsModel: FriendsModelProtocol {
 	var updateView: (() -> Void)?
 
 	var currentUsername: String = ""
 
-	/// Users this user can invite.
-	var allUsers: [Friend] = [] {
+	/// Users current user can invite.
+	var possibleFriends: [FriendForInvite] = [] {
 		didSet {
 			updateView?()
 		}
 	}
 
-	/// Users waiting for me to accept  their invitation.
-	var invitations: [Friend] = [] {
+	/// Users waiting to be accepted.
+	var invitations: [FriendForInvite] = [] {
 		didSet {
 			updateView?()
 		}
 	}
 
-	/// Users I have invited, but still waiting for the reply.
-	var pendingInvitations: [Friend] = [] {
+	/// Users this user is waiting to accept him.
+	var pendingInvitations: [FriendForInvite] = [] {
 		didSet {
 			updateView?()
 		}
 	}
 
-	/// User's friends
-	var friends: [Friend] = [] {
+	/// Current user's friends.
+	var friends: [FriendForInvite] = [] {
 		didSet {
 			updateView?()
 		}
 	}
 
-	private var friendsItem: DatabaseItem
-	private var invitationItem: DatabaseItem
-	private var pendingInvitationsItem: DatabaseItem
+	var friendsItem: DatabaseItem
+	var invitationItem: DatabaseItem
+	var pendingInvitationsItem: DatabaseItem
+	var possibleFriendsItem: DatabaseItem
+
+	var currentUid: String
+
+	var currentUser: FriendForInvite {
+		FriendForInvite(id: currentUid, username: currentUsername)
+	}
+
 	private var usernameItem: DatabaseItem
-	private var usersItem: DatabaseItem
+	private var allUsersItem: DatabaseItem
 
-	private var currentUid: String
-
-	// MARK: Initializzation
+	// MARK: Initialization
 
 	init() {
 		guard let uid = Auth.auth().currentUser?.uid else { fatalError(LocalizedStrings.AssertationErrors.noUser.localized) }
 		currentUid = uid
-		let userPath = DatabasePath.user.rawValue + uid + DatabasePath.slash.rawValue
+		let userPath = DatabasePath.private.rawValue + DatabasePath.users.rawValue + uid + DatabasePath.slash.rawValue
 		friendsItem = DatabaseItem(
 			path: userPath + DatabasePath.friends.rawValue
 		)
@@ -74,8 +77,12 @@ final class FriendsModel: FriendsModelProtocol {
 			path: userPath + DatabasePath.pendingInvitations.rawValue
 		)
 
-		usersItem = DatabaseItem(
-			path: DatabasePath.user.rawValue
+		possibleFriendsItem = DatabaseItem(
+			path: userPath + DatabasePath.possibleFriends.rawValue
+		)
+		
+		allUsersItem = DatabaseItem(
+			path: DatabasePath.private.rawValue + DatabasePath.users.rawValue
 		)
 
 		configureDatabase()
@@ -83,28 +90,6 @@ final class FriendsModel: FriendsModelProtocol {
 
 	deinit {
 		tearDownDatabase()
-	}
-
-	// MARK: - FriendsModelProtocol
-
-	func acceptInvitation(at index: Int) {
-		guard let friend = invitations[safe: index] else { return }
-		let newFriendRef = friendsItem.reference.childByAutoId()
-
-		let object: [String: Any] = [friend.id: friend.username]
-		newFriendRef.setValue(object) { error, _ in
-			guard error == nil else { return }
-
-			Analytics.logEvent("added_a_friend", parameters: Log.defaultInfo())
-		}
-	}
-
-	func denyInvitation(at index: Int) {
-		
-	}
-
-	func sendInvitation(at index: Int) {
-
 	}
 
 	// MARK: - Private
@@ -122,8 +107,8 @@ final class FriendsModel: FriendsModelProtocol {
 			pendingInvitationsItem.reference.removeObserver(withHandle: handle)
 		}
 
-		if let handle = usersItem.handle {
-			usersItem.reference.removeObserver(withHandle: handle)
+		if let handle = possibleFriendsItem.handle {
+			possibleFriendsItem.reference.removeObserver(withHandle: handle)
 		}
 	}
 
@@ -134,48 +119,93 @@ final class FriendsModel: FriendsModelProtocol {
 			self?.currentUsername = username
 		}
 
-		friendsItem.handle = friendsItem.reference.observe(.value) { [weak self ] snapshot in
+		friendsItem.handle = friendsItem.reference.observe(.value) { [weak self] snapshot in
 			guard let self = self else { return }
-			guard let allFriends = snapshot.value as? [String: String] else { return self.friends = [] }
 
-			for friend in allFriends {
-				self.friends.append(Friend(id: friend.key, username: friend.value))
+			var friends: [FriendForInvite] = []
+			
+			for snap in snapshot.children {
+				guard let snap = snap as? DataSnapshot else { break }
+				let friend = FriendForInvite(snapshot: snap)
+				
+				friends.append(friend)
 			}
+
+			self.friends = friends
 		}
 
-		invitationItem.handle = invitationItem.reference.observe(.value) { [weak self ] snapshot in
+		invitationItem.handle = invitationItem.reference.observe(.value) { [weak self] snapshot in
 			guard let self = self else { return }
-			guard let allInvitations = snapshot.value as? [String: String] else { return self.invitations = [] }
 
-			for invitation in allInvitations {
-				self.invitations.append(Friend(id: invitation.key, username: invitation.value))
+			var invitations: [FriendForInvite] = []
+			
+			for snap in snapshot.children {
+				guard let snap = snap as? DataSnapshot else { break }
+				let invitation = FriendForInvite(snapshot: snap)
+				
+				invitations.append(invitation)
 			}
+
+			self.invitations = invitations
 		}
 
-		pendingInvitationsItem.handle = pendingInvitationsItem.reference.observe(.value) { [weak self ] snapshot in
+		pendingInvitationsItem.handle = pendingInvitationsItem.reference.observe(.value) { [weak self] snapshot in
 			guard let self = self else { return }
-			guard let allPendingInvitations = snapshot.value as? [String: String] else { return self.pendingInvitations = [] }
 
-			for invitation in allPendingInvitations {
-				self.pendingInvitations.append(Friend(id: invitation.key, username: invitation.value))
+			var pendingInvitations: [FriendForInvite] = []
+			
+			for snap in snapshot.children {
+				guard let snap = snap as? DataSnapshot else { break }
+				let pendingInvitation = FriendForInvite(snapshot: snap)
+				
+				pendingInvitations.append(pendingInvitation)
 			}
+
+			self.pendingInvitations = pendingInvitations
+		}
+		
+		possibleFriendsItem.handle = possibleFriendsItem.reference.observe(.value) { [weak self] snapshot in
+			guard let self = self else { return }
+
+			var possibleFriends: [FriendForInvite] = []
+			
+			for snap in snapshot.children {
+				guard let snap = snap as? DataSnapshot else { break }
+				let possibleFriend = FriendForInvite(snapshot: snap)
+				
+				possibleFriends.append(possibleFriend)
+			}
+
+			self.possibleFriends = possibleFriends
 		}
 
-		usersItem.handle = usersItem.reference.observe(.childChanged) { [weak self ] snapshot in
+		allUsersItem.handle = allUsersItem.reference.observe(.value) { [weak self] snapshot in
 			guard let self = self else { return }
-			var allUsers: [Friend] = []
+			var allUsers: [FriendForInvite] = []
 
 			for snap in snapshot.children {
 				guard let snap = snap as? DataSnapshot,
-					let userId = snap.value as? String,
-					let username = snap.value(forKeyPath: DatabasePath.username.rawValue) as? String
-					else { break }
+					let snapValue = snap.value as? [String: String],
+					let username = snapValue["username"]
+				else { break }
 
-				let friend = Friend(id: userId, username: username)
+				let userId = snap.key
+				
+				let friend = FriendForInvite(id: userId, username: username)
 				allUsers.append(friend)
 			}
 
-			self.allUsers = allUsers.filter { !(self.friends.contains($0) && self.invitations.contains($0) && self.pendingInvitations.contains($0) && self.currentUid == $0.id) }
+			self.possibleFriends.append(
+				contentsOf: allUsers.filter {
+					!(
+						self.friends.contains($0)
+						|| self.invitations.contains($0)
+						|| self.pendingInvitations.contains($0)
+						|| self.possibleFriends.contains($0)
+						|| self.currentUid == $0.id
+					)
+				}
+			)
 		}
 	}
 }

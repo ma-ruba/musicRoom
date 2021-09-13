@@ -6,4 +6,8 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
-protocol MusicBarViewProtocol: BasicViewProtocol, PlayerDelegate { }
+protocol MusicBarViewProtocol: BasicViewProtocol {
+
+	/// Method upddated playing info.
+	func updateAppearance()
+}
