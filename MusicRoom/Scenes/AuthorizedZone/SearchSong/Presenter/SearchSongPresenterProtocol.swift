@@ -21,6 +21,6 @@ protocol SearchSongPresenterProtocol {
 	/// Method  performs a search on the query.
 	func filterContentForSearchText(searchText: String)
 
-	/// Method gets a track at certain index.
-	func getTrack(at index: Int) -> Track?
+	/// Method creates a model  for configuring the cell.
+	func getCellModel(at index: Int) -> LabelsTableViewCellModel?
 }

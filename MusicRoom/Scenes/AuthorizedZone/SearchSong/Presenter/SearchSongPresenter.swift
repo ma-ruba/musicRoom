@@ -61,9 +61,9 @@ final class SearchSongPresenter: SearchSongPresenterProtocol {
 		}
 	}
 
-	func getTrack(at index: Int) -> Track? {
+	func getCellModel(at index: Int) -> LabelsTableViewCellModel? {
 		if let track = model.cachedTracks.object(forKey: NSString(string: model.currentSearch))?.tracks[safe: index] {
-			return track
+			return createModel(for: track)
 		}
 
 		// TODO: This is not elegant approach. Redo!
@@ -97,6 +97,18 @@ final class SearchSongPresenter: SearchSongPresenterProtocol {
 			}
 		}
 
-		return model.cachedTracks.object(forKey: NSString(string: model.currentSearch))?.tracks[safe: index]
+		guard  let track = model.cachedTracks.object(forKey: NSString(string: model.currentSearch))?.tracks[safe: index] else { return nil }
+
+		return createModel(for: track)
+	}
+
+	// MARK: - Private
+
+	private func createModel(for track: Track) -> LabelsTableViewCellModel {
+		return LabelsTableViewCellModel(
+			mainLabelText: track.name,
+			firstAdditionalInfoLabelText: track.creator,
+			secondAdditionalInfoLabelText: String(format: "%01d:%02d", track.duration / 60, track.duration % 60)
+		)
 	}
 }

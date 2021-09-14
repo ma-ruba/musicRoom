@@ -85,6 +85,7 @@ enum LocalizedStrings {
 		case noNameError
 		case isPublic
 		case info
+		case textFieldPlaceholder
 	}
 
 	enum ShowPlaylist: LocalizedStringConvertible {
@@ -112,6 +113,7 @@ enum LocalizedStrings {
 		case deezerButtonText
 		case googleButtonText
 		case googleButtonDisabledStatusText
+		case textFieldPlaceholder
 	}
 
 	enum Friends: LocalizedStringConvertible {
@@ -119,9 +121,5 @@ enum LocalizedStrings {
 		case addActionTitle
 		case acceptActionTitle
 		case rejectActionTitle
-	}
-
-	enum AddFriends: LocalizedStringConvertible {
-
 	}
 }

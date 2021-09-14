@@ -34,11 +34,7 @@ protocol Spinner {
 extension UIViewController: Spinner {
 
 	func showSpinner(_ completion: VoidCallback?) {
-		let locolizedStrings = LocalizedStrings.Spinner.self
-		let title = locolizedStrings.title.localized
-		let message = locolizedStrings.message.localized
-		let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
+		let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
 		SaveAlertHandler.set(alertController)
 
 		let spinner = UIActivityIndicatorView(style: .large)
@@ -52,8 +48,6 @@ extension UIViewController: Spinner {
 		}
 
 		present(alertController, animated: true, completion: completion)
-
-//		spinner.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin, .flexibleLeftMargin, .flexibleRightMargin]
 	}
 
 	func hideSpinner(_ completion: VoidCallback?) {

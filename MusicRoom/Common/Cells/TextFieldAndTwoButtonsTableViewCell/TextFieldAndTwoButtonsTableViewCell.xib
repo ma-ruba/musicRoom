@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="134" id="KGk-i7-Jjw" customClass="TextFieldAndTwoButtonsTableViewCell" customModule="MusicRoom" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="553" height="134"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="553" height="134"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0d-U2-L20">
+                        <rect key="frame" x="16" y="16" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="4HF-TX-rrn"/>
+                            <constraint firstAttribute="width" constant="36" id="OJn-qH-GFg"/>
+                        </constraints>
+                        <state key="normal">
+                            <color key="titleColor" systemColor="labelColor"/>
+                        </state>
+                    </button>
+                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="k5R-46-f4d">
+                        <rect key="frame" x="68" y="17" width="32" height="34"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <textInputTraits key="textInputTraits" spellCheckingType="no"/>
+                    </textField>
+                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ge3-Nn-Fee">
+                        <rect key="frame" x="491" y="19" width="46" height="30"/>
+                        <state key="normal">
+                            <color key="titleColor" systemColor="labelColor"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="E0d-U2-L20" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1FG-Vd-lvm"/>
+                    <constraint firstItem="k5R-46-f4d" firstAttribute="leading" secondItem="E0d-U2-L20" secondAttribute="trailing" constant="16" id="8Qf-Ur-cvt"/>
+                    <constraint firstItem="ge3-Nn-Fee" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OjN-Pt-MvQ"/>
+                    <constraint firstAttribute="trailing" secondItem="ge3-Nn-Fee" secondAttribute="trailing" constant="16" id="Prv-CC-Wou"/>
+                    <constraint firstItem="E0d-U2-L20" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="dIS-UA-XgR"/>
+                    <constraint firstItem="ge3-Nn-Fee" firstAttribute="leading" secondItem="k5R-46-f4d" secondAttribute="trailing" constant="16" id="ebB-H3-M5Z"/>
+                    <constraint firstAttribute="bottom" secondItem="E0d-U2-L20" secondAttribute="bottom" constant="16" id="lzM-TJ-sTV"/>
+                    <constraint firstItem="k5R-46-f4d" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vEn-3Z-P6W"/>
+                    <constraint firstItem="E0d-U2-L20" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="wV4-Ec-YKs"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="leadingButton" destination="E0d-U2-L20" id="HCX-Bq-Gfb"/>
+                <outlet property="textField" destination="k5R-46-f4d" id="eVF-kX-vjY"/>
+                <outlet property="trailingButton" destination="ge3-Nn-Fee" id="mMo-mm-CPb"/>
+            </connections>
+            <point key="canvasLocation" x="306.52173913043481" y="162.05357142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

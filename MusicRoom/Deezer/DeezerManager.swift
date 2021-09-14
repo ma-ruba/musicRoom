@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Manager for working with Deezer SDK.
 final class DeezerManager : NSObject, DeezerSessionDelegate {
 
 	static let sharedInstance : DeezerManager = {
@@ -20,13 +21,6 @@ final class DeezerManager : NSObject, DeezerSessionDelegate {
 
 	var deezerConnect: DeezerConnect?
 	var deezerPlayer: DZRPlayer?
-
-	private func startDeezer() {
-		deezerConnect = DeezerConnect(appId: GlobalConstants.deezerAppId, andDelegate: self)
-		DZRRequestManager.default().dzrConnect = deezerConnect
-		deezerPlayer = DZRPlayer(connection: deezerConnect)
-		deezerPlayer?.shouldUpdateNowPlayingInfo = true
-	}
 
 	func setDelegate(_ delegate: DZRPlayerDelegate) {
 		deezerPlayer?.delegate = delegate
@@ -52,5 +46,14 @@ final class DeezerManager : NSObject, DeezerSessionDelegate {
 		guard deezerPlayer?.isPlaying() == true else { return }
 
 		deezerPlayer?.stop()
+	}
+
+	// MARK: - Private
+
+	private func startDeezer() {
+		deezerConnect = DeezerConnect(appId: GlobalConstants.deezerAppId, andDelegate: self)
+		DZRRequestManager.default().dzrConnect = deezerConnect
+		deezerPlayer = DZRPlayer(connection: deezerConnect)
+		deezerPlayer?.shouldUpdateNowPlayingInfo = true
 	}
 }

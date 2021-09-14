@@ -104,10 +104,8 @@ final class SearchSongViewController:
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withClass: LabelsTableViewCell.self, for: indexPath)
-		guard let track = presenter?.getTrack(at: indexPath.row) else { return cell }
-		cell.mainLabel.text = track.name
-		cell.firstAdditionalInfoLabel.text = track.creator
-		cell.secondAdditionalInfoLabel.text = String(format: "%01d:%02d", track.duration / 60, track.duration % 60)
+		guard let model = presenter?.getCellModel(at: indexPath.row) else { return cell }
+		cell.configure(with: model)
 
 		return cell
 	}

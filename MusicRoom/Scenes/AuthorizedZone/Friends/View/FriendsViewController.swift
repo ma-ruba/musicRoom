@@ -106,7 +106,6 @@ final class FriendsViewController:
 		guard let type = FriendsSectionType(rawValue: indexPath.section) else { return UITableViewCell() }
 		let cell = tableView.dequeueReusableCell(withClass: UITableViewCell.self, for: indexPath)
 		cell.selectionStyle = .none
-		cell.detailTextLabel
 
 		switch type {
 		case .friends:

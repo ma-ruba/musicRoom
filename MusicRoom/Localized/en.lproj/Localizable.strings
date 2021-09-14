@@ -87,7 +87,7 @@
 "AddPlaylist_noNameError" = "Name field must not be empty!";
 "AddPlaylist_isPublic" = "Public";
 "AddPlaylist_info" = "All users are able to see and modify your playlist in case it's public.\nWhereas if it's private only your friends are able to do that.";
-"AddPlaylist_" = "";
+"AddPlaylist_textFieldPlaceholder" = "Playlist's title";
 "AddPlaylist_" = "";
 
 /* AssertationErrors */
@@ -130,7 +130,7 @@
 "Settings_deezerButtonText" = "Deezer";
 "Settings_googleButtonText" = "Google";
 "Settings_googleButtonDisabledStatusText" = "Logged to Google";
-"Settings_" = "";
+"Settings_textFieldPlaceholder" = "Your username";
 "Settings_" = "";
 "Settings_" = "";
 
@@ -141,10 +141,3 @@
 "Friends_rejectActionTitle" = "Reject";
 "Friends_" = "";
 "Friends_" = "";
-
-/* AddFriends */
-"AddFriends_" = "";
-"AddFriends_" = "";
-"AddFriends_" = "";
-"AddFriends_" = "";
-"AddFriends_" = "";

@@ -46,8 +46,8 @@ final class AddPlaylistTableViewController: UITableViewController, AddPlaylistVi
 	}
 
 	private func configureTableView() {
-		tableView.registerReusable(cellClass: TextFieldAndTwoButtonsTableViewCell.self)
-		tableView.registerReusable(cellClass: SwitchTableViewCell.self)
+		tableView.registerNibReusable(cellClass: TextFieldAndTwoButtonsTableViewCell.self)
+		tableView.registerNibReusable(cellClass: SwitchTableViewCell.self)
 		tableView.registerReusable(cellClass: UITableViewCell.self)
 	}
 
@@ -68,23 +68,27 @@ final class AddPlaylistTableViewController: UITableViewController, AddPlaylistVi
 		case .name:
 			let cell = tableView.dequeueReusableCell(withClass: TextFieldAndTwoButtonsTableViewCell.self, for: indexPath)
 
-			cell.leadingButton.isHidden = true
-			cell.trailingButton.isHidden = true
-			cell.textField.delegate = self
-			cell.textField.autocorrectionType = .no
-			cell.textField.autocapitalizationType = .none
-			cell.textField.font = .systemFont(ofSize: 20)
-			cell.selectionStyle = .none
+			cell.configure(
+				with: TextFieldAndTwoButtonsTableViewCellModel(
+					state: .onlyTextField,
+					textFieldDelegate: self,
+					textFieldPlaceholder: LocalizedStrings.AddPlaylist.textFieldPlaceholder.localized
+				)
+			)
 			textField = cell.textField
 			return cell
 
 		case .type:
 			let cell = tableView.dequeueReusableCell(withClass: SwitchTableViewCell.self, for: indexPath)
 			cell.switchItem.addTarget(self, action: #selector(playlistTypeDidChanged), for: .valueChanged)
-			cell.selectionStyle = .none
-			cell.label.text = LocalizedStrings.AddPlaylist.isPublic.localized
-			cell.button.setImage(UIImage(name: .info), for: .normal)
 			cell.button.addTarget(self, action: #selector(showInfo), for: .touchUpInside)
+			cell.configure(
+				with: SwitchTableViewCellModel(
+					labeltext: LocalizedStrings.AddPlaylist.isPublic.localized,
+					buttonImageName: .info
+				)
+			)
+
 			return cell
 
 		case .button:

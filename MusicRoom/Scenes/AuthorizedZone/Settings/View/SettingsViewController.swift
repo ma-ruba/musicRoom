@@ -79,64 +79,60 @@ final class SettingsViewController:
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.estimatedRowHeight = Constants.rowHeight
-		tableView.registerReusable(cellClass: TextAndButtonTableViewCell.self)
-		tableView.registerReusable(cellClass: TextFieldAndTwoButtonsTableViewCell.self)
+		tableView.registerNibReusable(cellClass: TextAndButtonTableViewCell.self)
+		tableView.registerNibReusable(cellClass: TextFieldAndTwoButtonsTableViewCell.self)
 		tableView.registerReusable(cellClass: UITableViewCell.self)
 	}
 
 	// MARK: Other
 
 	private func setupDeezerLoginButton(cell: TextAndButtonTableViewCell) {
-		cell.button.isHidden = false
-		cell.googleButton.isHidden = true
-		cell.textedLabel.text = LocalizedStrings.Settings.deezerButtonText.localized
-		cell.button.setTitle(LocalizedStrings.Settings.deezerButtonDisabledSatusText.localized, for: .disabled)
-		cell.button.setTitle(LocalizedStrings.Settings.deezerButtonEnabledStatusText.localized, for: .normal)
-		cell.isUserInteractionEnabled = DeezerManager.sharedInstance.deezerConnect?.userId == nil
+		let state: TextAndButtonTableViewCellState =
+			DeezerManager.sharedInstance.deezerConnect?.userId == nil ? .otherButtonEnabled : .otherButtonDisabled
+		cell.configure(
+			with: TextAndButtonTableViewCellModel(
+				state: state,
+				labelText: LocalizedStrings.Settings.deezerButtonText.localized,
+				normalButtonText: LocalizedStrings.Settings.deezerButtonEnabledStatusText.localized,
+				disabledButtonText: LocalizedStrings.Settings.deezerButtonDisabledSatusText.localized
+			)
+		)
 		cell.button.addTarget(self, action: #selector(loginToDeezer), for: .touchUpInside)
 	}
 
 	private func setupGoogleLoginButton(cell: TextAndButtonTableViewCell) {
 		guard let user = Auth.auth().currentUser else { return }
 
-		cell.isUserInteractionEnabled = true
-		cell.googleButton.isUserInteractionEnabled = true
-		cell.textedLabel.text = LocalizedStrings.Settings.googleButtonText.localized
-		cell.button.setTitle(LocalizedStrings.Settings.googleButtonDisabledStatusText.localized, for: .disabled)
+		let state: TextAndButtonTableViewCellState = user.providerID == presenter?.googleProviderID ? .otherButtonDisabled : .googleButton
+		cell.configure(
+			with: TextAndButtonTableViewCellModel(
+				state: state,
+				labelText: LocalizedStrings.Settings.googleButtonText.localized,
+				disabledButtonText: LocalizedStrings.Settings.googleButtonDisabledStatusText.localized
+			)
+		)
 		cell.googleButton.addTarget(self, action: #selector(pressGoogleButton), for: .valueChanged)
-		if user.providerID == presenter?.googleProviderID {
-			cell.button.isHidden = false
-			cell.googleButton.isHidden = true
-		} else {
-			cell.button.isHidden = true
-			cell.googleButton.isHidden = false
-		}
 	}
 
 	private func setupUsernameCell(cell: TextFieldAndTwoButtonsTableViewCell) {
-		cell.leadingButton.setImage(UIImage(name: .info), for: .normal)
+		let username = presenter?.username
+		let state: TextFieldAndTwoButtonsTableViewCellState = username?.isEmpty == false ? .onlyTextField : .textFieldAndTwoButtons
+		let isTextFieldEditable = state == .textFieldAndTwoButtons
+		cell.configure(
+			with: TextFieldAndTwoButtonsTableViewCellModel(
+				state: state,
+				textFieldDelegate: self,
+				leadingButtonImageName: .info,
+				trailingButtonText: LocalizedStrings.Settings.submitButtonTitle.localized,
+				textFieldPlaceholder: LocalizedStrings.Settings.textFieldPlaceholder.localized,
+				trailingButtonTextColor: .systemPink,
+				textFieldText: username,
+				isTextFieldEditable: isTextFieldEditable
+			)
+		)
 		cell.leadingButton.addTarget(self, action: #selector(infoButtonPressed), for: .touchUpInside)
-
 		cell.trailingButton.addTarget(self, action: #selector(submitButtonPressed), for: .touchUpInside)
-		let title = LocalizedStrings.Settings.submitButtonTitle.localized
-		cell.trailingButton.setTitle(title, for: .normal)
-		cell.trailingButton.setTitleColor(.systemPink, for: .normal)
-
-		cell.selectionStyle = .none
-		cell.textField.delegate = self
-
 		self.textField = cell.textField
-
-		guard let username = presenter?.username, username.isEmpty == false else {
-			cell.trailingButton.isHidden = false
-			cell.textField.isUserInteractionEnabled = true
-			return
-		}
-
-		cell.trailingButton.isHidden = true
-		cell.leadingButton.isHidden = true
-		cell.textField.isUserInteractionEnabled = false
-		cell.textField.text = username
 	}
 
 	// MARK: - UITableViewDataSource

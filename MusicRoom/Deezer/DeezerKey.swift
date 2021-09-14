@@ -6,6 +6,7 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
+/// Keys for working with Deezer SDK.
 enum DeezerKey: String {
 	case trackName = "DZRPlayableObjectInfoName"
 	case trackDuration = "DZRPlayableObjectInfoDuration"

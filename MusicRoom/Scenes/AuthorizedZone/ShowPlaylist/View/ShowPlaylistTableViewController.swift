@@ -100,7 +100,7 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.tableFooterView = EmptyView()
-		tableView.registerReusable(cellClass: LabelsTableViewCell.self)
+		tableView.registerNibReusable(cellClass: LabelsTableViewCell.self)
 	}
 
 	private func congigureInfoLabel() {
@@ -167,10 +167,13 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withClass: LabelsTableViewCell.self, for: indexPath)
 		guard let track = presenter?.tracks[indexPath.row] else { return cell }
-		cell.mainLabel.text = track.name
-		cell.firstAdditionalInfoLabel.text = track.creator
-		cell.secondAdditionalInfoLabel.text = String(format: "%01d:%02d", track.duration / 60, track.duration % 60)
-		cell.selectionStyle = .none
+		cell.configure(
+			with: LabelsTableViewCellModel(
+				mainLabelText: track.name,
+				firstAdditionalInfoLabelText: track.creator,
+				secondAdditionalInfoLabelText: String(format: "%01d:%02d", track.duration / 60, track.duration % 60)
+			)
+		)
 
 		return cell
 	}
