@@ -49,43 +49,27 @@ final class AddPlaylistPresenter: AddPlaylistPresenterProtocol {
 
 		switch playlistType {
 		case .public:
-			let publicPlaylistRef = Database.database().reference(
-				withPath: DatabasePath.public.rawValue + DatabasePath.playlists.rawValue
-			).childByAutoId()
-			guard let publicPlaylistRefKey = publicPlaylistRef.key else { return }
-			model.playlist.id = publicPlaylistRefKey
-			publicPlaylistRef.setValue(model.playlist.object) { [weak self] error, _ in
+			let publicPlaylistItem = DatabaseItem(
+				path: DatabasePath.public.rawValue + DatabasePath.playlists.rawValue,
+				hasAutoID: true
+			)
+			guard let playlistId = publicPlaylistItem.key else { return }
+			model.playlist.id = playlistId
+			publicPlaylistItem.setValue(model.playlist.object) { [weak self] error in
 				guard let self = self else { return }
 				guard error == nil else { return self.view.showBasicAlert(message: error.debugDescription) }
-
-				Analytics.logEvent(
-					"created_playlist",
-					parameters: [
-						"playlist_id": self.model.playlist.id,
-						"playlist_name": self.model.playlist.name,
-						"public_or_private": self.model.playlist.type.name,
-					]
-				)
 			}
 
 		case .private:
-			let privatePlaylistRef = Database.database().reference(
-				withPath: DatabasePath.private.rawValue + DatabasePath.users.rawValue + model.currentUid + DatabasePath.slash.rawValue + DatabasePath.playlists.rawValue
-			).childByAutoId()
-			guard let privatePlaylistRefKey = privatePlaylistRef.key else { return }
-			model.playlist.id = privatePlaylistRefKey
-			privatePlaylistRef.setValue(model.playlist.object) { [weak self] error, _ in
+			let privatePlaylistItem = DatabaseItem(
+				path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + model.currentUid + DatabasePath.slash.rawValue + DatabasePath.playlists.rawValue,
+				hasAutoID: true
+			)
+			guard let playlistId = privatePlaylistItem.key else { return }
+			model.playlist.id = playlistId
+			privatePlaylistItem.setValue(model.playlist.object, for: .byAutoId) { [weak self] error in
 				guard let self = self else { return }
 				guard error == nil else { return self.view.showBasicAlert(message: error.debugDescription) }
-
-				Analytics.logEvent(
-					"created_playlist",
-					parameters: [
-						"playlist_id": self.model.playlist.id,
-						"playlist_name": self.model.playlist.name,
-						"public_or_private": self.model.playlist.type.name,
-					]
-				)
 			}
 		}
 	}

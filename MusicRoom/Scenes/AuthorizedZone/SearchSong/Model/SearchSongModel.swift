@@ -24,15 +24,11 @@ final class SearchSongModel: SearchSongModelProtocol {
 
 	init(playlist: Playlist) {
 		self.playlist = playlist
-
-		guard let userId = Auth.auth().currentUser?.uid else {
-			fatalError(LocalizedStrings.AssertationErrors.noUser.localized)
-		}
 		
 		switch playlist.type {
 		case .private:
 			tracksItem = DatabaseItem(
-				path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + userId + DatabasePath.slash.rawValue +
+				path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + playlist.createdBy + DatabasePath.slash.rawValue +
 					DatabasePath.playlists.rawValue + playlist.id + DatabasePath.slash.rawValue + DatabasePath.tracks.rawValue
 			)
 
@@ -43,20 +39,8 @@ final class SearchSongModel: SearchSongModelProtocol {
 			)
 		}
 
-		tracksItem.handle = tracksItem.reference.observe(.value) { [weak self] snapshot in
+		tracksItem.observeValue { [weak self] snapshot in
 			self?.playlist = Playlist(snapshot: snapshot)
-		}
-	}
-
-	deinit {
-		tearDownDatabase()
-	}
-
-	// MARK: - Private
-
-	private func tearDownDatabase() {
-		if let handle = tracksItem.handle {
-			tracksItem.reference.removeObserver(withHandle: handle)
 		}
 	}
 }

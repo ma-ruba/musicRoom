@@ -9,9 +9,12 @@
 /// Interface for ShowPlaylistModel
 protocol ShowPlaylistModelProtocol: AnyObject {
 
-	/// Dispayed playlist.
+	/// Displayed tracks.
+	var tracks: [PlaylistTrack] { get }
+
+	/// Current playlist.
 	var playlist: Playlist { get }
 
-	/// Entity of playlist  for database.
-	var playlistItem: DatabaseItem { get }
+	/// Entity of tracks list  for database.
+	var tracksItem: DatabaseItem { get }
 }

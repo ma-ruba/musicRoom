@@ -19,16 +19,10 @@ final class SettingsModel: SettingsModelProtocol {
 		guard let uid = Auth.auth().currentUser?.uid else { fatalError(LocalizedStrings.AssertationErrors.noUser.localized) }
 		let path = DatabasePath.private.rawValue + DatabasePath.users.rawValue + uid + DatabasePath.slash.rawValue + DatabasePath.username.rawValue
 		usernameItem = DatabaseItem(path: path)
-		usernameItem.handle = usernameItem.reference.observe(.value) { [weak self] snapshot in
+		usernameItem.observeValue { [weak self] snapshot in
 			guard let username = snapshot.value as? String else { return }
 
 			self?.username = username
 		}
-	}
-
-	deinit {
-		guard let handle = usernameItem.handle else { return }
-
-		usernameItem.reference.removeObserver(withHandle: handle)
 	}
 }

@@ -7,7 +7,20 @@
 		<key>MusicRoom.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>23</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>3C3BB71526F0C638007B09CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3C79DA3225825C14009E1571</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

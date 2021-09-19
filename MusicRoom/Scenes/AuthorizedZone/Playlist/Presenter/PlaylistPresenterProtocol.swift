@@ -6,6 +6,8 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
+import Foundation
+
 /// Interface for PlaylistPresenter
 protocol PlaylistPresenterProtocol {
 

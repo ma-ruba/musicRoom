@@ -50,7 +50,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="firstAdditionalInfoLabel" destination="wb1-P8-syq" id="Msp-f1-66e"/>
-                <outlet property="mainLabel" destination="kiq-a1-t62" id="wDP-ku-IKp"/>
+                <outlet property="mainLabel" destination="kiq-a1-t62" id="teG-B3-baj"/>
                 <outlet property="secondAdditionalInfoLabel" destination="k8e-EM-bky" id="Dyx-Rw-WBh"/>
             </connections>
             <point key="canvasLocation" x="152" y="79"/>

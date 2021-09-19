@@ -9,9 +9,9 @@
 import Foundation
 
 /// Entity that describes playlist in database.
-struct Playlist {
+struct Playlist: Equatable {
 	/// Keys for data in object property.
-	private enum Key: String {
+	enum Key: String {
 		case name
 		case createdBy
 		case userIds
@@ -79,7 +79,7 @@ struct Playlist {
 
 		let trackDicts = snapshotValue[Key.tracks.rawValue] as? [String: [String: AnyObject]]
 		if let trackDicts = trackDicts {
-			tracks = trackDicts.map { element in PlaylistTrack(dict: element.value, trackKey: element.key) }
+			tracks = trackDicts.map { PlaylistTrack(dict: $0.value, trackKey: $0.key) }
 		}
 	}
 }

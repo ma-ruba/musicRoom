@@ -38,6 +38,10 @@
 		3C3A344126CCF456002C1DE0 /* DatabaseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3A344026CCF456002C1DE0 /* DatabaseItem.swift */; };
 		3C3A344426CCF55B002C1DE0 /* DatabasePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3A344326CCF55B002C1DE0 /* DatabasePath.swift */; };
 		3C3A344826CD7C23002C1DE0 /* MusicRoomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3A344726CD7C23002C1DE0 /* MusicRoomErrors.swift */; };
+		3C3BB71926F0C638007B09CF /* MusicRoomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3BB71826F0C638007B09CF /* MusicRoomTests.swift */; };
+		3C3BB72826F1EA35007B09CF /* PlaylistPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3BB72726F1EA35007B09CF /* PlaylistPresenterTest.swift */; };
+		3C3BB74026F49ADD007B09CF /* PlaylistType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3BB73F26F49ADD007B09CF /* PlaylistType.swift */; };
+		3C3BB75026F5F3BF007B09CF /* DatabaseItemChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3BB74F26F5F3BF007B09CF /* DatabaseItemChild.swift */; };
 		3C4101C126B3FB2500613D4A /* Array+Tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4101C026B3FB2500613D4A /* Array+Tuple.swift */; };
 		3C46E5EA2694481E0010BB56 /* UIViewController+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C46E5E92694481E0010BB56 /* UIViewController+Spinner.swift */; };
 		3C4FEDA026A16E2200499E95 /* UIColor+AlphaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FED9F26A16E2200499E95 /* UIColor+AlphaComponent.swift */; };
@@ -78,6 +82,9 @@
 		3C9AE3DF26C048D700058917 /* MusicBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9AE3DE26C048D700058917 /* MusicBarModel.swift */; };
 		3C9AE3E226C048F900058917 /* MusicBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9AE3E126C048F900058917 /* MusicBarPresenter.swift */; };
 		3C9AE3E526C0491A00058917 /* MusicBarPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9AE3E426C0491A00058917 /* MusicBarPresenterProtocol.swift */; };
+		3C9C33CB26F7992500270DA1 /* PlaylistModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3BB74426F49B39007B09CF /* PlaylistModelMock.swift */; };
+		3C9C33D026F79A4200270DA1 /* MockDatabaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C33BE26F762DA00270DA1 /* MockDatabaseReference.swift */; };
+		3C9C33EC26F79A4A00270DA1 /* MockSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C33C226F7633300270DA1 /* MockSnapshot.swift */; };
 		3CC17E8025A8D139009CA0F9 /* DeezerSDK in Resources */ = {isa = PBXBuildFile; fileRef = 3CC17E7F25A8D139009CA0F9 /* DeezerSDK */; };
 		3CC17E8625ADCCDC009CA0F9 /* AddPlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E8525ADCCDC009CA0F9 /* AddPlaylistTableViewController.swift */; };
 		3CC17E8A25ADDC4E009CA0F9 /* Collection+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E8925ADDC4E009CA0F9 /* Collection+Subscript.swift */; };
@@ -87,7 +94,6 @@
 		3CC17E9925AE33D0009CA0F9 /* PlaylistTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E9825AE33D0009CA0F9 /* PlaylistTrack.swift */; };
 		3CC17E9C25AE4000009CA0F9 /* ShowPlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17E9B25AE4000009CA0F9 /* ShowPlaylistTableViewController.swift */; };
 		3CC17EB525AF3FDA009CA0F9 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EB425AF3FDA009CA0F9 /* PlaylistViewController.swift */; };
-		3CC17EBF25B0A1C5009CA0F9 /* SnapshotHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EBE25B0A1C5009CA0F9 /* SnapshotHandler.swift */; };
 		3CC17EC825B0BB37009CA0F9 /* MusicBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC17EC725B0BB37009CA0F9 /* MusicBarViewController.swift */; };
 		3CC75B70269D950A00C7E0B9 /* TabBarViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC75B6F269D950A00C7E0B9 /* TabBarViewProtocol.swift */; };
 		3CC75B74269D95BE00C7E0B9 /* TabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC75B73269D95BE00C7E0B9 /* TabBarPresenter.swift */; };
@@ -137,7 +143,19 @@
 		4C94C2F0269322CC0037E7D0 /* SignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94C2EF269322CC0037E7D0 /* SignModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3C3BB71B26F0C638007B09CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C79DA2B25825C14009E1571 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C79DA3225825C14009E1571;
+			remoteInfo = MusicRoom;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		3C040B4B26F7311D00DD47CD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		3C040B6426F731B800DD47CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		3C118F7A26DD19EB00BCBB1C /* SettingsModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModelProtocol.swift; sourceTree = "<group>"; };
 		3C118F7D26DD1D0500BCBB1C /* SettingsSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSectionType.swift; sourceTree = "<group>"; };
 		3C118F8A26DE022900BCBB1C /* FriendsViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewProtocol.swift; sourceTree = "<group>"; };
@@ -169,6 +187,13 @@
 		3C3A344026CCF456002C1DE0 /* DatabaseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseItem.swift; sourceTree = "<group>"; };
 		3C3A344326CCF55B002C1DE0 /* DatabasePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabasePath.swift; sourceTree = "<group>"; };
 		3C3A344726CD7C23002C1DE0 /* MusicRoomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicRoomErrors.swift; sourceTree = "<group>"; };
+		3C3BB71626F0C638007B09CF /* MusicRoomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicRoomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C3BB71826F0C638007B09CF /* MusicRoomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicRoomTests.swift; sourceTree = "<group>"; };
+		3C3BB71A26F0C638007B09CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C3BB72726F1EA35007B09CF /* PlaylistPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistPresenterTest.swift; sourceTree = "<group>"; };
+		3C3BB73F26F49ADD007B09CF /* PlaylistType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistType.swift; sourceTree = "<group>"; };
+		3C3BB74426F49B39007B09CF /* PlaylistModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistModelMock.swift; sourceTree = "<group>"; };
+		3C3BB74F26F5F3BF007B09CF /* DatabaseItemChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseItemChild.swift; sourceTree = "<group>"; };
 		3C4101C026B3FB2500613D4A /* Array+Tuple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Tuple.swift"; sourceTree = "<group>"; };
 		3C46E5E92694481E0010BB56 /* UIViewController+Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Spinner.swift"; sourceTree = "<group>"; };
 		3C4FED9F26A16E2200499E95 /* UIColor+AlphaComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AlphaComponent.swift"; sourceTree = "<group>"; };
@@ -211,6 +236,8 @@
 		3C9AE3DE26C048D700058917 /* MusicBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBarModel.swift; sourceTree = "<group>"; };
 		3C9AE3E126C048F900058917 /* MusicBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBarPresenter.swift; sourceTree = "<group>"; };
 		3C9AE3E426C0491A00058917 /* MusicBarPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBarPresenterProtocol.swift; sourceTree = "<group>"; };
+		3C9C33BE26F762DA00270DA1 /* MockDatabaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatabaseReference.swift; sourceTree = "<group>"; };
+		3C9C33C226F7633300270DA1 /* MockSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSnapshot.swift; sourceTree = "<group>"; };
 		3CC17E7C25A8C871009CA0F9 /* MusicRoom-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusicRoom-Bridging-Header.h"; sourceTree = "<group>"; };
 		3CC17E7F25A8D139009CA0F9 /* DeezerSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DeezerSDK; sourceTree = "<group>"; };
 		3CC17E8525ADCCDC009CA0F9 /* AddPlaylistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaylistTableViewController.swift; sourceTree = "<group>"; };
@@ -221,7 +248,6 @@
 		3CC17E9825AE33D0009CA0F9 /* PlaylistTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTrack.swift; sourceTree = "<group>"; };
 		3CC17E9B25AE4000009CA0F9 /* ShowPlaylistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPlaylistTableViewController.swift; sourceTree = "<group>"; };
 		3CC17EB425AF3FDA009CA0F9 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
-		3CC17EBE25B0A1C5009CA0F9 /* SnapshotHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHandler.swift; sourceTree = "<group>"; };
 		3CC17EC725B0BB37009CA0F9 /* MusicBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBarViewController.swift; sourceTree = "<group>"; };
 		3CC75B6F269D950A00C7E0B9 /* TabBarViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewProtocol.swift; sourceTree = "<group>"; };
 		3CC75B73269D95BE00C7E0B9 /* TabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresenter.swift; sourceTree = "<group>"; };
@@ -273,6 +299,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3C3BB71326F0C638007B09CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C79DA3025825C14009E1571 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -456,8 +489,8 @@
 			isa = PBXGroup;
 			children = (
 				3C3A344026CCF456002C1DE0 /* DatabaseItem.swift */,
+				3C3BB74F26F5F3BF007B09CF /* DatabaseItemChild.swift */,
 				3C3A344326CCF55B002C1DE0 /* DatabasePath.swift */,
-				3CC17EBE25B0A1C5009CA0F9 /* SnapshotHandler.swift */,
 				3C75E98D26E118020006545E /* DatabaseAnalyticsKeys.swift */,
 			);
 			path = Database;
@@ -469,6 +502,35 @@
 				3C3A344726CD7C23002C1DE0 /* MusicRoomErrors.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		3C3BB71726F0C638007B09CF /* MusicRoomTests */ = {
+			isa = PBXGroup;
+			children = (
+				3C3BB74326F49B1A007B09CF /* Mocks */,
+				3C3BB72426F1DD52007B09CF /* Presenters */,
+				3C3BB71826F0C638007B09CF /* MusicRoomTests.swift */,
+				3C3BB71A26F0C638007B09CF /* Info.plist */,
+			);
+			path = MusicRoomTests;
+			sourceTree = "<group>";
+		};
+		3C3BB72426F1DD52007B09CF /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				3C3BB72726F1EA35007B09CF /* PlaylistPresenterTest.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		3C3BB74326F49B1A007B09CF /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				3C3BB74426F49B39007B09CF /* PlaylistModelMock.swift */,
+				3C9C33BE26F762DA00270DA1 /* MockDatabaseReference.swift */,
+				3C9C33C226F7633300270DA1 /* MockSnapshot.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		3C4101BF26B3FB0400613D4A /* Common */ = {
@@ -498,6 +560,7 @@
 				3C77DBF425B18C8F00AC6D08 /* DZRResources.bundle */,
 				3CC17E7F25A8D139009CA0F9 /* DeezerSDK */,
 				3C79DA3525825C14009E1571 /* MusicRoom */,
+				3C3BB71726F0C638007B09CF /* MusicRoomTests */,
 				3C79DA3425825C14009E1571 /* Products */,
 				FC501485E042E2E937F25BE7 /* Pods */,
 				AAB091A5767B455851AAB601 /* Frameworks */,
@@ -508,6 +571,7 @@
 			isa = PBXGroup;
 			children = (
 				3C79DA3325825C14009E1571 /* MusicRoom.app */,
+				3C3BB71626F0C638007B09CF /* MusicRoomTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -763,6 +827,7 @@
 			children = (
 				3CF3D2E126C92EC500F15E6D /* PlaylistModel.swift */,
 				3C7A764A26C959A60003205F /* PlaylistModelProtocol.swift */,
+				3C3BB73F26F49ADD007B09CF /* PlaylistType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -962,6 +1027,8 @@
 		AAB091A5767B455851AAB601 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3C040B6426F731B800DD47CD /* Foundation.framework */,
+				3C040B4B26F7311D00DD47CD /* UIKit.framework */,
 				3C77DBF825B2E9BD00AC6D08 /* CoreLocation.framework */,
 				3C77DBF025B0FD5000AC6D08 /* libicucore.tbd */,
 				3C77DBEE25B0FCD700AC6D08 /* libDeezer.a */,
@@ -984,6 +1051,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3C3BB71526F0C638007B09CF /* MusicRoomTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C3BB71F26F0C639007B09CF /* Build configuration list for PBXNativeTarget "MusicRoomTests" */;
+			buildPhases = (
+				3C3BB71226F0C638007B09CF /* Sources */,
+				3C3BB71326F0C638007B09CF /* Frameworks */,
+				3C3BB71426F0C638007B09CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3C3BB71C26F0C638007B09CF /* PBXTargetDependency */,
+			);
+			name = MusicRoomTests;
+			productName = MusicRoomTests;
+			productReference = 3C3BB71626F0C638007B09CF /* MusicRoomTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3C79DA3225825C14009E1571 /* MusicRoom */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C79DA4725825C15009E1571 /* Build configuration list for PBXNativeTarget "MusicRoom" */;
@@ -1007,10 +1092,15 @@
 		3C79DA2B25825C14009E1571 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = School21;
 				TargetAttributes = {
+					3C3BB71526F0C638007B09CF = {
+						CreatedOnToolsVersion = 12.4;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3C79DA3225825C14009E1571;
+					};
 					3C79DA3225825C14009E1571 = {
 						CreatedOnToolsVersion = 11.3.1;
 						LastSwiftMigration = 1130;
@@ -1032,11 +1122,19 @@
 			projectRoot = "";
 			targets = (
 				3C79DA3225825C14009E1571 /* MusicRoom */,
+				3C3BB71526F0C638007B09CF /* MusicRoomTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3C3BB71426F0C638007B09CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C79DA3125825C14009E1571 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1057,6 +1155,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3C3BB71226F0C638007B09CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C9C33D026F79A4200270DA1 /* MockDatabaseReference.swift in Sources */,
+				3C9C33EC26F79A4A00270DA1 /* MockSnapshot.swift in Sources */,
+				3C3BB72826F1EA35007B09CF /* PlaylistPresenterTest.swift in Sources */,
+				3C3BB71926F0C638007B09CF /* MusicRoomTests.swift in Sources */,
+				3C9C33CB26F7992500270DA1 /* PlaylistModelMock.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C79DA2F25825C14009E1571 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1073,6 +1183,7 @@
 				3C75E98B26E112690006545E /* FriendForInvite.swift in Sources */,
 				3CFE6B5126F0A3C1007705FB /* SwitchTableViewCell.swift in Sources */,
 				3C82294026D387B0002B3413 /* AddPlaylistPresenter.swift in Sources */,
+				3C3BB75026F5F3BF007B09CF /* DatabaseItemChild.swift in Sources */,
 				3C79DA4E25839305009E1571 /* LogViewController.swift in Sources */,
 				3C238997269C9F1700CA2319 /* CustomNavigationController.swift in Sources */,
 				3C118F9526DE025300BCBB1C /* FriendsPresenter.swift in Sources */,
@@ -1118,6 +1229,7 @@
 				3CFE6B4B26F07BA4007705FB /* TextFieldAndTwoButtonsTableViewCellModel.swift in Sources */,
 				4C84BCFE266E4F90001FEE48 /* StartModel.swift in Sources */,
 				3C9AE3E526C0491A00058917 /* MusicBarPresenterProtocol.swift in Sources */,
+				3C3BB74026F49ADD007B09CF /* PlaylistType.swift in Sources */,
 				3C2DD8E126DCB21F00155456 /* DeezerKey.swift in Sources */,
 				3CC75B70269D950A00C7E0B9 /* TabBarViewProtocol.swift in Sources */,
 				3C79DA5025839321009E1571 /* SignViewController.swift in Sources */,
@@ -1150,7 +1262,6 @@
 				3C118F8B26DE022900BCBB1C /* FriendsViewProtocol.swift in Sources */,
 				3C880683258E567D0048E4D5 /* ForgotViewController.swift in Sources */,
 				3C2DD8D226D8C14000155456 /* SearchSongPresenter.swift in Sources */,
-				3CC17EBF25B0A1C5009CA0F9 /* SnapshotHandler.swift in Sources */,
 				3C9AE3DF26C048D700058917 /* MusicBarModel.swift in Sources */,
 				3C9AE3E226C048F900058917 /* MusicBarPresenter.swift in Sources */,
 				4C94C2EA269322AD0037E7D0 /* SignPresenterProtocol.swift in Sources */,
@@ -1176,6 +1287,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3C3BB71C26F0C638007B09CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C79DA3225825C14009E1571 /* MusicRoom */;
+			targetProxy = 3C3BB71B26F0C638007B09CF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		4C390EC9266E47E200BFE3F2 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -1188,6 +1307,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3C3BB71D26F0C639007B09CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MusicRoomTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = GirlsPower.MusicRoomTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusicRoom.app/MusicRoom";
+			};
+			name = Debug;
+		};
+		3C3BB71E26F0C639007B09CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MusicRoomTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = GirlsPower.MusicRoomTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusicRoom.app/MusicRoom";
+			};
+			name = Release;
+		};
 		3C79DA4525825C15009E1571 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1359,6 +1510,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3C3BB71F26F0C639007B09CF /* Build configuration list for PBXNativeTarget "MusicRoomTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C3BB71D26F0C639007B09CF /* Debug */,
+				3C3BB71E26F0C639007B09CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3C79DA2E25825C14009E1571 /* Build configuration list for PBXProject "MusicRoom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

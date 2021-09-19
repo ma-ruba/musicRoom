@@ -38,7 +38,9 @@ final class FriendsPresenter: FriendsPresenterProtocol {
 		self.view = view
 
 		model = FriendsModel()
-		model.updateView = { view.reloadTableView() }
+		model.updateView = { [weak self] in
+			self?.view.reloadTableView()
+		}
 	}
 
 	// MARK: - FriendsPresenterProtocol
@@ -50,21 +52,21 @@ final class FriendsPresenter: FriendsPresenterProtocol {
 		}
 
 		// Adding the friend to pending invitations list.
-		model.pendingInvitationsItem.reference.child(friend.id).setValue(friend.object) { error, _ in
+		model.pendingInvitationsItem.setValue(friend.object, for: .withPath(friend.id)) { error in
 			guard error == nil else {
 				return print(error?.localizedDescription ?? MusicRoomErrors.BasicErrors.somethingWrong.localizedDescription)
 			}
 		}
 
 		// Deleting the friend from all users list.
-		model.possibleFriendsItem.reference.child(friend.id).removeValue()
+		model.possibleFriendsItem.removeValue(for: .withPath(friend.id))
 
 		// Adding current user to the invitations list of the friend.
 		let friendItem = DatabaseItem(path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + friend.id + DatabasePath.slash.rawValue)
-		friendItem.reference.child(DatabasePath.friendInvitations.rawValue + model.currentUid).setValue(model.currentUser.object)
+		friendItem.setValue(model.currentUser.object, for: .withPath(DatabasePath.friendInvitations.rawValue + model.currentUid))
 
 		// Deleting current user from all users list of the friend.
-		friendItem.reference.child(DatabasePath.possibleFriends.rawValue + model.currentUid).removeValue()
+		friendItem.removeValue(for: .withPath(DatabasePath.possibleFriends.rawValue + model.currentUid))
 	}
 
 	/// Method accepts invitation.
@@ -74,21 +76,21 @@ final class FriendsPresenter: FriendsPresenterProtocol {
 		}
 
 		// Adding the friend to the list of friends.
-		model.friendsItem.reference.child(friend.id).setValue(friend.object) { error, _ in
+		model.friendsItem.setValue(friend.object, for: .withPath(friend.id)) { error in
 			guard error == nil else {
 				return print(error?.localizedDescription ?? MusicRoomErrors.BasicErrors.somethingWrong.localizedDescription)
 			}
 		}
 
 		// Deleting the friend from invitations list.
-		model.invitationItem.reference.child(friend.id).removeValue()
+		model.invitationItem.removeValue(for: .withPath(friend.id))
 
 		// Deleting current user from the pending invitations list of the friend.
 		let friendItem = DatabaseItem(path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + friend.id + DatabasePath.slash.rawValue)
-		friendItem.reference.child(DatabasePath.pendingInvitations.rawValue + model.currentUid).removeValue()
+		friendItem.removeValue(for: .withPath(DatabasePath.pendingInvitations.rawValue + model.currentUid))
 
 		// Adding current user to the friends list of the friend.
-		friendItem.reference.child(DatabasePath.friends.rawValue + model.currentUid).setValue(model.currentUser.object)
+		friendItem.setValue(model.currentUser.object, for: .withPath(DatabasePath.friends.rawValue + model.currentUid))
 	}
 
 	/// Method denies invitation.
@@ -98,14 +100,14 @@ final class FriendsPresenter: FriendsPresenterProtocol {
 		}
 
 		// Deleting the friend from invitations list.
-		model.invitationItem.reference.child(friend.id).removeValue()
+		model.invitationItem.removeValue(for: .withPath(friend.id))
 
 		// Deleting current user from the pending invitations list of the friend.
 		let friendItem = DatabaseItem(path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + friend.id + DatabasePath.slash.rawValue)
-		friendItem.reference.child(DatabasePath.pendingInvitations.rawValue + model.currentUid).removeValue()
+		friendItem.removeValue(for: .withPath(DatabasePath.pendingInvitations.rawValue + model.currentUid))
 
 		// Adding current user to possible friends list of the friend.
-		friendItem.reference.child(DatabasePath.possibleFriends.rawValue + model.currentUid).setValue(model.currentUser)
+		friendItem.setValue(model.currentUser, for: .withPath(DatabasePath.possibleFriends.rawValue + model.currentUid))
 	}
 	
 	/// Method deletes friend.
@@ -115,17 +117,17 @@ final class FriendsPresenter: FriendsPresenterProtocol {
 		}
 
 		// Deleting the friend from the list of friends.
-		model.friendsItem.reference.child(friend.id).removeValue()
+		model.friendsItem.removeValue(for: .withPath(friend.id))
 
 		// Adding the friend to the possible friends list.
-		model.possibleFriendsItem.reference.child(friend.id).setValue(friend.object)
+		model.possibleFriendsItem.setValue(friend.object, for: .withPath(friend.id))
 
 		// Deleting current user from the list of friends of the friend.
 		let friendItem = DatabaseItem(path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + friend.id + DatabasePath.slash.rawValue)
-		friendItem.reference.child(DatabasePath.friends.rawValue + model.currentUid).removeValue()
+		friendItem.removeValue(for: .withPath(DatabasePath.friends.rawValue + model.currentUid))
 
 		// Adding current user to the possible friends list of the friend.
-		friendItem.reference.child(DatabasePath.possibleFriends.rawValue + model.currentUid).setValue(model.currentUser.object)
+		friendItem.setValue(model.currentUser.object, for: .withPath(DatabasePath.possibleFriends.rawValue + model.currentUid))
 	}
 	
 	/// Method revokes sent invitation.
@@ -135,16 +137,16 @@ final class FriendsPresenter: FriendsPresenterProtocol {
 		}
 
 		// Deleting the friend from the pending invitations list.
-		model.pendingInvitationsItem.reference.child(friend.id).removeValue()
+		model.pendingInvitationsItem.removeValue(for: .withPath(friend.id))
 
 		// Adding the friend to the possible friends list.
-		model.possibleFriendsItem.reference.child(friend.id).setValue(friend.object)
+		model.possibleFriendsItem.setValue(friend.object, for: .withPath(friend.id))
 
 		// Deleting current user from the invitations list of the friend.
 		let friendItem = DatabaseItem(path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + friend.id + DatabasePath.slash.rawValue)
-		friendItem.reference.child(DatabasePath.friendInvitations.rawValue + model.currentUid).removeValue()
+		friendItem.removeValue(for: .withPath(DatabasePath.friendInvitations.rawValue + model.currentUid))
 
 		// Adding current user ti the possible friends list of the friend.
-		friendItem.reference.child(DatabasePath.possibleFriends.rawValue + model.currentUid).setValue(model.currentUser.object)
+		friendItem.setValue(model.currentUser.object, for: .withPath(DatabasePath.possibleFriends.rawValue + model.currentUid))
 	}
 }

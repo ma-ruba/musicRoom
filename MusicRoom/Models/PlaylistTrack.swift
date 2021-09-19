@@ -27,4 +27,13 @@ final class PlaylistTrack: Track {
 
 		super.init(dict: dict)
 	}
+
+	convenience init(snapshot: DataSnapshot) {
+		guard let snapshotValue = snapshot.value as? [String: Any] else {
+			self.init(dict: [:], trackKey: "")
+			return
+		}
+
+		self.init(dict: snapshotValue, trackKey: snapshot.key)
+	}
 }

@@ -81,7 +81,7 @@ final class SearchSongViewController:
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.estimatedRowHeight = 64
-		tableView.registerReusable(cellClass: LabelsTableViewCell.self)
+		tableView.registerNibReusable(cellClass: LabelsTableViewCell.self)
 		tableView.tableHeaderView = searchController.searchBar
 	}
 

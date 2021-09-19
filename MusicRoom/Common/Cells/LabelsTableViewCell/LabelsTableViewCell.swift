@@ -9,7 +9,7 @@
 import UIKit
 
 final class LabelsTableViewCell: UITableViewCell {
-	@IBOutlet private weak var mainLabel: UILabel!
+	@IBOutlet weak var mainLabel: UILabel!
 	@IBOutlet private weak var firstAdditionalInfoLabel: UILabel!
 	@IBOutlet private weak var secondAdditionalInfoLabel: UILabel!
 

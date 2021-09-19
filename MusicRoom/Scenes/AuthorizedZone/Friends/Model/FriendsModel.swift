@@ -14,32 +14,16 @@ final class FriendsModel: FriendsModelProtocol {
 	var currentUsername: String = ""
 
 	/// Users current user can invite.
-	var possibleFriends: [FriendForInvite] = [] {
-		didSet {
-			updateView?()
-		}
-	}
+	var possibleFriends: [FriendForInvite] = []
 
 	/// Users waiting to be accepted.
-	var invitations: [FriendForInvite] = [] {
-		didSet {
-			updateView?()
-		}
-	}
+	var invitations: [FriendForInvite] = []
 
 	/// Users this user is waiting to accept him.
-	var pendingInvitations: [FriendForInvite] = [] {
-		didSet {
-			updateView?()
-		}
-	}
+	var pendingInvitations: [FriendForInvite] = []
 
 	/// Current user's friends.
-	var friends: [FriendForInvite] = [] {
-		didSet {
-			updateView?()
-		}
-	}
+	var friends: [FriendForInvite] = []
 
 	var friendsItem: DatabaseItem
 	var invitationItem: DatabaseItem
@@ -88,38 +72,16 @@ final class FriendsModel: FriendsModelProtocol {
 		configureDatabase()
 	}
 
-	deinit {
-		tearDownDatabase()
-	}
-
 	// MARK: - Private
 
-	private func tearDownDatabase() {
-		if let handle = friendsItem.handle {
-			friendsItem.reference.removeObserver(withHandle: handle)
-		}
-
-		if let handle = invitationItem.handle {
-			invitationItem.reference.removeObserver(withHandle: handle)
-		}
-
-		if let handle = pendingInvitationsItem.handle {
-			pendingInvitationsItem.reference.removeObserver(withHandle: handle)
-		}
-
-		if let handle = possibleFriendsItem.handle {
-			possibleFriendsItem.reference.removeObserver(withHandle: handle)
-		}
-	}
-
 	private func configureDatabase() {
-		usernameItem.reference.observeSingleEvent(of: .value) { [weak self] snapshot in
+		usernameItem.observeValueOnce() { [weak self] snapshot in
 			guard let username = snapshot.value as? String else { return }
 
 			self?.currentUsername = username
 		}
 
-		friendsItem.handle = friendsItem.reference.observe(.value) { [weak self] snapshot in
+		friendsItem.observeValue { [weak self] snapshot in
 			guard let self = self else { return }
 
 			var friends: [FriendForInvite] = []
@@ -132,9 +94,10 @@ final class FriendsModel: FriendsModelProtocol {
 			}
 
 			self.friends = friends
+			self.updateView?()
 		}
 
-		invitationItem.handle = invitationItem.reference.observe(.value) { [weak self] snapshot in
+		invitationItem.observeValue { [weak self] snapshot in
 			guard let self = self else { return }
 
 			var invitations: [FriendForInvite] = []
@@ -147,9 +110,10 @@ final class FriendsModel: FriendsModelProtocol {
 			}
 
 			self.invitations = invitations
+			self.updateView?()
 		}
 
-		pendingInvitationsItem.handle = pendingInvitationsItem.reference.observe(.value) { [weak self] snapshot in
+		pendingInvitationsItem.observeValue { [weak self] snapshot in
 			guard let self = self else { return }
 
 			var pendingInvitations: [FriendForInvite] = []
@@ -162,9 +126,10 @@ final class FriendsModel: FriendsModelProtocol {
 			}
 
 			self.pendingInvitations = pendingInvitations
+			self.updateView?()
 		}
 		
-		possibleFriendsItem.handle = possibleFriendsItem.reference.observe(.value) { [weak self] snapshot in
+		possibleFriendsItem.observeValue { [weak self] snapshot in
 			guard let self = self else { return }
 
 			var possibleFriends: [FriendForInvite] = []
@@ -177,9 +142,10 @@ final class FriendsModel: FriendsModelProtocol {
 			}
 
 			self.possibleFriends = possibleFriends
+			self.updateView?()
 		}
 
-		allUsersItem.handle = allUsersItem.reference.observe(.value) { [weak self] snapshot in
+		allUsersItem.observeValue { [weak self] snapshot in
 			guard let self = self else { return }
 			var allUsers: [FriendForInvite] = []
 
@@ -206,6 +172,7 @@ final class FriendsModel: FriendsModelProtocol {
 					)
 				}
 			)
+			self.updateView?()
 		}
 	}
 }

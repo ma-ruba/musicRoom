@@ -23,4 +23,7 @@ protocol PlaylistModelProtocol {
 
 	/// Storage with public playlists(ones that are available to everone).
 	var publicPlaylist: [Playlist] { get }
+
+	/// Current user's id.
+	var currentUserId: String { get }
 }

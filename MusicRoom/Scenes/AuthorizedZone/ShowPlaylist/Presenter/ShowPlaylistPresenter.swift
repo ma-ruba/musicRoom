@@ -21,7 +21,7 @@ final class ShowPlaylistPresenter: ShowPlaylistPresenterProtocol {
 	}
 
 	var tracks: [PlaylistTrack] {
-		model.playlist.sortedTracks
+		model.tracks
 	}
 
 	// MARK: Initializzation
@@ -29,8 +29,8 @@ final class ShowPlaylistPresenter: ShowPlaylistPresenterProtocol {
 	init(view: ShowPlaylistViewProtocol, inputModel: Playlist) {
 		self.view = view
 
-		model = ShowPlaylistModel(playlist: inputModel) {
-			view.reloadTableView()
+		model = ShowPlaylistModel(playlist: inputModel) { [weak view] in
+			view?.reloadData()
 		}
 	}
 
@@ -42,29 +42,21 @@ final class ShowPlaylistPresenter: ShowPlaylistPresenterProtocol {
 	}
 
 	func deleteTrack(at index: Int) {
-		guard let trackId = model.playlist.sortedTracks[safe: index]?.trackKey else { return }
+		guard let trackId = model.tracks[safe: index]?.trackKey else { return }
 
-		let path = DatabasePath.tracks.rawValue + DatabasePath.slash.rawValue + trackId
-		model.playlistItem.reference.child(path).removeValue() { [weak self] error, _ in
+		let path = DatabasePath.slash.rawValue + trackId
+		model.tracksItem.removeValue(for: .withPath(path)) { error in
 			guard error == nil else {
 				return print(error?.localizedDescription ?? MusicRoomErrors.BasicErrors.somethingWrong.localizedDescription)
 			}
-
-			Analytics.logEvent(
-				"deleted_track",
-				parameters: [
-					"playlist_id": self?.model.playlist.id ?? "undefined",
-					"track_id": trackId,
-				]
-			)
 		}
 	}
 
 	func reorderTrack(from startIndex: Int, to finalIndex: Int) {
-		let trackId = model.playlist.sortedTracks[startIndex].trackKey
+		guard let trackId = model.tracks[safe: startIndex]?.trackKey else { return }
 
-		let path = DatabasePath.tracks.rawValue + trackId + DatabasePath.slash.rawValue + DatabasePath.orderNumber.rawValue
-		model.playlistItem.reference.child(path).setValue(finalIndex) { error, _ in
+		let path = trackId + DatabasePath.slash.rawValue + DatabasePath.orderNumber.rawValue
+		model.tracksItem.removeValue(for: .withPath(path)) { error in
 			guard error == nil else {
 				return print(error?.localizedDescription ?? MusicRoomErrors.BasicErrors.somethingWrong.localizedDescription)
 			}
@@ -72,8 +64,8 @@ final class ShowPlaylistPresenter: ShowPlaylistPresenterProtocol {
 	}
 
 	func playTrack(at index: Int) {
-		guard let deezerTrackId = model.playlist.sortedTracks[safe: index]?.deezerId,
-			let track = model.playlist.sortedTracks[safe: index] else { return }
+		guard let deezerTrackId = model.tracks[safe: index]?.deezerId,
+			let track = model.tracks[safe: index] else { return }
 
 		DispatchQueue.global(qos: .userInitiated).async {
 			DZRTrack.object(withIdentifier: deezerTrackId, requestManager: DZRRequestManager.default()) { [weak self] deezerTrack, error in

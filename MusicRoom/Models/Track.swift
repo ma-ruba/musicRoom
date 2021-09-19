@@ -9,7 +9,7 @@
 import Foundation
 
 /// Entity that describes track in database.
-class Track {
+class Track: Equatable {
 
 	/// Keys for data in object property.
 	private enum Key: String {
@@ -69,5 +69,12 @@ class Track {
 		}
 
 		self.init(dict: snapshotValue)
+	}
+
+	// MARK: - Equatable
+
+	static func == (lhs: Track, rhs: Track) -> Bool {
+		return lhs.id == rhs.id && lhs.name == rhs.name && lhs.creator == rhs.creator
+			&& lhs.duration == rhs.duration && lhs.deezerId == rhs.deezerId
 	}
 }

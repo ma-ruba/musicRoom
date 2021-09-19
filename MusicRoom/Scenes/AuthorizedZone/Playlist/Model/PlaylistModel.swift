@@ -10,54 +10,44 @@ import Foundation
 import Firebase
 import FirebaseAnalytics
 
-// Int value corresponds to the section index
-enum PlaylistType: Int, CaseIterable {
-	case `private` = 0
-	case `public` = 1
-
-	var name: String {
-		switch self {
-		case .private:
-			return "private"
-
-		case .public:
-			return "public"
-		}
-	}
-
-	func toggle() -> Self {
-		switch self {
-		case .private:
-			return .public
-
-		case .public:
-			return .private
-		}
-	}
-}
-
 final class PlaylistModel: PlaylistModelProtocol {
-	var privatePlaylist: [Playlist] = [] {
-		didSet {
-			updateView?()
-		}
+
+	var privatePlaylist: [Playlist] {
+		myFriendsPlaylists + myPrivatePlaylists
 	}
+
 	var publicPlaylist: [Playlist] = [] {
 		didSet {
 			updateView?()
 		}
 	}
 
-	var updateView: (() -> Void)?
+	private var myFriendsPlaylists: [Playlist] = [] {
+		didSet {
+			updateView?()
+		}
+	}
 
+	private var myPrivatePlaylists: [Playlist] = [] {
+		didSet {
+			updateView?()
+		}
+	}
+
+	let currentUserId: String
+
+	var updateView: (() -> Void)?
 	var privatePlaylistItem: DatabaseItem
 	var publicPlaylistItem: DatabaseItem
+
 	private var friendsItem: DatabaseItem
 
 	init() {
 		guard let userId = Auth.auth().currentUser?.uid else {
 			fatalError(LocalizedStrings.AssertationErrors.noUser.localized)
 		}
+
+		currentUserId = userId
 
 		privatePlaylistItem = DatabaseItem(
 			path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + userId + DatabasePath.slash.rawValue + DatabasePath.playlists.rawValue
@@ -71,51 +61,57 @@ final class PlaylistModel: PlaylistModelProtocol {
 		fetchData()
 	}
 
-	deinit {
-		tearDownDatabase()
-	}
-
 	// MARK: - Private
 
-	private func tearDownDatabase() {
-		if let handle = privatePlaylistItem.handle {
-			privatePlaylistItem.reference.removeObserver(withHandle: handle)
-		}
-
-		if let handle = publicPlaylistItem.handle {
-			publicPlaylistItem.reference.removeObserver(withHandle: handle)
-		}
-	}
-
 	private func fetchData() {
-		publicPlaylistItem.handle = publicPlaylistItem.reference.observe(.value) { [weak self] snapshot in
-			self?.publicPlaylist.removeAll()
+		publicPlaylistItem.observeValue { [weak self] snapshot in
+			var playlists: [Playlist] = []
 
 			for snap in snapshot.children {
 				guard let snap = snap as? DataSnapshot else { break }
 				let playlist = Playlist(snapshot: snap)
 
-				self?.publicPlaylist.append(playlist)
+				playlists.append(playlist)
 			}
+
+			self?.publicPlaylist = playlists
 		}
 
-		// TODO: Доделать добавление плейлистов от других юзеров
-		privatePlaylistItem.handle = privatePlaylistItem.reference.observe(.value) { [weak self] snapshot in
-			self?.privatePlaylist.removeAll()
+		privatePlaylistItem.observeValue { [weak self] snapshot in
+			var playlists: [Playlist] = []
 
 			for snap in snapshot.children {
 				guard let snap = snap as? DataSnapshot else { break }
 				let playlist = Playlist(snapshot: snap)
 
-				self?.privatePlaylist.append(playlist)
+				playlists.append(playlist)
 			}
+
+			self?.myPrivatePlaylists = playlists
 		}
 
-//		friendsItem.handle = friendsItem.reference.observe(.value) { snapshot in
-//			for snap in snapshot.children {
-//				guard let snap = snap as? DataSnapshot else { break }
-//				let friendId = FriendForInvite(snapshot: snap).id
-//			}
-//		}
+		// Adding to the current user's private playlists private playlist of his friends.
+		friendsItem.observeValue { [weak self] snapshot in
+			for snap in snapshot.children {
+				guard let snap = snap as? DataSnapshot else { break }
+				let friendId = snap.key
+				guard friendId != self?.currentUserId else { return }
+				let playlistsItem = DatabaseItem(
+					path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + friendId
+						+ DatabasePath.slash.rawValue + DatabasePath.playlists.rawValue
+				)
+				playlistsItem.observeValue { [weak self] snapshot in
+					var playlists: [Playlist] = []
+
+					for snap in snapshot.children {
+						guard let snap = snap as? DataSnapshot else { break }
+						let playlist = Playlist(snapshot: snap)
+						playlists.append(playlist)
+					}
+
+					self?.myFriendsPlaylists = playlists
+				}
+			}
+		}
 	}
 }

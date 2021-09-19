@@ -90,13 +90,11 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 
 	private func configureUI() {
 		view.backgroundColor = .white
-
 		configureTableView()
 		congigureInfoLabel()
 	}
 
 	private func configureTableView() {
-		infoLabel.isHidden = presenter?.tracks.isEmpty == true
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.tableFooterView = EmptyView()
@@ -104,7 +102,6 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 	}
 
 	private func congigureInfoLabel() {
-		infoLabel.isHidden = presenter?.tracks.isEmpty == false
 		infoLabel.text = LocalizedStrings.ShowPlaylist.emptyList.localized
 		infoLabel.font = .systemFont(ofSize: 24)
 	}
@@ -122,7 +119,7 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 		}
 	}
 
-	private func configureNavigationButton() {
+	func configureNavigationButton() {
 		let secondButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addSong))
 		secondButton.tintColor = .systemPink
 
@@ -132,6 +129,7 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 			let firstButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editPlaylist))
 			navigationItem.rightBarButtonItems = [secondButton, firstButton]
 			firstButton.tintColor = .systemPink
+			if presenter?.tracks.isEmpty == true { firstButton.isEnabled = false}
 
 		case .done:
 			tableView.setEditing(true, animated: true)
@@ -139,8 +137,6 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 			navigationItem.rightBarButtonItems = [secondButton, firstButton]
 			firstButton.tintColor = .gray
 		}
-
-		if presenter?.tracks.isEmpty == true { secondButton.isEnabled = false}
 	}
 
 	// MARK: - Actions
@@ -202,7 +198,10 @@ final class ShowPlaylistViewController: UIViewController, ShowPlaylistViewProtoc
 
 	// MARK: - ShowPlaylistViewProtocol
 
-	func reloadTableView() {
+	func reloadData() {
+		tableView.isHidden = presenter?.tracks.isEmpty == true
+		infoLabel.isHidden = presenter?.tracks.isEmpty == false
 		tableView.reloadData()
+		configureNavigationButton()
 	}
 }

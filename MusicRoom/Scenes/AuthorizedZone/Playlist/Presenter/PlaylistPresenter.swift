@@ -10,14 +10,16 @@ import Foundation
 
 final class PlaylistPresenter: PlaylistPresenterProtocol {
 	unowned private var view: PlaylistViewProtocol
-	private var model: PlaylistModelProtocol
+	var model: PlaylistModelProtocol
+
+	// MARK: Initialization
 
 	init(view: PlaylistViewProtocol) {
 		self.view = view
 
 		model = PlaylistModel()
-		model.updateView = {
-			view.reloadTableView()
+		model.updateView = { [weak self] in
+			self?.view.reloadTableView()
 		}
 	}
 
@@ -79,28 +81,18 @@ final class PlaylistPresenter: PlaylistPresenterProtocol {
 
 		switch playlistType {
 		case .private:
-			guard let playlistId = model.privatePlaylist[safe: indexPath.row]?.id else { return }
-			model.privatePlaylistItem.reference.child(playlistId).observeSingleEvent(of: .value) { [ weak self] snapshot in
-				let playlist = Playlist(snapshot: snapshot)
-				guard playlist.createdBy == Auth.auth().currentUser?.uid else {
-					self?.view.showBasicAlert(message: LocalizedStrings.Playlist.unableToDelete.localized)
-					return
-				}
-
-				self?.model.privatePlaylistItem.reference.child(playlistId).removeValue()
+			guard let playlist = model.privatePlaylist[safe: indexPath.row] else { return }
+			guard playlist.createdBy == model.currentUserId else {
+				return view.showBasicAlert(message: LocalizedStrings.Playlist.unableToDelete.localized)
 			}
+			model.privatePlaylistItem.removeValue(for: .withPath(playlist.id))
 
 		case .public:
-			guard let playlistId = model.publicPlaylist[safe: indexPath.row]?.id else { return }
-			model.publicPlaylistItem.reference.child(playlistId).observeSingleEvent(of: .value) { [ weak self] snapshot in
-				let playlist = Playlist(snapshot: snapshot)
-				guard playlist.createdBy == Auth.auth().currentUser?.uid else {
-					self?.view.showBasicAlert(message: LocalizedStrings.Playlist.unableToDelete.localized)
-					return
-				}
-
-				self?.model.publicPlaylistItem.reference.child(playlistId).removeValue()
+			guard let playlist = model.publicPlaylist[safe: indexPath.row] else { return }
+			guard playlist.createdBy == model.currentUserId else {
+				return view.showBasicAlert(message: LocalizedStrings.Playlist.unableToDelete.localized)
 			}
+			model.publicPlaylistItem.removeValue(for: .withPath(playlist.id))
 		}
 	}
 }

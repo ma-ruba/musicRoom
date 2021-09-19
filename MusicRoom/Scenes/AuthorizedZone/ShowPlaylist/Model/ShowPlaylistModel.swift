@@ -9,53 +9,42 @@
 import Foundation
 
 final class ShowPlaylistModel: ShowPlaylistModelProtocol {
+	var tracks: [PlaylistTrack] = []
 
-	var playlist: Playlist {
-		didSet {
-			updateView?()
-		}
-	}
+	var playlist: Playlist
 
-	var playlistItem: DatabaseItem
+	var tracksItem: DatabaseItem
 
 	private var updateView: (() -> Void)?
 
 	// MARK: Initialization
 
 	init(playlist: Playlist, completion: (() -> Void)?) {
-		guard let userId = Auth.auth().currentUser?.uid else {
-			fatalError(LocalizedStrings.AssertationErrors.noUser.localized)
-		}
-
-		self.playlist = playlist
 		self.updateView = completion
+		self.playlist = playlist
 
 		switch playlist.type {
 		case .private:
-			playlistItem = DatabaseItem(
-				path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + userId + DatabasePath.slash.rawValue + DatabasePath.playlists.rawValue + playlist.id
+			tracksItem = DatabaseItem(
+				path: DatabasePath.private.rawValue + DatabasePath.users.rawValue + playlist.createdBy + DatabasePath.slash.rawValue + DatabasePath.playlists.rawValue + playlist.id + DatabasePath.slash.rawValue + DatabasePath.tracks.rawValue
 			)
 
 		case .public:
-			playlistItem = DatabaseItem(
-				path: DatabasePath.public.rawValue + DatabasePath.playlists.rawValue + playlist.id
+			tracksItem = DatabaseItem(
+				path: DatabasePath.public.rawValue + DatabasePath.playlists.rawValue + playlist.id + DatabasePath.slash.rawValue + DatabasePath.tracks.rawValue
 			)
 		}
 
-		playlistItem.handle = playlistItem.reference.observe(.value) { [weak self] snapshot in
-			self?.playlist = Playlist(snapshot: snapshot)
-		}
-	}
+		tracksItem.observeValue { [weak self] snapshot in
+			self?.tracks.removeAll()
+			
+			for snap in snapshot.children {
+				guard let snap = snap as? DataSnapshot else { break }
+				let track = PlaylistTrack(snapshot: snap)
 
-	deinit {
-		tearDownDatabase()
-	}
-
-	// MARK: - Private
-
-	private func tearDownDatabase() {
-		if let handle = playlistItem.handle {
-			playlistItem.reference.removeObserver(withHandle: handle)
+				self?.tracks.append(track)
+			}
+			self?.updateView?()
 		}
 	}
 }

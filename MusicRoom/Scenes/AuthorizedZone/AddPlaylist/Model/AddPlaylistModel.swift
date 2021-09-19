@@ -27,6 +27,6 @@ struct AddPlaylistModel {
 	init() {
 		guard let uid = Auth.auth().currentUser?.uid else { fatalError(LocalizedStrings.AssertationErrors.noUser.localized) }
 		currentUid = uid
-		self.playlist = Playlist(id: "", name: "", createdBy: currentUid, type: .public)
+		self.playlist = Playlist(id: "", name: "", createdBy: uid, type: .public)
 	}
 }

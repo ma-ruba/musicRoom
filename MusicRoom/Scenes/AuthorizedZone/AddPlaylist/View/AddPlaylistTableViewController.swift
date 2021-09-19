@@ -138,6 +138,10 @@ final class AddPlaylistTableViewController: UITableViewController, AddPlaylistVi
 	// MARK: - Private
 
 	private func keyboardResignFirstResponder() {
+		if let text = textField.text {
+			presenter?.updatePlaylistName(with: text)
+		}
+
 		textField.resignFirstResponder()
 	}
 

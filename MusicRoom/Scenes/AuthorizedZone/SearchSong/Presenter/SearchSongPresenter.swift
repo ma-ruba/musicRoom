@@ -33,9 +33,7 @@ final class SearchSongPresenter: SearchSongPresenterProtocol {
 
 	func addNewTrack(at index: Int) {
 		guard let track = model.cachedTracks.object(forKey: NSString(string: model.currentSearch))?.tracks[safe: index] else { return }
-		let newSongRef = model.tracksItem.reference.childByAutoId()
-
-		newSongRef.setValue(track.object) { error, _ in
+		model.tracksItem.setValue(track.object, for: .byAutoId) { error in
 			guard error == nil else {
 				return print(error?.localizedDescription ?? MusicRoomErrors.BasicErrors.somethingWrong.localizedDescription)
 			}
@@ -49,21 +47,31 @@ final class SearchSongPresenter: SearchSongPresenterProtocol {
 		model.currentSearch = searchText
 		guard model.cachedTracks.object(forKey: NSString(string: model.currentSearch)) == nil else { return view.reloadTableView() }
 
-		DZRObject.search(
-			for: DZRSearchType.track,
-			withQuery: searchText,
-			requestManager: DZRRequestManager.default()
-		) { [weak self] (results: DZRObjectList?, error: Error?) -> Void in
-			guard let self = self, let results = results, error == nil else { return }
+		DispatchQueue.global(qos: .userInteractive).async {
+			DZRObject.search(
+				for: DZRSearchType.track,
+				withQuery: searchText,
+				requestManager: DZRRequestManager.default()
+			) { [weak self] (results: DZRObjectList?, error: Error?) -> Void in
+				guard let self = self, let results = results, error == nil else { return }
 
-			self.model.cachedTracks.setObject(DeezerTarckList(list: results), forKey: NSString(string: searchText))
-			self.view.reloadTableView()
+				self.model.cachedTracks.setObject(DeezerTarckList(list: results), forKey: NSString(string: searchText))
+				self.view.reloadTableView()
+			}
 		}
 	}
 
 	func getCellModel(at index: Int) -> LabelsTableViewCellModel? {
+		guard let track = getTrack(at: index) else { return nil }
+
+		return createModel(for: track)
+	}
+
+	// MARK: - Private
+
+	private func getTrack(at index: Int) -> Track? {
 		if let track = model.cachedTracks.object(forKey: NSString(string: model.currentSearch))?.tracks[safe: index] {
-			return createModel(for: track)
+			return track
 		}
 
 		// TODO: This is not elegant approach. Redo!
@@ -97,12 +105,8 @@ final class SearchSongPresenter: SearchSongPresenterProtocol {
 			}
 		}
 
-		guard  let track = model.cachedTracks.object(forKey: NSString(string: model.currentSearch))?.tracks[safe: index] else { return nil }
-
-		return createModel(for: track)
+		return nil
 	}
-
-	// MARK: - Private
 
 	private func createModel(for track: Track) -> LabelsTableViewCellModel {
 		return LabelsTableViewCellModel(

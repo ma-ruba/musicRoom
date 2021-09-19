@@ -30,7 +30,7 @@ final class SettingsPresenter: SettingsPresenterProtocol {
 		}
 	}
 	
-	private var handler: TabBarViewProtocol
+	weak private var handler: TabBarViewProtocol?
 
 	// MARK: Initializzation
 
@@ -51,7 +51,7 @@ final class SettingsPresenter: SettingsPresenterProtocol {
 	func submitUsername() {
 		guard !username.isEmpty else { return }
 
-		model.usernameItem.reference.setValue(username) { error, _ in
+		model.usernameItem.setValue(username) { error in
 			guard error == nil else { return print(error?.localizedDescription) }
 		}
 	}
@@ -62,7 +62,7 @@ final class SettingsPresenter: SettingsPresenterProtocol {
 			GIDSignIn.sharedInstance().signOut()
 			DeezerManager.sharedInstance.stop()
 			DeezerManager.sharedInstance.deezerConnect?.logout()
-			handler.dismiss()
+			handler?.dismiss()
 		} catch {
 			view.showBasicAlert(title: LocalizedStrings.Settings.logoutError.localized, message: error.localizedDescription)
 		}
