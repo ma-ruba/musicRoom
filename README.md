@@ -9,8 +9,9 @@ This version lacks it's key feature - deffered events for the friends. User will
 
 Moreover, an app for AppleWatch on SwiftUi is planned that will enable to play and pause a track just frow your wrist.
 
-![alt text] (https://github.com/ma-ruba/musicRoom/blob/release/startScene.png)
-![alt text] (https://github.com/ma-ruba/musicRoom/blob/release/playlist.png)
+![Image alt](https://github.com/ma-ruba/musicRoom/blob/release/startScene.png)
+
+![Image alt](https://github.com/ma-ruba/musicRoom/blob/release/playlist.png)
 
 P.S. In case you find any buggs or logical mistakes please contact me. I would really appreciate your help.
 
