@@ -88,7 +88,7 @@ final class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObj
 		let trackModel = TrackViewModel(buttonModel: buttonModel, trackName: trackName)
 
 		DispatchQueue.main.async {
-			self.appModel = MusicRoomWatchModel(trackViewModel: trackModel)
+			self.appModel.trackViewModel = trackModel
 		}
 	}
 }

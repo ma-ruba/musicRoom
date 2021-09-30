@@ -86,7 +86,7 @@ final class DeezerManager : NSObject, DeezerSessionDelegate {
 		return [
 			ConnectivityKeys.trackName.rawValue: "\(trackToPlay.name) by \(trackToPlay.creator)",
 			ConnectivityKeys.playingState.rawValue: playingState.rawValue,
-			ConnectivityKeys.playbackProgress.rawValue: String(deezerPlayer.progress)
+			ConnectivityKeys.playbackProgress.rawValue: String(deezerPlayer.progress / 100)
 		]
 	}
 }
