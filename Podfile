@@ -3,16 +3,15 @@ platform :ios, '11.0'
 
 target 'MusicRoom' do
 
-pod 'Firebase/Core'
-  pod 'Firebase/Database'
-  pod 'Firebase/Auth'
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKLoginKit'
-  pod 'GoogleSignIn'
-  pod 'SnapKit'
+   pod 'Firebase/Database'
+   pod 'Firebase/Auth'
+   pod 'SnapKit'
+   pod 'GoogleSignIn'
+   pod 'FBSDKCoreKit'
+   pod 'FBSDKLoginKit'
+   pod 'Firebase/Core'
 
 end
-
 
 post_install do |installer|
  installer.pods_project.targets.each do |target|

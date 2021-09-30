@@ -135,9 +135,16 @@
 "Settings_" = "";
 
 /* Friends */
-"Friends_navigationTitle" = "Friends";
+"Friends_navigationTitle" = "FriFends";
 "Friends_addActionTitle" = "Add";
 "Friends_acceptActionTitle" = "Accept";
 "Friends_rejectActionTitle" = "Reject";
 "Friends_" = "";
 "Friends_" = "";
+
+/* Watch */
+"Watch_noConnection" = "It seems like your Watches are not paired with the Iphone :(";
+"Watch_authorizeInYourApp" = "It seems like you are not authorized in Music Room :(";
+"Watch_nothingIsPlaying" = "Nothing is playing... yet!";
+"Watch_somethingWrong" = "Something's wrong...";
+"Watch_" = "";

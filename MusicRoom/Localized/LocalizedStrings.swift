@@ -122,4 +122,11 @@ enum LocalizedStrings {
 		case acceptActionTitle
 		case rejectActionTitle
 	}
+
+	enum Watch: LocalizedStringConvertible {
+		case noConnection
+		case authorizeInYourApp
+		case nothingIsPlaying
+		case somethingWrong
+	}
 }

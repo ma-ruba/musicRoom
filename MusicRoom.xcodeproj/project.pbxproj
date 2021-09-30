@@ -48,6 +48,33 @@
 		3C4FEDA326A1714300499E95 /* UIImage+GradientColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FEDA226A1714300499E95 /* UIImage+GradientColor.swift */; };
 		3C6842B825A79E7F00C0EA4D /* UITableViewCell+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6842B725A79E7F00C0EA4D /* UITableViewCell+Reusable.swift */; };
 		3C6842BB25A8AD1200C0EA4D /* DeezerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6842BA25A8AD1200C0EA4D /* DeezerManager.swift */; };
+		3C6F544A2703101300CC60EB /* PhoneConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6F54492703101300CC60EB /* PhoneConnectivityManager.swift */; };
+		3C6F54582703433500CC60EB /* PhoneConnectivityManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6F54572703433500CC60EB /* PhoneConnectivityManagerProtocol.swift */; };
+		3C6F545E2704597400CC60EB /* ConnectivityKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6F545D2704597400CC60EB /* ConnectivityKeys.swift */; };
+		3C706BDF2705DA4E00312575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C706BDE2705DA4E00312575 /* Assets.xcassets */; };
+		3C706BE62705DA4F00312575 /* MusicRoomWatches Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3C706BE52705DA4F00312575 /* MusicRoomWatches Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3C706BEB2705DA4F00312575 /* MusicRoomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C706BEA2705DA4F00312575 /* MusicRoomApp.swift */; };
+		3C706BED2705DA4F00312575 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C706BEC2705DA4F00312575 /* ContentView.swift */; };
+		3C706BEF2705DA4F00312575 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C706BEE2705DA4F00312575 /* NotificationController.swift */; };
+		3C706BF12705DA4F00312575 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C706BF02705DA4F00312575 /* NotificationView.swift */; };
+		3C706BF32705DA4F00312575 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C706BF22705DA4F00312575 /* ComplicationController.swift */; };
+		3C706BF52705DA4F00312575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C706BF42705DA4F00312575 /* Assets.xcassets */; };
+		3C706BF82705DA4F00312575 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C706BF72705DA4F00312575 /* Preview Assets.xcassets */; };
+		3C706BFD2705DA4F00312575 /* MusicRoomWatches.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3C706BDC2705DA4D00312575 /* MusicRoomWatches.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3C706C342705DB4700312575 /* MusicRoomWatchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C706BB62704802300312575 /* MusicRoomWatchState.swift */; };
+		3C706C3B2705DB4A00312575 /* MusicRoomWatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C706BC0270486D600312575 /* MusicRoomWatchModel.swift */; };
+		3C706C482705DB5400312575 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C99C8FA2701F831009223C0 /* TrackView.swift */; };
+		3C706C4F2705DB5700312575 /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C99C9042701F866009223C0 /* TrackViewModel.swift */; };
+		3C706C562705DB5E00312575 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C99C8EF2701F792009223C0 /* WatchConnectivityManager.swift */; };
+		3C706C5D2705DB6100312575 /* WatchConnectivityManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6F546427047DE700CC60EB /* WatchConnectivityManagerProtocol.swift */; };
+		3C706C642705DB6500312575 /* PlayButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC99CBB26F9ADB500229BD1 /* PlayButtonModel.swift */; };
+		3C706C712705DB6900312575 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC99CC526F9ADCF00229BD1 /* PlayButton.swift */; };
+		3C706C782705DB7900312575 /* ConnectivityKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6F545D2704597400CC60EB /* ConnectivityKeys.swift */; };
+		3C706C7F2705DB7D00312575 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C390EC9266E47E200BFE3F2 /* Localizable.strings */; };
+		3C706C862705DB8000312575 /* LocalizedStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C390EC1266E47A600BFE3F2 /* LocalizedStringConvertible.swift */; };
+		3C706C8D2705DB8300312575 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C390EC4266E47BE00BFE3F2 /* LocalizedStrings.swift */; };
+		3C706C942705DB8900312575 /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC99CCB26F9AE7D00229BD1 /* PlayingState.swift */; };
+		3C706CA42705E5D200312575 /* MusicRoomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3A344726CD7C23002C1DE0 /* MusicRoomErrors.swift */; };
 		3C75E98B26E112690006545E /* FriendForInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75E98A26E112690006545E /* FriendForInvite.swift */; };
 		3C75E98E26E118020006545E /* DatabaseAnalyticsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C75E98D26E118020006545E /* DatabaseAnalyticsKeys.swift */; };
 		3C77DBE125B0F34C00AC6D08 /* SearchSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C77DBE025B0F34C00AC6D08 /* SearchSongViewController.swift */; };
@@ -100,6 +127,7 @@
 		3CC75B77269D95D300C7E0B9 /* TabBarPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC75B76269D95D300C7E0B9 /* TabBarPresenterProtocol.swift */; };
 		3CC75B7A269D960100C7E0B9 /* TabBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC75B79269D960100C7E0B9 /* TabBarModel.swift */; };
 		3CC75BB1269EE14700C7E0B9 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC75BB0269EE14700C7E0B9 /* UIViewController+ChildViewController.swift */; };
+		3CC99CCC26F9AE7D00229BD1 /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC99CCB26F9AE7D00229BD1 /* PlayingState.swift */; };
 		3CF3D2DE26C92DF200F15E6D /* PlaylistViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3D2DD26C92DF200F15E6D /* PlaylistViewProtocol.swift */; };
 		3CF3D2E226C92EC500F15E6D /* PlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3D2E126C92EC500F15E6D /* PlaylistModel.swift */; };
 		3CF3D2E526C92ED900F15E6D /* PlaylistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3D2E426C92ED900F15E6D /* PlaylistPresenter.swift */; };
@@ -151,7 +179,46 @@
 			remoteGlobalIDString = 3C79DA3225825C14009E1571;
 			remoteInfo = MusicRoom;
 		};
+		3C706BE72705DA4F00312575 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C79DA2B25825C14009E1571 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C706BE42705DA4F00312575;
+			remoteInfo = "MusicRoomWatches Extension";
+		};
+		3C706BFB2705DA4F00312575 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C79DA2B25825C14009E1571 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C706BDB2705DA4D00312575;
+			remoteInfo = MusicRoomWatches;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3C706C012705DA4F00312575 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3C706BE62705DA4F00312575 /* MusicRoomWatches Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CC99C9C26F9AB0C00229BD1 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				3C706BFD2705DA4F00312575 /* MusicRoomWatches.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3C040B4B26F7311D00DD47CD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -200,6 +267,25 @@
 		3C4FEDA226A1714300499E95 /* UIImage+GradientColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+GradientColor.swift"; sourceTree = "<group>"; };
 		3C6842B725A79E7F00C0EA4D /* UITableViewCell+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Reusable.swift"; sourceTree = "<group>"; };
 		3C6842BA25A8AD1200C0EA4D /* DeezerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeezerManager.swift; sourceTree = "<group>"; };
+		3C6F54492703101300CC60EB /* PhoneConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConnectivityManager.swift; sourceTree = "<group>"; };
+		3C6F54572703433500CC60EB /* PhoneConnectivityManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConnectivityManagerProtocol.swift; sourceTree = "<group>"; };
+		3C6F545D2704597400CC60EB /* ConnectivityKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityKeys.swift; sourceTree = "<group>"; };
+		3C6F546427047DE700CC60EB /* WatchConnectivityManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityManagerProtocol.swift; sourceTree = "<group>"; };
+		3C706BB62704802300312575 /* MusicRoomWatchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicRoomWatchState.swift; sourceTree = "<group>"; };
+		3C706BC0270486D600312575 /* MusicRoomWatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicRoomWatchModel.swift; sourceTree = "<group>"; };
+		3C706BDC2705DA4D00312575 /* MusicRoomWatches.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicRoomWatches.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C706BDE2705DA4E00312575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3C706BE02705DA4E00312575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C706BE52705DA4F00312575 /* MusicRoomWatches Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MusicRoomWatches Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C706BEA2705DA4F00312575 /* MusicRoomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicRoomApp.swift; sourceTree = "<group>"; };
+		3C706BEC2705DA4F00312575 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3C706BEE2705DA4F00312575 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		3C706BF02705DA4F00312575 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		3C706BF22705DA4F00312575 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		3C706BF42705DA4F00312575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3C706BF72705DA4F00312575 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3C706BF92705DA4F00312575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C706BFA2705DA4F00312575 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		3C75E98A26E112690006545E /* FriendForInvite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendForInvite.swift; sourceTree = "<group>"; };
 		3C75E98D26E118020006545E /* DatabaseAnalyticsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAnalyticsKeys.swift; sourceTree = "<group>"; };
 		3C77DBE025B0F34C00AC6D08 /* SearchSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSongViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +318,9 @@
 		3C880682258E567D0048E4D5 /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
 		3C880684258E5D1E0048E4D5 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		3C8806872598D2F60048E4D5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3C99C8EF2701F792009223C0 /* WatchConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityManager.swift; sourceTree = "<group>"; };
+		3C99C8FA2701F831009223C0 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
+		3C99C9042701F866009223C0 /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
 		3C9AE3DB26C0488400058917 /* MusicBarViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBarViewProtocol.swift; sourceTree = "<group>"; };
 		3C9AE3DE26C048D700058917 /* MusicBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBarModel.swift; sourceTree = "<group>"; };
 		3C9AE3E126C048F900058917 /* MusicBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBarPresenter.swift; sourceTree = "<group>"; };
@@ -254,6 +343,9 @@
 		3CC75B76269D95D300C7E0B9 /* TabBarPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresenterProtocol.swift; sourceTree = "<group>"; };
 		3CC75B79269D960100C7E0B9 /* TabBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModel.swift; sourceTree = "<group>"; };
 		3CC75BB0269EE14700C7E0B9 /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
+		3CC99CBB26F9ADB500229BD1 /* PlayButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButtonModel.swift; sourceTree = "<group>"; };
+		3CC99CC526F9ADCF00229BD1 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		3CC99CCB26F9AE7D00229BD1 /* PlayingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
 		3CF3D2DD26C92DF200F15E6D /* PlaylistViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewProtocol.swift; sourceTree = "<group>"; };
 		3CF3D2E126C92EC500F15E6D /* PlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistModel.swift; sourceTree = "<group>"; };
 		3CF3D2E426C92ED900F15E6D /* PlaylistPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistPresenter.swift; sourceTree = "<group>"; };
@@ -300,6 +392,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		3C3BB71326F0C638007B09CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C706BE22705DA4F00312575 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -554,6 +653,71 @@
 			path = Deezer;
 			sourceTree = "<group>";
 		};
+		3C6F544827030FF900CC60EB /* PhoneConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				3C6F54492703101300CC60EB /* PhoneConnectivityManager.swift */,
+				3C6F54572703433500CC60EB /* PhoneConnectivityManagerProtocol.swift */,
+				3C6F545D2704597400CC60EB /* ConnectivityKeys.swift */,
+			);
+			path = PhoneConnectivity;
+			sourceTree = "<group>";
+		};
+		3C6F546327047D8F00CC60EB /* WatchConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				3C99C8EF2701F792009223C0 /* WatchConnectivityManager.swift */,
+				3C6F546427047DE700CC60EB /* WatchConnectivityManagerProtocol.swift */,
+			);
+			path = WatchConnectivity;
+			sourceTree = "<group>";
+		};
+		3C706BB52704800A00312575 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3C706BB62704802300312575 /* MusicRoomWatchState.swift */,
+				3C706BC0270486D600312575 /* MusicRoomWatchModel.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3C706BDD2705DA4D00312575 /* MusicRoomWatches */ = {
+			isa = PBXGroup;
+			children = (
+				3C706BDE2705DA4E00312575 /* Assets.xcassets */,
+				3C706BE02705DA4E00312575 /* Info.plist */,
+			);
+			path = MusicRoomWatches;
+			sourceTree = "<group>";
+		};
+		3C706BE92705DA4F00312575 /* MusicRoomWatches Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3CC99CBA26F9AD8800229BD1 /* PlayButton */,
+				3C6F546327047D8F00CC60EB /* WatchConnectivity */,
+				3C99C8F92701F820009223C0 /* TrackView */,
+				3C706BB52704800A00312575 /* Common */,
+				3C706BEA2705DA4F00312575 /* MusicRoomApp.swift */,
+				3C706BEC2705DA4F00312575 /* ContentView.swift */,
+				3C706BEE2705DA4F00312575 /* NotificationController.swift */,
+				3C706BF02705DA4F00312575 /* NotificationView.swift */,
+				3C706BF22705DA4F00312575 /* ComplicationController.swift */,
+				3C706BF42705DA4F00312575 /* Assets.xcassets */,
+				3C706BF92705DA4F00312575 /* Info.plist */,
+				3C706BFA2705DA4F00312575 /* PushNotificationPayload.apns */,
+				3C706BF62705DA4F00312575 /* Preview Content */,
+			);
+			path = "MusicRoomWatches Extension";
+			sourceTree = "<group>";
+		};
+		3C706BF62705DA4F00312575 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3C706BF72705DA4F00312575 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		3C79DA2A25825C14009E1571 = {
 			isa = PBXGroup;
 			children = (
@@ -561,6 +725,8 @@
 				3CC17E7F25A8D139009CA0F9 /* DeezerSDK */,
 				3C79DA3525825C14009E1571 /* MusicRoom */,
 				3C3BB71726F0C638007B09CF /* MusicRoomTests */,
+				3C706BDD2705DA4D00312575 /* MusicRoomWatches */,
+				3C706BE92705DA4F00312575 /* MusicRoomWatches Extension */,
 				3C79DA3425825C14009E1571 /* Products */,
 				FC501485E042E2E937F25BE7 /* Pods */,
 				AAB091A5767B455851AAB601 /* Frameworks */,
@@ -572,6 +738,8 @@
 			children = (
 				3C79DA3325825C14009E1571 /* MusicRoom.app */,
 				3C3BB71626F0C638007B09CF /* MusicRoomTests.xctest */,
+				3C706BDC2705DA4D00312575 /* MusicRoomWatches.app */,
+				3C706BE52705DA4F00312575 /* MusicRoomWatches Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -580,6 +748,7 @@
 			isa = PBXGroup;
 			children = (
 				3CFC9ABF26E798CD008B8DA8 /* MusicRoom.entitlements */,
+				3C6F544827030FF900CC60EB /* PhoneConnectivity */,
 				3C3A344626CD7BFE002C1DE0 /* Errors */,
 				3C3A343F26CCF444002C1DE0 /* Database */,
 				3C4101BF26B3FB0400613D4A /* Common */,
@@ -653,6 +822,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		3C99C8F92701F820009223C0 /* TrackView */ = {
+			isa = PBXGroup;
+			children = (
+				3C99C8FA2701F831009223C0 /* TrackView.swift */,
+				3C99C9042701F866009223C0 /* TrackViewModel.swift */,
+			);
+			path = TrackView;
+			sourceTree = "<group>";
+		};
 		3C9AE3D726C047D200058917 /* MusicBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -686,6 +864,7 @@
 			children = (
 				3C9AE3DE26C048D700058917 /* MusicBarModel.swift */,
 				3CFC9AC426E8BAEB008B8DA8 /* MusicBarModelProtocol.swift */,
+				3CC99CCB26F9AE7D00229BD1 /* PlayingState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -802,6 +981,15 @@
 				3C2A1F9B26D50AAE008F2AD2 /* EmptyView.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		3CC99CBA26F9AD8800229BD1 /* PlayButton */ = {
+			isa = PBXGroup;
+			children = (
+				3CC99CBB26F9ADB500229BD1 /* PlayButtonModel.swift */,
+				3CC99CC526F9ADCF00229BD1 /* PlayButton.swift */,
+			);
+			path = PlayButton;
 			sourceTree = "<group>";
 		};
 		3CF3D2DA26C92C7000F15E6D /* Presenter */ = {
@@ -1069,6 +1257,40 @@
 			productReference = 3C3BB71626F0C638007B09CF /* MusicRoomTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		3C706BDB2705DA4D00312575 /* MusicRoomWatches */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C706C022705DA4F00312575 /* Build configuration list for PBXNativeTarget "MusicRoomWatches" */;
+			buildPhases = (
+				3C706BDA2705DA4D00312575 /* Resources */,
+				3C706C012705DA4F00312575 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3C706BE82705DA4F00312575 /* PBXTargetDependency */,
+			);
+			name = MusicRoomWatches;
+			productName = MusicRoomWatches;
+			productReference = 3C706BDC2705DA4D00312575 /* MusicRoomWatches.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		3C706BE42705DA4F00312575 /* MusicRoomWatches Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C706BFE2705DA4F00312575 /* Build configuration list for PBXNativeTarget "MusicRoomWatches Extension" */;
+			buildPhases = (
+				3C706BE12705DA4F00312575 /* Sources */,
+				3C706BE22705DA4F00312575 /* Frameworks */,
+				3C706BE32705DA4F00312575 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MusicRoomWatches Extension";
+			productName = "MusicRoomWatches Extension";
+			productReference = 3C706BE52705DA4F00312575 /* MusicRoomWatches Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		3C79DA3225825C14009E1571 /* MusicRoom */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C79DA4725825C15009E1571 /* Build configuration list for PBXNativeTarget "MusicRoom" */;
@@ -1076,10 +1298,12 @@
 				3C79DA2F25825C14009E1571 /* Sources */,
 				3C79DA3025825C14009E1571 /* Frameworks */,
 				3C79DA3125825C14009E1571 /* Resources */,
+				3CC99C9C26F9AB0C00229BD1 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3C706BFC2705DA4F00312575 /* PBXTargetDependency */,
 			);
 			name = MusicRoom;
 			productName = MusicRoom;
@@ -1100,6 +1324,14 @@
 						CreatedOnToolsVersion = 12.4;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3C79DA3225825C14009E1571;
+					};
+					3C706BDB2705DA4D00312575 = {
+						CreatedOnToolsVersion = 12.4;
+						ProvisioningStyle = Automatic;
+					};
+					3C706BE42705DA4F00312575 = {
+						CreatedOnToolsVersion = 12.4;
+						ProvisioningStyle = Automatic;
 					};
 					3C79DA3225825C14009E1571 = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -1123,6 +1355,8 @@
 			targets = (
 				3C79DA3225825C14009E1571 /* MusicRoom */,
 				3C3BB71526F0C638007B09CF /* MusicRoomTests */,
+				3C706BDB2705DA4D00312575 /* MusicRoomWatches */,
+				3C706BE42705DA4F00312575 /* MusicRoomWatches Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -1132,6 +1366,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C706BDA2705DA4D00312575 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C706BDF2705DA4E00312575 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C706BE32705DA4F00312575 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C706BF82705DA4F00312575 /* Preview Assets.xcassets in Resources */,
+				3C706C7F2705DB7D00312575 /* Localizable.strings in Resources */,
+				3C706BF52705DA4F00312575 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1164,6 +1416,31 @@
 				3C3BB72826F1EA35007B09CF /* PlaylistPresenterTest.swift in Sources */,
 				3C3BB71926F0C638007B09CF /* MusicRoomTests.swift in Sources */,
 				3C9C33CB26F7992500270DA1 /* PlaylistModelMock.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C706BE12705DA4F00312575 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C706C782705DB7900312575 /* ConnectivityKeys.swift in Sources */,
+				3C706CA42705E5D200312575 /* MusicRoomErrors.swift in Sources */,
+				3C706C942705DB8900312575 /* PlayingState.swift in Sources */,
+				3C706C4F2705DB5700312575 /* TrackViewModel.swift in Sources */,
+				3C706C8D2705DB8300312575 /* LocalizedStrings.swift in Sources */,
+				3C706BEF2705DA4F00312575 /* NotificationController.swift in Sources */,
+				3C706C862705DB8000312575 /* LocalizedStringConvertible.swift in Sources */,
+				3C706BED2705DA4F00312575 /* ContentView.swift in Sources */,
+				3C706C482705DB5400312575 /* TrackView.swift in Sources */,
+				3C706C562705DB5E00312575 /* WatchConnectivityManager.swift in Sources */,
+				3C706BF32705DA4F00312575 /* ComplicationController.swift in Sources */,
+				3C706C712705DB6900312575 /* PlayButton.swift in Sources */,
+				3C706C5D2705DB6100312575 /* WatchConnectivityManagerProtocol.swift in Sources */,
+				3C706C642705DB6500312575 /* PlayButtonModel.swift in Sources */,
+				3C706C3B2705DB4A00312575 /* MusicRoomWatchModel.swift in Sources */,
+				3C706BEB2705DA4F00312575 /* MusicRoomApp.swift in Sources */,
+				3C706C342705DB4700312575 /* MusicRoomWatchState.swift in Sources */,
+				3C706BF12705DA4F00312575 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1203,6 +1480,7 @@
 				3CC17E8A25ADDC4E009CA0F9 /* Collection+Subscript.swift in Sources */,
 				3C2DD8EB26DD0F2E00155456 /* SettingsPresenterProtocol.swift in Sources */,
 				3C2DD8BB26D78E2300155456 /* ShowPlaylistViewProtocol.swift in Sources */,
+				3C6F545E2704597400CC60EB /* ConnectivityKeys.swift in Sources */,
 				4C5EB6252695FEFC00FCECE8 /* UIViewController+KeyboardScrollable.swift in Sources */,
 				3C1AA18C26C06D97001E0C9E /* UIView+Gradient.swift in Sources */,
 				3CC17E8625ADCCDC009CA0F9 /* AddPlaylistTableViewController.swift in Sources */,
@@ -1213,6 +1491,7 @@
 				3C1C417426EF63E000C90E57 /* LabelsTableViewCell.swift in Sources */,
 				3C46E5EA2694481E0010BB56 /* UIViewController+Spinner.swift in Sources */,
 				3C2DD8D526D8C14C00155456 /* SearchSongPresenterProtocol.swift in Sources */,
+				3C6F544A2703101300CC60EB /* PhoneConnectivityManager.swift in Sources */,
 				3C7D5F8A2598EA360003BB11 /* TabBarViewController.swift in Sources */,
 				4C94C2E72693225D0037E7D0 /* SignViewProtocol.swift in Sources */,
 				3C8806882598D2F60048E4D5 /* SettingsViewController.swift in Sources */,
@@ -1235,6 +1514,7 @@
 				3C79DA5025839321009E1571 /* SignViewController.swift in Sources */,
 				3C1C419126F0746200C90E57 /* LabelsTableViewCellModel.swift in Sources */,
 				3C9AE3DC26C0488400058917 /* MusicBarViewProtocol.swift in Sources */,
+				3C6F54582703433500CC60EB /* PhoneConnectivityManagerProtocol.swift in Sources */,
 				4C390EC2266E47A600BFE3F2 /* LocalizedStringConvertible.swift in Sources */,
 				4C5EB5FE2693526700FCECE8 /* LogPresenterProtocol.swift in Sources */,
 				4C5EB5FB269351DD00FCECE8 /* LogViewProtocol.swift in Sources */,
@@ -1269,6 +1549,7 @@
 				4C826F99266A98D000F27671 /* StartViewProtocol.swift in Sources */,
 				3CF3D2E526C92ED900F15E6D /* PlaylistPresenter.swift in Sources */,
 				3CFC9AC926E8D52C008B8DA8 /* TrackToPlay.swift in Sources */,
+				3CC99CCC26F9AE7D00229BD1 /* PlayingState.swift in Sources */,
 				3C82294326D387BE002B3413 /* AddPlaylistPresenterProtocol.swift in Sources */,
 				3CF3D2E826C92EEB00F15E6D /* PlaylistPresenterProtocol.swift in Sources */,
 				3CC17E8F25AE32BF009CA0F9 /* Playlist.swift in Sources */,
@@ -1292,6 +1573,16 @@
 			isa = PBXTargetDependency;
 			target = 3C79DA3225825C14009E1571 /* MusicRoom */;
 			targetProxy = 3C3BB71B26F0C638007B09CF /* PBXContainerItemProxy */;
+		};
+		3C706BE82705DA4F00312575 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C706BE42705DA4F00312575 /* MusicRoomWatches Extension */;
+			targetProxy = 3C706BE72705DA4F00312575 /* PBXContainerItemProxy */;
+		};
+		3C706BFC2705DA4F00312575 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C706BDB2705DA4D00312575 /* MusicRoomWatches */;
+			targetProxy = 3C706BFB2705DA4F00312575 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1336,6 +1627,84 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusicRoom.app/MusicRoom";
+			};
+			name = Release;
+		};
+		3C706BFF2705DA4F00312575 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"MusicRoomWatches Extension/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "MusicRoomWatches Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.GirlsPower.MusicRoom.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		3C706C002705DA4F00312575 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"MusicRoomWatches Extension/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "MusicRoomWatches Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.GirlsPower.MusicRoom.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
+		3C706C032705DA4F00312575 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q39UK8P78P;
+				IBSC_MODULE = MusicRoomWatches_Extension;
+				INFOPLIST_FILE = MusicRoomWatches/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GirlsPower.MusicRoom.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		3C706C042705DA4F00312575 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q39UK8P78P;
+				IBSC_MODULE = MusicRoomWatches_Extension;
+				INFOPLIST_FILE = MusicRoomWatches/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GirlsPower.MusicRoom.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Release;
 		};
@@ -1515,6 +1884,24 @@
 			buildConfigurations = (
 				3C3BB71D26F0C639007B09CF /* Debug */,
 				3C3BB71E26F0C639007B09CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3C706BFE2705DA4F00312575 /* Build configuration list for PBXNativeTarget "MusicRoomWatches Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C706BFF2705DA4F00312575 /* Debug */,
+				3C706C002705DA4F00312575 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3C706C022705DA4F00312575 /* Build configuration list for PBXNativeTarget "MusicRoomWatches" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C706C032705DA4F00312575 /* Debug */,
+				3C706C042705DA4F00312575 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

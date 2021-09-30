@@ -6,32 +6,11 @@
 //  Copyright © 2021 School21. All rights reserved.
 //
 
-/// State of the playing button on MusicBar.
-enum PlayingState {
-
-	/// Disabled. No button on the bar.
-	case disabled
-
-	/// The track is playing currently. Stop button is displayed.
-	case isPlaying
-
-	/// The track previously playing was suspended. Play button is displayed.
-	case isSuspended
-}
-
 final class MusicBarModel: MusicBarModelProtocol {
 	var playingState: PlayingState {
-		if DeezerManager.sharedInstance.deezerPlayer?.isPlaying() == true {
-			return .isPlaying
-
-		} else if DeezerManager.sharedInstance.deezerPlayer?.isReady() == true {
-			return .isSuspended
-
-		} else {
-			DeezerManager.sharedInstance.trackToPlay = nil
-			return .disabled
-		}
+		DeezerManager.sharedInstance.playingState
 	}
+
 	var playingInfo: String {
 		switch playingState {
 		case .isPlaying, .isSuspended:
